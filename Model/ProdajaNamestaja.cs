@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace POP_9.Model
 {
+    [Serializable]
     class ProdajaNamestaja
     {
         public int Id { get; set; }

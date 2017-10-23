@@ -1,1 +1,7 @@
 C:\Users\SF9-2016\documents\visual studio 2015\Projects\POP-9\POP-9\bin\Debug\POP-9.exe.config
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.exe.config
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.csprojResolveAssemblyReference.cache
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.exe
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.pdb
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.exe
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.pdb

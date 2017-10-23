@@ -27,7 +27,7 @@ namespace POP_9.Tests
             p.Add("Milosevic");
             p.Add("Borisov");
             p.Add("Stefanovic");
-            for (int k = 0; k < ; k++)
+            for (int k = 0; k < 1; k++)
             {
                 osoba[k].Name = i[k];
                 osoba[k].SurName = i[k];

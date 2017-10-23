@@ -5,7 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace POP_9.Model
-{  
+{
+    [Serializable]
+    public enum Tipkorisnika {
+    Administrator,
+    prodavac
+    }
+    
     public class Korisnik
     {   public int id { get; set; }
         public string Ime { get; set; }

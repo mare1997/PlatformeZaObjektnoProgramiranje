@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace POP_9.Model
-{
+{   [Serializable]
     public class Namestaj
     {
         public int Id { get; set; }
@@ -14,6 +14,6 @@ namespace POP_9.Model
         public int KolicinivaUMagacinu { get; set; }
         public bool Obrisan { get; set; }
         public TipNamestaja TipNamestaja { get; set;}
-
+        public Akcija Akcija { get; set; }
     }
 }

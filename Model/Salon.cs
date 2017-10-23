@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace POP_9.Model
 {
+    [Serializable]
     public class Salon
     {
         public int Id { get; set; }
@@ -17,5 +18,7 @@ namespace POP_9.Model
         public int PIB { get; set; }
         public int MaticniBroj { get; set; }
         public string BrojZiroRacuna { get; set; }
+        
     }
+
 }

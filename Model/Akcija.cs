@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace POP_9.Model
 {
-    class Akcija
+    [Serializable]
+    public class Akcija
     {
         public int Id { get; set; }
         public DateTime pocetak { get; set; }
