@@ -1,4 +1,5 @@
 ﻿using POP_9.Model;
+using POP_9.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace POP_9
         public static List<Namestaj> Namestaj1 { get; set; } = new List<Namestaj>();
         public static List<TipNamestaja> TN { get; set; } = new List<TipNamestaja>();
         public static List<Akcija> akcija { get; set; } = new List<Akcija>();
+        public static object GenericSerilize { get; private set; }
+
         static void Main(string[] args)
         {
             Salon s1 = new Salon()
@@ -48,7 +51,21 @@ namespace POP_9
                 KolicinivaUMagacinu = 16,
                 TipNamestaja = TN[0],
 
-            });
+            }
+            );
+            Namestaj1.Add(new Namestaj()
+            {
+                Id = 2,
+                Naziv = "Kauc",
+                JedinicnaCena = 2314,
+                KolicinivaUMagacinu = 16,
+                TipNamestaja = TN[0],
+
+            }
+            );
+            GenericSeriallzer.Serialize<Namestaj>("namestaj.xml", Namestaj1);
+            List<Namestaj> ln=GenericSeriallzer.Deserialize<Namestaj>("namestaj.xml");
+            
             Console.WriteLine($"Dobrodosli u salon namestaja {s1.Naziv}.");
             IspisiGlavniMeni();
             Console.ReadLine();
