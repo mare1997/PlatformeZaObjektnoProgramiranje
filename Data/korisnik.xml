@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfKorisnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Korisnik>
+    <id>1</id>
+    <Ime>Marko</Ime>
+    <Prezime>Radojkovic</Prezime>
+    <KorisnickoIme>mare97</KorisnickoIme>
+    <Sifra>mare1234</Sifra>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
+  <Korisnik>
+    <id>1</id>
+    <Ime>a</Ime>
+    <Prezime>a</Prezime>
+    <KorisnickoIme>a</KorisnickoIme>
+    <Sifra>a</Sifra>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
+</ArrayOfKorisnik>

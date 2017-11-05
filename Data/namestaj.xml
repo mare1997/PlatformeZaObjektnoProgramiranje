@@ -2,25 +2,13 @@
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
     <Id>1</Id>
-    <Naziv>Crna kozna</Naziv>
-    <JedinicnaCena>2314</JedinicnaCena>
-    <KolicinivaUMagacinu>16</KolicinivaUMagacinu>
+    <Naziv>badfa</Naziv>
+    <JedinicnaCena>123</JedinicnaCena>
+    <KolicinivaUMagacinu>123</KolicinivaUMagacinu>
     <Obrisan>false</Obrisan>
     <TipNamestaja>
-      <Id>1</Id>
-      <Naziv>Sofa</Naziv>
-      <Obrisan>false</Obrisan>
-    </TipNamestaja>
-  </Namestaj>
-  <Namestaj>
-    <Id>2</Id>
-    <Naziv>Kauc</Naziv>
-    <JedinicnaCena>2314</JedinicnaCena>
-    <KolicinivaUMagacinu>16</KolicinivaUMagacinu>
-    <Obrisan>false</Obrisan>
-    <TipNamestaja>
-      <Id>1</Id>
-      <Naziv>Sofa</Naziv>
+      <Id>2</Id>
+      <Naziv>Kauc</Naziv>
       <Obrisan>false</Obrisan>
     </TipNamestaja>
   </Namestaj>

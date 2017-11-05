@@ -13,11 +13,12 @@ namespace POP_9
         public static List<Namestaj> Namestaj1 { get; set; } = new List<Namestaj>();
         public static List<TipNamestaja> TN { get; set; } = new List<TipNamestaja>();
         public static List<Akcija> akcija { get; set; } = new List<Akcija>();
+        public static List<Korisnik> korisnik { get; set; } = new List<Korisnik>();
         public static object GenericSerilize { get; private set; }
-
+        public static Salon s1;
         static void Main(string[] args)
         {
-            Salon s1 = new Salon()
+            s1 = new Salon()
             {
                 Id = 1,
                 Naziv = "FormaIdeale",
@@ -31,43 +32,15 @@ namespace POP_9
 
 
             };
-            akcija.Add(new Akcija
-            {
-                Id = idzaA(),
-                popust = 40 ,
 
-
-
-            });
-            TN.Add( new TipNamestaja()
-            {
-                Id = 1,
-                Naziv = "Sofa"
-            });
-            Namestaj1.Add(new Namestaj()
-            { Id = 1,
-                Naziv = "Crna kozna",
-                JedinicnaCena = 2314,
-                KolicinivaUMagacinu = 16,
-                TipNamestaja = TN[0],
-
-            }
-            );
-            Namestaj1.Add(new Namestaj()
-            {
-                Id = 2,
-                Naziv = "Kauc",
-                JedinicnaCena = 2314,
-                KolicinivaUMagacinu = 16,
-                TipNamestaja = TN[0],
-
-            }
-            );
-            GenericSeriallzer.Serialize<Namestaj>("namestaj.xml", Namestaj1);
-            List<Namestaj> ln=GenericSeriallzer.Deserialize<Namestaj>("namestaj.xml");
-            
+            List<Namestaj> n = GenericSeriallzer.Deserialize<Namestaj>("namestaj.xml");
+            Namestaj1 = n;
+            List<TipNamestaja> tn = GenericSeriallzer.Deserialize<TipNamestaja>("tipnamestaja.xml");
+            TN = tn;
+            List<Korisnik> lk = GenericSeriallzer.Deserialize<Korisnik>("korisnik.xml");
+            korisnik = lk;
             Console.WriteLine($"Dobrodosli u salon namestaja {s1.Naziv}.");
-            IspisiGlavniMeni();
+            LogovanjeMeni();
             Console.ReadLine();
          }
         private static void IspisiGlavniMeni()
@@ -139,13 +112,14 @@ namespace POP_9
             izbor = int.Parse(Console.ReadLine());
             switch (izbor)
             {
-                case 1:IzlistajTipNamestaja();
+                case 1:
+                    IzlistajNamestaj();
                     break;
                 case 2:
                     DodajNamestaj();
                     break;
                 case 3:
-                    IzmeniTipNamestaja();
+                    IzmeniNamestaj();
                     break;
                 case 4:
                     ObrisiNamestaj();
@@ -161,33 +135,35 @@ namespace POP_9
 
         private static void ObrisiNamestaj()
         {
-
+            
             Console.WriteLine("Unesite id namestaja kog zelite da izbrisete:");
             int id = int.Parse(Console.ReadLine());
             nadjiNamestajpoID(id).Obrisan = true;
             IspisiMeniNamestaja();
+            GenericSeriallzer.Serialize<Namestaj>("namestaj.xml", Namestaj1);
+
         }
         private static void ObrisiTipNamestaja()
         {
-
+            
             Console.WriteLine("Unesite id tip namestaja kog zelite da izbrisete:");
             int id = int.Parse(Console.ReadLine());
             nadjiTNpoID(id).Obrisan = true;
             IspisiMeniTipNamestaja();
-
+            GenericSeriallzer.Serialize<TipNamestaja>("tipnamestaja.xml", TN);
         }
-        private static void IzmeniTipNamestaja()
+        private static void IzmeniNamestaj()
         {
+            
             Console.WriteLine("Unesite id namestaja kog zelite da izmenite:");
             int id = int.Parse(Console.ReadLine());
             Namestaj n = nadjiNamestajpoID(id);
             IspisiMeniTipNamestaja();
+            GenericSeriallzer.Serialize<Namestaj>("namestaj.xml", Namestaj1);
         }
 
         private static void DodajNamestaj()
         {
-            int id = 0;
-            int od;
             
             
             Console.WriteLine("Naziv:");
@@ -219,6 +195,7 @@ namespace POP_9
                         Akcija = a,
 
                     });
+                    GenericSeriallzer.Serialize<Namestaj>("namestaj.xml", Namestaj1);
                     IspisiGlavniMeni();
 
                 }
@@ -234,6 +211,7 @@ namespace POP_9
                         Akcija = null,
 
                     });
+                    GenericSeriallzer.Serialize<Namestaj>("namestaj.xml", Namestaj1);
                     IspisiGlavniMeni();
                 }
                 else
@@ -249,9 +227,9 @@ namespace POP_9
                 Console.WriteLine("Uneli ste pogresnu vrednost");
                 DodajNamestaj();
            }
-            
-            
 
+
+            
 
         }
 
@@ -284,7 +262,7 @@ namespace POP_9
             switch (izbor)
             {
                 case 1:
-                    IzlistajTNamestaja();
+                    IzlistajTipNamestaja();
                     break;
                 case 2:
                     DodajTipNamestaja();
@@ -304,8 +282,14 @@ namespace POP_9
             }
         }
 
+        private static void IzmeniTipNamestaja()
+        {
+            throw new NotImplementedException();
+        }
+
         private static void DodajTipNamestaja()
         {
+           
             Console.WriteLine("UNesite naziv za tip namestaja:");
             String naziv=Console.ReadLine();
             TN.Add(new TipNamestaja
@@ -313,14 +297,16 @@ namespace POP_9
                 Id=idzaTN(),
                 Naziv=naziv,
             });
+            
+
+            GenericSeriallzer.Serialize<TipNamestaja>("tipnamestaja.xml", TN);
             IspisiMeniTipNamestaja();
-
-
 
         }
 
-        private static void IzlistajTipNamestaja()
+        private static void IzlistajNamestaj()
         {
+         
         int index = 0;
         Console.WriteLine("------------Listing namestaja--------------");
         foreach (var namestaj in Namestaj1)
@@ -331,8 +317,9 @@ namespace POP_9
             }
             IspisiMeniNamestaja();
         }
-        private static void IzlistajTNamestaja()
+        private static void IzlistajTipNamestaja()
         {
+            
             int index = 0;
             Console.WriteLine("------------Listing namestaja--------------");
             foreach (var namestaj in TN)
@@ -341,9 +328,12 @@ namespace POP_9
                     Console.WriteLine($"{ ++index}.{namestaj.Naziv},\n\n");
             }
             IspisiMeniTipNamestaja();
+            
         }
         private static TipNamestaja nadjiTNpoID(int id)
-        {   foreach (var tn in TN)
+        {
+            
+            foreach (var tn in TN)
             {
                 if (tn.Id == id)
                     return tn;
@@ -352,6 +342,7 @@ namespace POP_9
         }
         private static Namestaj nadjiNamestajpoID(int id)
         {
+           
             foreach (var n in Namestaj1)
             {
                 if (n.Id == id)
@@ -361,6 +352,7 @@ namespace POP_9
         }
         private static int idzaN()
         {
+            
             int j=0;
             foreach(var namestaj in Namestaj1)
             { if (j <= namestaj.Id)
@@ -371,6 +363,7 @@ namespace POP_9
         }
         private static int idzaTN()
         {
+            
             int j = 0;
             foreach (var tnamestaj in TN)
             {
@@ -390,6 +383,35 @@ namespace POP_9
 
             }
             return j + 1;
+        }
+
+        private static bool Logovanje(String id, String pass)
+        {
+            
+            foreach (var k in korisnik)
+            {
+                if (id == k.KorisnickoIme && pass == k.Sifra)
+                    return true;
+            }
+            return false;
+        }
+        private static void LogovanjeMeni()
+        {
+            
+            Console.WriteLine("Molimo vas da se ulogujete!");
+            Console.WriteLine("Unesite vase korisnicki ime:");
+            String naziv = Console.ReadLine();
+            Console.WriteLine("Unesite vasu sifru:");
+            String sifra = Console.ReadLine();
+            bool odg = Logovanje(naziv, sifra);
+            if (odg == true)
+                IspisiGlavniMeni();
+            else
+            {
+                Console.WriteLine("Niste dobro uneli korisnicko ime ili sifru!");
+                LogovanjeMeni();
+            }
+
         }
     }
 }
