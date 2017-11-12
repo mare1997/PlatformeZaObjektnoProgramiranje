@@ -1,0 +1,25 @@
+C:\Users\SF9-2016\documents\visual studio 2015\Projects\POP-9\POP-9\bin\Debug\POP-9.exe.config
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.exe.config
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.csprojResolveAssemblyReference.cache
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.exe
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.pdb
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.exe
+C:\Users\SF9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.pdb
+E:\POP-git\bin\Debug\POP-9.exe.config
+E:\POP-git\obj\Debug\POP-9.exe
+E:\POP-git\obj\Debug\POP-9.pdb
+E:\POP-git\bin\Debug\POP-9.exe
+E:\POP-git\bin\Debug\POP-9.pdb
+E:\POP-git\obj\Debug\POP-9.csprojResolveAssemblyReference.cache
+C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.exe.config
+C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.exe
+C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.pdb
+C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.exe
+C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.pdb
+C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.csprojResolveAssemblyReference.cache
+E:\POP-git\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.exe.config
+E:\POP-git\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.exe
+E:\POP-git\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.pdb
+E:\POP-git\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.exe
+E:\POP-git\PlatformeZaObjektnoProgramiranje\bin\Debug\POP-9.pdb
+E:\POP-git\PlatformeZaObjektnoProgramiranje\obj\Debug\POP-9.csprojResolveAssemblyReference.cache

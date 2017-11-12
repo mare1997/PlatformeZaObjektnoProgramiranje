@@ -1,0 +1,26 @@
+﻿<Window x:Class="POP_SF_9_GUI.UI.NamestajWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_9_GUI.UI"
+        mc:Ignorable="d"
+        Title="NamestajWindow" Height="392" Width="459">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="104*"/>
+            <ColumnDefinition Width="129*"/>
+            <ColumnDefinition Width="114*"/>
+            <ColumnDefinition Width="104*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8"/>
+        </Grid.RowDefinitions>
+        <ListBox Name="listBoxNamestaj" Grid.Row="0" FontSize="15" Margin="0,0,1,-221" Grid.ColumnSpan="4"/>
+        <Button Content="Izlaz" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Izlaz" RenderTransformOrigin="2.498,0.231" Margin="0,295,11,-326" Grid.Column="3"/>
+        <Button Content="Obrisi" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Izlaz" RenderTransformOrigin="2.498,0.231" Margin="0,295,12,-326" Grid.Column="2"/>
+        <Button Content="Izmeni" Width="80" FontSize="20" Click="IzmeniNamestaj" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,295,17,-326" Grid.Column="1"/>
+        <Button Content="Dodaj" Width="80" FontSize="20" Click="DodajNamestaj" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,295,0,-326"/>
+
+    </Grid>
+</Window>
