@@ -30,7 +30,7 @@
         <TextBox FontSize="15" HorizontalAlignment="Left" x:Name="tbKuM" Margin="1,6,0,1" Width="166" Grid.Row="1" Grid.Column="1"/>
         <TextBox Grid.Row="3" FontSize="15" HorizontalAlignment="Left" x:Name="tbCena" Margin="1,9,0,3" Width="169" Grid.Column="1"/>
         <Label Content="Kolicina u magacinu:" HorizontalAlignment="Left" Width="115" Margin="2,2,0,38" Grid.Row="1" Grid.RowSpan="3" RenderTransformOrigin="0.5,0.5" />
-        <ComboBox Name="cbTipNamestaja" Grid.Row="2" Grid.Column="1" FontSize="50" Margin="2,6,93,0"/>
+        <ComboBox Name="cbTipNamestaja" Grid.Row="2" Grid.Column="1" FontSize="15" Margin="2,6,93,0"/>
         <Label Content="Akcija:" HorizontalAlignment="Left" Width="116" Grid.Row="4" Margin="0,6,0,37" Grid.RowSpan="2"/>
         <Label Content="" Name="AkcijaPrikaz" HorizontalAlignment="Left" Width="166" Grid.Row="4" Margin="3,6,0,37" Grid.Column="1" Grid.RowSpan="2"/>
         <Button Content="Dodaj Akciju" HorizontalAlignment="Right" Click="DodajAkciju" Grid.Column="1" Margin="0,26,87,8" Grid.Row="5" Width="70" />

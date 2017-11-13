@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POP_SF_9_GUI.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,32 @@ namespace POP_SF_9_GUI.UI
     /// </summary>
     public partial class AkcijaWindow : Window
     {
-        public AkcijaWindow(Operacija operacija)
+        Namestaj namestaj;
+        Operacija operacija;
+        public AkcijaWindow(Operacija operacija, Namestaj noviNamestaj)
         {
+            this.namestaj = noviNamestaj;
+            this.operacija = operacija;
             InitializeComponent();
         }
 
         private void Izlaz_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
 
+        private void Dodaj_Click(object sender, RoutedEventArgs e)
+        {
+            if (operacija == Operacija.DODAVANJE)
+           {    
+                //namestaj.Akcija.Id=
+                namestaj.Akcija.Popust = int.Parse(tbPopust.Text);
+                if(dpK. >dpP)
+            }
+            else
+            {
+
+            }
         }
     }
 }

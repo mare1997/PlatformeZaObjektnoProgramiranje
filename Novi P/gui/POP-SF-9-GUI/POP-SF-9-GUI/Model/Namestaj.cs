@@ -22,9 +22,22 @@ namespace POP_SF_9_GUI.Model
 
         public override string ToString()
         {
-            
+
+
             return $"Naziv: {Naziv},{Cena},{TipNamestaja.GetById(TipN).Naziv}";
         }
+        public static Namestaj GetById(int id)
+        {
+            foreach (var Namestaja in Projekat.Instance.Namestaj)
+            {
+                if (Namestaja.Id == id)
+                {
+                    return Namestaja;
+                }
 
+            }
+            return null;
+
+        }
     }
 }

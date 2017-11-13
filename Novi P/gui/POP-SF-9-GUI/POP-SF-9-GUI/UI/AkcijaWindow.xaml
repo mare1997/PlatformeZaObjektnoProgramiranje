@@ -14,9 +14,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="42.748"/>
             <RowDefinition Height="0.252"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="38*"/>
-            <RowDefinition Height="153*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="141*"/>
 
         </Grid.RowDefinitions>
         <Label Content="Popust:" Grid.Row="0" FontSize="20" Margin="0,0,2,0"/>
@@ -32,7 +32,9 @@
         </Label>
         <Label Content="Datum kraja akcije:" Grid.Row="3" FontSize="13" Margin="0,0,2,0"/>
         <TextBox Name="tbPopust" Grid.Row="0" Grid.Column="1" FontSize="15" Margin="3,10,98,5"/>
-        <Button Content="Dodaj" Name="Dodaj" Grid.Column="0" Grid.Row="4" Margin="28,103,43,18"/>
+        <Button Content="Dodaj" Name="Dodaj" Click="Dodaj_Click" Grid.Column="0" Grid.Row="4" Margin="28,103,43,18"/>
         <Button Content="Izlaz" Name="Izlaz" Grid.Column="1" Grid.Row="4" Click="Izlaz_Click" Margin="40,102,123,19"/>
+        <DatePicker Name="dpP" Grid.Column="1" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="102"/>
+        <DatePicker Name="dpK" Grid.Column="1" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="24" Width="102"/>
     </Grid>
 </Window>

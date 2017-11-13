@@ -6,8 +6,14 @@
     <Cena>540</Cena>
     <Kolicina>2</Kolicina>
     <Obrisan>false</Obrisan>
-    <TipNamestaja>2</TipNamestaja>
-    <Akcija></Akcija>
+    <TipN>2</TipN>
+    <Akcija>
+      <Id>0</Id>
+      <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+      <DatumZavresetka>0001-01-01T00:00:00</DatumZavresetka>
+      <Popust>0</Popust>
+      <Obrisan>false</Obrisan>
+    </Akcija>
   </Namestaj>
   <Namestaj>
     <Id>3</Id>
@@ -15,7 +21,29 @@
     <Cena>530</Cena>
     <Kolicina>2</Kolicina>
     <Obrisan>false</Obrisan>
-    <TipNamestaja>1 </TipNamestaja>
-    <Akcija></Akcija>
+    <TipN>1</TipN>
+    <Akcija>
+      <Id>0</Id>
+      <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+      <DatumZavresetka>0001-01-01T00:00:00</DatumZavresetka>
+      <Popust>0</Popust>
+      <Obrisan>false</Obrisan>
+    </Akcija>
+  </Namestaj>
+  <Namestaj>
+    <Id>4</Id>
+    <Naziv>stakleni sto</Naziv>
+    <Cena>15000</Cena>
+    <Kolicina>150</Kolicina>
+    <Obrisan>false</Obrisan>
+    <TipN>0</TipN>
+  </Namestaj>
+  <Namestaj>
+    <Id>5</Id>
+    <Naziv>Ormar</Naziv>
+    <Cena>15784</Cena>
+    <Kolicina>159</Kolicina>
+    <Obrisan>false</Obrisan>
+    <TipN>3</TipN>
   </Namestaj>
 </ArrayOfNamestaj>

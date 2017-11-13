@@ -20,3 +20,25 @@ E:\POP-git\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\GlavniProzor.g.cs
 E:\POP-git\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\GlavniProzor.baml
 E:\POP-git\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\AkcijaWindow.g.cs
 E:\POP-git\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\AkcijaWindow.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\bin\Debug\POP-SF-9-GUI.exe.config
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.exe
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.pdb
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\bin\Debug\POP-SF-9-GUI.exe
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\bin\Debug\POP-SF-9-GUI.pdb
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.csprojResolveAssemblyReference.cache
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\MainWindow.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\AkcijaWindow.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\GlavniProzor.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamestajWindow.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamstajWindowDodavanjeIzmena.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\App.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI_MarkupCompile.cache
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI_MarkupCompile.lref
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\MainWindow.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\AkcijaWindow.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\GlavniProzor.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamestajWindow.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamstajWindowDodavanjeIzmena.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.g.resources
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP_SF_9_GUI.Properties.Resources.resources
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.csproj.GenerateResource.Cache

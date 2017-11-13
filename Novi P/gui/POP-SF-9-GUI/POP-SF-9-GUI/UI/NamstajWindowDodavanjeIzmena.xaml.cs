@@ -26,33 +26,40 @@ namespace POP_SF_9_GUI.UI
         public enum Operacija
         {
             DODAVANJE,
-            IZMENA
+            IZMENA,
+            
         };
         public NamstajWindowDodavanjeIzmena(Namestaj noviNamestaj, Operacija operacija)
         {
             InitializeComponent();
 
-            InicijalizujVrednosti(namestaj, operacija);
+            InicijalizujVrednosti(noviNamestaj, operacija);
+            foreach (var tn in Projekat.Instance.TipNamestaja)
+            {
+                cbTipNamestaja.Items.Add(tn);
+                cbTipNamestaja.SelectedIndex = 0;
+            }
         }
         private void InicijalizujVrednosti(Namestaj namestaj, Operacija operacija)
         {
             this.namestaj = namestaj;
             this.operacija = operacija;
-
-            tbNaziv.Text = namestaj.Naziv;
-            tbKuM.Text = namestaj.Kolicina.ToString();
-            tbCena.Text = namestaj.Cena.ToString();
-            foreach (var tn in Projekat.Instance.TipNamestaja)
+            if (operacija == Operacija.IZMENA)
+            {
+                tbNaziv.Text = namestaj.Naziv;
+                tbKuM.Text = namestaj.Kolicina.ToString();
+                tbCena.Text = namestaj.Cena.ToString();
+                foreach (var tn in Projekat.Instance.TipNamestaja)
                 {
-                cbTipNamestaja.Items.Add(tn.Naziv);
-                if (tn == TipNamestaja.GetById(namestaj.TipN))
+                    
+                    if (tn == TipNamestaja.GetById(namestaj.TipN))
                     {
-                    cbTipNamestaja.SelectedItem = tn.Naziv;
+                        cbTipNamestaja.SelectedItem = tn;
                     }
                 }
+            }
             
-            
-
+                    
         }
         private void Izlaz(object sender, RoutedEventArgs e)
         {
@@ -89,6 +96,7 @@ namespace POP_SF_9_GUI.UI
                         }
                     }
                     break;
+                
 
 
             }
@@ -106,9 +114,9 @@ namespace POP_SF_9_GUI.UI
         }
 
         private void DodajAkciju(object sender, RoutedEventArgs e)
-        {
-            var akcija = new AkcijaWindow(Operacija.DODAVANJE);
-
+        {   
+            var akcija = new AkcijaWindow(Operacija.DODAVANJE,namestaj);
+            akcija.ShowDialog();
         }
     }
 }

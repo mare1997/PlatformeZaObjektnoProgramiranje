@@ -26,5 +26,9 @@ namespace POP_SF_9_GUI.Model
             return null;
 
         }
+        public override string ToString()
+        {
+            return Naziv;
+        }
     }
 }
