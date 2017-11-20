@@ -23,7 +23,7 @@ namespace POP_SF_9_GUI.UI
         public GlavniProzor(TipKorisnika tp)
         {
             InitializeComponent();
-            OsveziPrikaz(tp);
+            
             listBox.SelectedIndex = 0;
         }
         private void OsveziPrikaz(TipKorisnika tp)

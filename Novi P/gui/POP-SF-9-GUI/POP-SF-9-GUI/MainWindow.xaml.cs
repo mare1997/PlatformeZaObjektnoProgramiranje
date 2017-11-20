@@ -53,7 +53,7 @@ namespace POP_SF_9_GUI
         private static bool Logovanje(String id, String pass, String tip)
         {
             
-            foreach (var k in Projekat.Instance.korisnikK)
+            foreach (var k in Projekat.Instance.korisnik)
             {
                 
                 if (id == k.KorisnickoIme && pass == k.Lozinka && "Administrator" == tip)

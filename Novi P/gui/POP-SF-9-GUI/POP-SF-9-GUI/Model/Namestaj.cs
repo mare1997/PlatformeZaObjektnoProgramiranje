@@ -1,24 +1,81 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Serialization;
 
 namespace POP_SF_9_GUI.Model
 {
     [Serializable]
-    public class Namestaj
+    public class Namestaj: INotifyPropertyChanged
+
     {
-        public int Id { get; set;}
-        public string Naziv { get; set; }
-        public int Cena { get; set; }
-        public int Kolicina { get; set; }
-        public bool Obrisan { get; set; }
-        public int TipN { get; set; }
-        /*Treba int TipNamestajId*/
-        public AkcijskaProdaja Akcija { get; set; }
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+
+        }
+        private string naziv;
+        public string Naziv
+        {
+            get { return naziv; }
+            set { naziv = value; OnPropertyChanged("Naziv"); }
+        }
+        private int cena;
+        public int Cena
+        {
+            get { return cena; }
+            set { cena = value; OnPropertyChanged("Cena"); }
+        }
+        private int kolicina;
+        public int Kolicina
+        {
+            get { return kolicina; }
+            set { kolicina = value;  OnPropertyChanged("Kolicina"); }
+        }
+        private bool obrisan;
+        public bool Obrisan
+        {
+            get { return obrisan; }
+            set { obrisan = value; OnPropertyChanged("Obrisan"); }
+        }
+        private TipNamestaja tipNamestaja;
+        [XmlIgnore]
+        public TipNamestaja TipNamestaja
+        {
+            get
+            {   if (tipNamestaja == null)
+                {
+                    tipNamestaja = TipNamestaja.GetById(tipN);
+
+                }
+                return tipNamestaja;
+            }
+            set
+            {
+                tipNamestaja = value;
+                tipN = tipNamestaja.Id;
+                OnPropertyChanged("TipNamestaja");
+            }
+        }
+        private int tipN;
+        public int TipN
+        {
+            get { return tipN; }
+            set { tipN = value; OnPropertyChanged("TipNamestaja"); }
+        }
+
+        public int akcija;
+        
 
         public override string ToString()
         {
@@ -28,7 +85,7 @@ namespace POP_SF_9_GUI.Model
         }
         public static Namestaj GetById(int id)
         {
-            foreach (var Namestaja in Projekat.Instance.Namestaj)
+            foreach (var Namestaja in Projekat.Instance.namestaj)
             {
                 if (Namestaja.Id == id)
                 {
@@ -38,6 +95,17 @@ namespace POP_SF_9_GUI.Model
             }
             return null;
 
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        
+        
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+
+            }
         }
     }
 }

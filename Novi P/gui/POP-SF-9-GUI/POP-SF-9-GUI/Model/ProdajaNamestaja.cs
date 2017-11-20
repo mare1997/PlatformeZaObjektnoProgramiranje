@@ -21,7 +21,7 @@ namespace POP_SF_9_GUI.Model
 
         public static DodatnaUsluga GetById(int id)
         {
-            foreach (var du in Projekat.Instance.dadatnaUsluga)
+            foreach (var du in Projekat.Instance.DU)
             {
                 if (du.Id == id)
                 {

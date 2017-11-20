@@ -37,16 +37,16 @@ namespace POP_SF_9_GUI.UI
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
-            if (operacija == Operacija.DODAVANJE)
+           /* if (operacija == Operacija.DODAVANJE)
            {    
                 //namestaj.Akcija.Id=
                 namestaj.Akcija.Popust = int.Parse(tbPopust.Text);
-                if(dpK. >dpP)
+                if(dpK > dpP)
             }
             else
             {
 
-            }
+            }*/
         }
     }
 }
