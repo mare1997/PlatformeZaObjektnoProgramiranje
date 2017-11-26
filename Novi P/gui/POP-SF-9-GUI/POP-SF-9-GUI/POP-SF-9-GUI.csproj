@@ -61,11 +61,17 @@
     <Compile Include="UI\GlavniProzor.xaml.cs">
       <DependentUpon>GlavniProzor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\NamestajWindow.xaml.cs">
-      <DependentUpon>NamestajWindow.xaml</DependentUpon>
+    <Compile Include="UI\KorisnikWindowEdit.xaml.cs">
+      <DependentUpon>KorisnikWindowEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\NamstajWindowDodavanjeIzmena.xaml.cs">
-      <DependentUpon>NamstajWindowDodavanjeIzmena.xaml</DependentUpon>
+    <Compile Include="UI\PrikazWindow.xaml.cs">
+      <DependentUpon>PrikazWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NamstajWindowEdit.xaml.cs">
+      <DependentUpon>NamstajWindowEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TipNamestajaWindowEdit.xaml.cs">
+      <DependentUpon>TipNamestajaWindowEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\GenericSerializer.cs" />
     <Page Include="MainWindow.xaml">
@@ -88,11 +94,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\NamestajWindow.xaml">
+    <Page Include="UI\KorisnikWindowEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\NamstajWindowDodavanjeIzmena.xaml">
+    <Page Include="UI\PrikazWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\NamstajWindowEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\TipNamestajaWindowEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,13 +146,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Data\akcija.xml" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\namestaj.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\korisnik.xml" />
     <Resource Include="Data\tipnamestaja.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\dodatnausluga.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\prodajanamestaja.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

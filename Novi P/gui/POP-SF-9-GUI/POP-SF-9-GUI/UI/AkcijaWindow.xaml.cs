@@ -23,11 +23,19 @@ namespace POP_SF_9_GUI.UI
     {
         Namestaj namestaj;
         Operacija operacija;
+        AkcijskaProdaja akcija = new AkcijskaProdaja() ;
         public AkcijaWindow(Operacija operacija, Namestaj noviNamestaj)
         {
+            InitializeComponent();
+            
             this.namestaj = noviNamestaj;
             this.operacija = operacija;
-            InitializeComponent();
+            
+            tbPopust.DataContext = akcija;
+            dpP.DataContext= akcija;
+            dpK.DataContext = akcija;
+            
+
         }
 
         private void Izlaz_Click(object sender, RoutedEventArgs e)
@@ -37,16 +45,25 @@ namespace POP_SF_9_GUI.UI
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
-           /* if (operacija == Operacija.DODAVANJE)
-           {    
-                //namestaj.Akcija.Id=
-                namestaj.Akcija.Popust = int.Parse(tbPopust.Text);
-                if(dpK > dpP)
-            }
-            else
-            {
+            var postojeceAkcije = Projekat.Instance.akcija;
+            DateTime date1 = dpP.SelectedDate.Value.Date;
+            DateTime date2 = dpK.SelectedDate.Value.Date;
+            int result = DateTime.Compare(date1, date2);
+            if (result < 0 || result == 0)
+                {
+                    var Id = postojeceAkcije.Count + 1;
+                    akcija.Id = Id;
+                namestaj.ak = Id;
+                    
+                    postojeceAkcije.Add(akcija);
+                }
+                else
+                {
+                    MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            GenericSerializer.Serialize("akcija.xml", postojeceAkcije);
+            this.Close();
 
-            }*/
         }
     }
 }

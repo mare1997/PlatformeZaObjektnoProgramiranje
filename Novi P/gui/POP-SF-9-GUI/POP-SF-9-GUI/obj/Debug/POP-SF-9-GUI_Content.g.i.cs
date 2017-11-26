@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/korisnik.xml")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/tipnamestaja.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/prodajanamestaja.xml")]
 
 

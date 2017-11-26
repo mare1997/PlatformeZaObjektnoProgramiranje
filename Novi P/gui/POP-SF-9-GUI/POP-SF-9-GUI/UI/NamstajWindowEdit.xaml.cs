@@ -33,37 +33,22 @@ namespace POP_SF_9_GUI.UI
         {
             InitializeComponent();
             this.namestaj = noviNamestaj;
+            this.operacija = operacija;
             cbTipNamestaja.ItemsSource = Projekat.Instance.TN;
-            this.operacija = operacija;
-            tbNaziv.DataContext = namestaj;
-            cbTipNamestaja.DataContext = namestaj;
-            foreach (var tn in Projekat.Instance.TN)
-            {
-                cbTipNamestaja.Items.Add(tn);
-                cbTipNamestaja.SelectedIndex = 0;
-            }
-        }
-        /*private void InicijalizujVrednosti(Namestaj namestaj, Operacija operacija)
-        {
-            this.namestaj = namestaj;
-            this.operacija = operacija;
-            if (operacija == Operacija.IZMENA)
-            {
-                tbNaziv.Text = namestaj.Naziv;
-                tbKuM.Text = namestaj.Kolicina.ToString();
-                tbCena.Text = namestaj.Cena.ToString();
-                foreach (var tn in Projekat.Instance.TN)
-                {
-                    
-                    if (tn == TipNamestaja.GetById(namestaj.TipN))
-                    {
-                        cbTipNamestaja.SelectedItem = tn;
-                    }
-                }
-            }
             
-                    
-        }*/
+            tbNaziv.DataContext = namestaj;
+            tbCena.DataContext = namestaj;
+            tbKuM.DataContext = namestaj;
+            
+            cbTipNamestaja.DataContext = namestaj;
+            cbTipNamestaja.SelectedIndex = 0;
+            if (namestaj.Akcija != null)
+            {   
+                lbAkcija.Content = namestaj.Akcija.ToString();
+            }
+             
+        }
+        
         private void Izlaz(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -74,10 +59,11 @@ namespace POP_SF_9_GUI.UI
             
             switch (operacija)
             {
-
+                
                 case Operacija.DODAVANJE:
 
                     var Id = postojeciNamestaj.Count + 1;
+                    namestaj.Id = Id;
                     postojeciNamestaj.Add(namestaj);
                     
                     
@@ -103,19 +89,10 @@ namespace POP_SF_9_GUI.UI
             
             this.Close();
         }
-        private static int NoviIDzaNamestaj() {
-            int j = 0;
-            foreach (var namestaj in Projekat.Instance.namestaj)
-            {
-                if (j <= namestaj.Id)
-                    j = namestaj.Id;
-
-            } return j + 1;
-        }
-
+        
         private void DodajAkciju(object sender, RoutedEventArgs e)
         {   
-            var akcija = new AkcijaWindow(Operacija.DODAVANJE,namestaj);
+            var akcija = new AkcijaWindow(operacija, namestaj);
             akcija.ShowDialog();
         }
     }

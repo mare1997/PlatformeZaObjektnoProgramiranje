@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAkcijskaProdaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AkcijskaProdaja>
+    <Id>1</Id>
+    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+    <DatumKraja>0001-01-01T00:00:00</DatumKraja>
+    <Popust>0</Popust>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>2</Id>
+    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+    <DatumKraja>0001-01-01T00:00:00</DatumKraja>
+    <Popust>20</Popust>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+</ArrayOfAkcijskaProdaja>

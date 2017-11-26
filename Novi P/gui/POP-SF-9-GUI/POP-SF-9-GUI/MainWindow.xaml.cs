@@ -2,6 +2,7 @@
 using POP_SF_9_GUI.UI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,13 +23,15 @@ namespace POP_SF_9_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
             cbTipKorisnika.Items.Add(TipKorisnika.Administrator);
             cbTipKorisnika.Items.Add(TipKorisnika.Prodavac);
             cbTipKorisnika.SelectedIndex = 0;
-            
+           
+
         }
         private void Potvrdi(object sender, RoutedEventArgs e)
         {

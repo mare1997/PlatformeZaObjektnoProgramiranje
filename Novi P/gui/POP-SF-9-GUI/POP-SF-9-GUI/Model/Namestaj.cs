@@ -71,11 +71,34 @@ namespace POP_SF_9_GUI.Model
         public int TipN
         {
             get { return tipN; }
-            set { tipN = value; OnPropertyChanged("TipNamestaja"); }
+            set { tipN = value; OnPropertyChanged("TipN"); }
         }
 
-        public int akcija;
-        
+        private int a;
+        public int ak
+        {
+            get { return a; }
+            set { a = value; OnPropertyChanged("ak"); }
+        }
+        private AkcijskaProdaja akcija;
+        public AkcijskaProdaja Akcija
+        {
+            get
+            {
+                if (akcija == null)
+                {
+                    akcija = AkcijskaProdaja.GetById(ak);
+
+                }
+                return akcija;
+            }
+            set
+            {
+                akcija = value;
+                a = akcija.Id;
+                OnPropertyChanged("Akcija");
+            }
+        }
 
         public override string ToString()
         {

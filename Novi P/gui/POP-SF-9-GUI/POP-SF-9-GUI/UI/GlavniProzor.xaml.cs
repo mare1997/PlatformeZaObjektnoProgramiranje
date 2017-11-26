@@ -23,7 +23,7 @@ namespace POP_SF_9_GUI.UI
         public GlavniProzor(TipKorisnika tp)
         {
             InitializeComponent();
-            
+            OsveziPrikaz(tp);
             listBox.SelectedIndex = 0;
         }
         private void OsveziPrikaz(TipKorisnika tp)
@@ -46,15 +46,22 @@ namespace POP_SF_9_GUI.UI
             switch (selektovanaOperacija)
             {
                 case "Rad sa namestajem":
-                    var NamestajProzor = new NamestajWindow();
-                    NamestajProzor.Show();
-
-
+                    var NProzor = new PrikazWindow(PrikazWindow.Prikaz.Namestaj);
+                    NProzor.ShowDialog();
                     break;
-                case "Rad sa tipom namestaja": break;
-                case "Rad sa korisnicima": break;
-               
-                case "Rad sa prodajom namestaja": break;
+                case "Rad sa tipom namestaja": 
+                    var TNProzor = new PrikazWindow(PrikazWindow.Prikaz.TipNamestaja);
+                    TNProzor.ShowDialog();
+                    break;
+                case "Rad sa korisnicima": 
+                    var KProzor = new PrikazWindow(PrikazWindow.Prikaz.Korisnik);
+                    KProzor.ShowDialog();
+                    break;
+
+                case "Rad sa prodajom namestaja": 
+                    var PNProzor = new PrikazWindow(PrikazWindow.Prikaz.ProdajaNamestaja);
+                    PNProzor.ShowDialog();
+                    break;
             }
         }
         private void Izlaz(object sender, RoutedEventArgs e)

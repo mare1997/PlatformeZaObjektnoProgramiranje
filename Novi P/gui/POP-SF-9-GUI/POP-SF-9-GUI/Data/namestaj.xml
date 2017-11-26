@@ -1,45 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
-    <Id>2</Id>
+    <akcija>0</akcija>
+    <Id>1</Id>
     <Naziv>Kauc</Naziv>
     <Cena>540</Cena>
     <Kolicina>2</Kolicina>
     <Obrisan>false</Obrisan>
     <TipN>2</TipN>
-    <Akcija>
-      <Id>0</Id>
-      <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
-      <DatumZavresetka>0001-01-01T00:00:00</DatumZavresetka>
-      <Popust>0</Popust>
-      <Obrisan>false</Obrisan>
-    </Akcija>
   </Namestaj>
   <Namestaj>
-    <Id>3</Id>
+    <akcija>0</akcija>
+    <Id>2</Id>
     <Naziv>Sofa</Naziv>
     <Cena>530</Cena>
     <Kolicina>2</Kolicina>
     <Obrisan>false</Obrisan>
     <TipN>1</TipN>
-    <Akcija>
-      <Id>0</Id>
-      <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
-      <DatumZavresetka>0001-01-01T00:00:00</DatumZavresetka>
-      <Popust>0</Popust>
-      <Obrisan>false</Obrisan>
-    </Akcija>
   </Namestaj>
   <Namestaj>
-    <Id>4</Id>
+    <akcija>0</akcija>
+    <Id>3</Id>
     <Naziv>stakleni sto</Naziv>
     <Cena>15000</Cena>
     <Kolicina>150</Kolicina>
-    <Obrisan>false</Obrisan>
-    <TipN>0</TipN>
+    <Obrisan>true</Obrisan>
+    <TipN>2</TipN>
   </Namestaj>
   <Namestaj>
-    <Id>5</Id>
+    <akcija>0</akcija>
+    <Id>4</Id>
     <Naziv>Ormar</Naziv>
     <Cena>15784</Cena>
     <Kolicina>159</Kolicina>
