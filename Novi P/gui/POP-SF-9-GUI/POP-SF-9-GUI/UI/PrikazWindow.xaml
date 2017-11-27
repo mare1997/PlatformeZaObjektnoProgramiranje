@@ -16,7 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="8"/>
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" Name="dgPrikaz" Grid.Row="0" FontSize="15" Margin="0,0,1,-221" Grid.ColumnSpan="4"/>
+        <DataGrid CanUserAddRows="False" AutoGeneratingColumn="dgPrikaz_AutoGeneratingColumn" Name="dgPrikaz" Grid.Row="0" FontSize="15" Margin="0,0,1,-221" Grid.ColumnSpan="4"  />
         <Button Content="Izlaz" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Izlaz" RenderTransformOrigin="2.498,0.231" Margin="0,295,11,-326" Grid.Column="3"/>
         <Button Content="Obrisi" Name="btObrisi" Visibility="Visible" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Obrisi" RenderTransformOrigin="2.498,0.231" Margin="0,295,12,-326" Grid.Column="2"/>
         <Button Content="Izmeni" Width="80" FontSize="20" Click="Izmeni" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,295,17,-326" Grid.Column="1"/>

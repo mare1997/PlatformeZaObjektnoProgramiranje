@@ -81,6 +81,7 @@ namespace POP_SF_9_GUI.Model
             set { a = value; OnPropertyChanged("ak"); }
         }
         private AkcijskaProdaja akcija;
+        [XmlIgnore]
         public AkcijskaProdaja Akcija
         {
             get

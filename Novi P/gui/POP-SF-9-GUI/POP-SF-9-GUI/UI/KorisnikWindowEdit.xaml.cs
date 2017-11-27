@@ -38,6 +38,7 @@ namespace POP_SF_9_GUI.UI
             tbKI.DataContext = korisnik;
             tbLozinka.DataContext = korisnik;
             tbPrezime.DataContext = korisnik;
+            cbTipNamestaja.ItemsSource = Enum.GetValues(typeof(TipKorisnika)).Cast<TipKorisnika>();
             //treba da se doda u cb
             cbTipNamestaja.DataContext = korisnik;
             cbTipNamestaja.SelectedIndex = 0;

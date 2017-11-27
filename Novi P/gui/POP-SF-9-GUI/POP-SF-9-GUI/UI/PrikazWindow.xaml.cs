@@ -2,6 +2,7 @@
 using POP_SF_9_GUI.UI;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,7 @@ namespace POP_SF_9_GUI.UI
 
 
         };
+        private ICollectionView view;
         Prikaz prikaz;
         public SizeToContent SizeToContent { get; set; }
         public PrikazWindow(Prikaz prikaz)
@@ -38,28 +40,56 @@ namespace POP_SF_9_GUI.UI
             InitializeComponent();
             this.SizeToContent = SizeToContent.WidthAndHeight;
             this.prikaz =  prikaz;
+            
             switch (prikaz)
             {
                 case Prikaz.Namestaj:
-                    DataGridNamestaj();
+                    //DataGridNamestaj();
+                    view = CollectionViewSource.GetDefaultView(Projekat.Instance.namestaj);
+                    view.Filter = namestajFileter;
+                    dgPrikaz.ItemsSource =view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     break;
                 case Prikaz.TipNamestaja:
-                    DataGridTipNamestaja();
+                    view = CollectionViewSource.GetDefaultView(Projekat.Instance.TN);
+                    view.Filter = tipnamestajFileter;
+                
+                    dgPrikaz.ItemsSource =  view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     break;
                 case Prikaz.Korisnik:
-                    DataGridKorisnik();
+                    view = CollectionViewSource.GetDefaultView(Projekat.Instance.korisnik);
+                    view.Filter = korisnikFileter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     break;
                 case Prikaz.ProdajaNamestaja:
                     dgPrikaz.ItemsSource = Projekat.Instance.pn;
-                    dgPrikaz.IsSynchronizedWithCurrentItem = true; break;
-                    btObrisi.Visibility = Visibility.Hidden;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true; 
+                    btObrisi.Visibility = System.Windows.Visibility.Hidden;
+                    break;
 
-                
+
 
             }
 
         }
 
+        private bool namestajFileter(object obj)
+        {
+            return ((Namestaj)obj).Obrisan == false;
+        }
+        private bool tipnamestajFileter(object obj)
+        {
+            return ((TipNamestaja)obj).Obrisan == false;
+        }
+        private bool korisnikFileter(object obj)
+        {
+            return ((Korisnik)obj).Obrisan == false;
+        }
 
         private void Izlaz(object sender, RoutedEventArgs e)
         {
@@ -177,6 +207,7 @@ namespace POP_SF_9_GUI.UI
                     if (n.Id == nam.Id)
                     {
                         n.Obrisan = true;
+                        view.Refresh();
                         break;
                     }
 
@@ -188,7 +219,7 @@ namespace POP_SF_9_GUI.UI
         {
             var staraListaN = Projekat.Instance.TN;
             var tn = (TipNamestaja)dgPrikaz.SelectedItem;
-
+            
             if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete izabrani tip namestaj: {tn.Naziv}?", "Poruka o brisanju ", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 foreach (var n in staraListaN)
@@ -196,6 +227,7 @@ namespace POP_SF_9_GUI.UI
                     if (n.Id == tn.Id)
                     {
                         n.Obrisan = true;
+                        view.Refresh();
                         break;
                     }
 
@@ -215,6 +247,7 @@ namespace POP_SF_9_GUI.UI
                     if (n.Id == korisnik.Id)
                     {
                         n.Obrisan = true;
+                        view.Refresh();
                         break;
                     }
 
@@ -222,77 +255,33 @@ namespace POP_SF_9_GUI.UI
             }
             GenericSerializer.Serialize("korisnik.xml", Projekat.Instance.korisnik);
         }
-        private void DataGridNamestaj()
-        {
-            DataGrid dgn = new DataGrid();
-            DataGridTextColumn d1 = new DataGridTextColumn();
-            d1.Header = "Naziv";
-            d1.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            d1.Binding = new Binding("Naziv");
-            DataGridTextColumn d2 = new DataGridTextColumn();
-            d2.Header = "Cena";
-            d2.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            d2.Binding = new Binding("Cena");
-            DataGridTextColumn d3 = new DataGridTextColumn();
-            d3.Header = "Kolicina";
-            d3.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            d3.Binding = new Binding("Kolicina");
-            DataGridTextColumn d4 = new DataGridTextColumn();
-            d4.Header = "Tip Namestaja";
-            d4.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            d4.Binding = new Binding("TipNamestaja");
-            DataGridTextColumn d5 = new DataGridTextColumn();
-            d5.Header = "Akcija";
-            d5.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            d5.Binding = new Binding("Akcija");
-            dgPrikaz.Columns.Add(d1);
-            dgPrikaz.Columns.Add(d2);
-            dgPrikaz.Columns.Add(d3);
-            dgPrikaz.Columns.Add(d4);
-            dgPrikaz.Columns.Add(d5);
-            dgPrikaz.ItemsSource = Projekat.Instance.namestaj;
-        }
-        private void DataGridTipNamestaja()
-        {
-            DataGrid dgn = new DataGrid();
-            DataGridTextColumn d1 = new DataGridTextColumn();
-            d1.Header = "Naziv";
-            d1.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            d1.Binding = new Binding("Naziv");
-            dgPrikaz.Columns.Add(d1);
-            dgPrikaz.ItemsSource = Projekat.Instance.TN;
-           
-        }
-        private void DataGridKorisnik()
-        {
-            DataGrid dgn = new DataGrid();
-            DataGridTextColumn d1 = new DataGridTextColumn();
-            d1.Header = "Ime";
-            d1.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            d1.Binding = new Binding("Ime");
-            DataGridTextColumn d2 = new DataGridTextColumn();
-            d2.Header = "Prezime";
-            d2.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            d2.Binding = new Binding("Prezime");
-            DataGridTextColumn d3 = new DataGridTextColumn();
-            d3.Header = "Korisnicko Ime";
-            d3.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            d3.Binding = new Binding("KorisnickoIme");
-            DataGridTextColumn d4 = new DataGridTextColumn();
-            d4.Header = "Tip korisnika";
-            d4.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            d4.Binding = new Binding("TipKorisnika");
-            dgPrikaz.Columns.Add(d1);
-            dgPrikaz.Columns.Add(d2);
-            dgPrikaz.Columns.Add(d3);
-            dgPrikaz.Columns.Add(d4);
-            //Za tip korisnika uvek vraca Admin zasto????
+        
 
-            dgPrikaz.ItemsSource = Projekat.Instance.korisnik;
-        }
-        private void DataGridProdaja()
+        private void dgPrikaz_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-
+            switch (prikaz)
+            {
+                case Prikaz.Namestaj:
+                    if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id" || (string)e.Column.Header == "ak" || (string)e.Column.Header == "TipN")
+                    {
+                        e.Cancel = true;
+                    }
+                    
+                    break;
+                case Prikaz.TipNamestaja:
+                    if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id" )
+                    {
+                        e.Cancel = true;
+                    }
+                    break;
+                case Prikaz.Korisnik:
+                    if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
+                    {
+                        e.Cancel = true;
+                    }
+                    break;
+            }
+            
         }
     }
 }

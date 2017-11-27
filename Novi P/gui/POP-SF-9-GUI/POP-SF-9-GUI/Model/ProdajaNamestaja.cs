@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace POP_SF_9_GUI.Model
 {
     [Serializable]
-    public class ProdajaNamestaja : INotifyPropertyChanged
+    public class Racun : INotifyPropertyChanged
     {
         private int id;
         public int Id

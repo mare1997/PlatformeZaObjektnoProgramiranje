@@ -53,7 +53,7 @@ namespace POP_SF_9_GUI.UI
                 {
                     var Id = postojeceAkcije.Count + 1;
                     akcija.Id = Id;
-                namestaj.ak = Id;
+                    namestaj.ak = Id;
                     
                     postojeceAkcije.Add(akcija);
                 }
