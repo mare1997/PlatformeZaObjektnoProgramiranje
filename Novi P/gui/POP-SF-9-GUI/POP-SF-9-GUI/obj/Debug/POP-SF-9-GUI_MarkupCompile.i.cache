@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\
+E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\
 POP_SF_9_GUI
 none
 false
 DEBUG;TRACE
-C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\App.xaml
-71834518469
+E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\App.xaml
+101523405274
 
-24-55721496
+27333589812
 13738642453
-MainWindow.xaml;UI\AkcijaWindow.xaml;UI\GlavniProzor.xaml;UI\KorisnikWindowEdit.xaml;UI\PrikazWindow.xaml;UI\NamstajWindowEdit.xaml;UI\TipNamestajaWindowEdit.xaml;
+MainWindow.xaml;UI\AkcijaWindow.xaml;UI\DodatnaUslugaWindowEdit.xaml;UI\GlavniProzor.xaml;UI\KorisnikWindowEdit.xaml;UI\PrikazWindow.xaml;UI\NamstajWindowEdit.xaml;UI\RacunEdit.xaml;UI\RacunEditNamestajDU.xaml;UI\TipNamestajaWindowEdit.xaml;
 
-False
+True
 

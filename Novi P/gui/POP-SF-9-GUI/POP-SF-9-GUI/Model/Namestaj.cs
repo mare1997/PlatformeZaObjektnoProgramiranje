@@ -120,6 +120,7 @@ namespace POP_SF_9_GUI.Model
             return null;
 
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         
         

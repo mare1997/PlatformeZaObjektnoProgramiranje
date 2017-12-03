@@ -30,7 +30,7 @@ namespace POP_SF_9_GUI
             cbTipKorisnika.Items.Add(TipKorisnika.Administrator);
             cbTipKorisnika.Items.Add(TipKorisnika.Prodavac);
             cbTipKorisnika.SelectedIndex = 0;
-           
+            
 
         }
         private void Potvrdi(object sender, RoutedEventArgs e)
@@ -59,10 +59,9 @@ namespace POP_SF_9_GUI
             foreach (var k in Projekat.Instance.korisnik)
             {
                 
-                if (id == k.KorisnickoIme && pass == k.Lozinka && "Administrator" == tip)
+                if (id == k.KorisnickoIme && pass == k.Lozinka && k.TipKorisnika.ToString() == tip)
                     return true;
-                if (id == k.KorisnickoIme && pass == k.Lozinka && "Prodavac" == tip)
-                    return true;
+                
             }
             return false;
         }

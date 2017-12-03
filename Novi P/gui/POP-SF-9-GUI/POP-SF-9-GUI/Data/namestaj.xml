@@ -7,7 +7,7 @@
     <Kolicina>2</Kolicina>
     <Obrisan>false</Obrisan>
     <TipN>2</TipN>
-    <ak>0</ak>
+    <ak>10</ak>
   </Namestaj>
   <Namestaj>
     <Id>2</Id>
@@ -43,7 +43,33 @@
     <Kolicina>154</Kolicina>
     <Obrisan>false</Obrisan>
     <TipN>2</TipN>
-    <ak>2</ak>
-    
+    <ak>3</ak>
+  </Namestaj>
+  <Namestaj>
+    <Id>6</Id>
+    <Naziv>Radni sto</Naziv>
+    <Cena>15000</Cena>
+    <Kolicina>10</Kolicina>
+    <Obrisan>false</Obrisan>
+    <TipN>3</TipN>
+    <ak>6</ak>
+  </Namestaj>
+  <Namestaj>
+    <Id>7</Id>
+    <Naziv>fbs</Naziv>
+    <Cena>245</Cena>
+    <Kolicina>25</Kolicina>
+    <Obrisan>false</Obrisan>
+    <TipN>2</TipN>
+    <ak>9</ak>
+  </Namestaj>
+  <Namestaj>
+    <Id>8</Id>
+    <Naziv>dad</Naziv>
+    <Cena>2626551</Cena>
+    <Kolicina>255</Kolicina>
+    <Obrisan>false</Obrisan>
+    <TipN>4</TipN>
+    <ak>11</ak>
   </Namestaj>
 </ArrayOfNamestaj>

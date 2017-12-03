@@ -16,11 +16,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="8"/>
         </Grid.RowDefinitions>
-        <DataGrid CanUserAddRows="False" AutoGeneratingColumn="dgPrikaz_AutoGeneratingColumn" Name="dgPrikaz" Grid.Row="0" FontSize="15" Margin="0,0,1,-221" Grid.ColumnSpan="4"  />
-        <Button Content="Izlaz" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Izlaz" RenderTransformOrigin="2.498,0.231" Margin="0,295,11,-326" Grid.Column="3"/>
+        <DataGrid CanUserAddRows="False"  AutoGeneratingColumn="dgPrikaz_AutoGeneratingColumn" Name="dgPrikaz" Grid.Row="0" FontSize="15" Margin="0,0,1,-221" Grid.ColumnSpan="4"  >
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+                <Button Content="Izlaz" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Izlaz" RenderTransformOrigin="2.498,0.231" Margin="0,295,11,-326" Grid.Column="3"/>
         <Button Content="Obrisi" Name="btObrisi" Visibility="Visible" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Obrisi" RenderTransformOrigin="2.498,0.231" Margin="0,295,12,-326" Grid.Column="2"/>
-        <Button Content="Izmeni" Width="80" FontSize="20" Click="Izmeni" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,295,17,-326" Grid.Column="1"/>
-        <Button Content="Dodaj" Width="80" FontSize="20" Click="Dodaj" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,295,0,-326"/>
+        <Button Content="Izmeni" Width="80" Name="btIzmeni" FontSize="20" Click="Izmeni" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,295,17,-326" Grid.Column="1"/>
+        <Button Content="Dodaj" Width="80" Name="btDodaj" FontSize="20" Click="Dodaj" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,295,0,-326"/>
 
     </Grid>
 </Window>

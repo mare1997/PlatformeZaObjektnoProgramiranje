@@ -58,6 +58,9 @@
     <Compile Include="UI\AkcijaWindow.xaml.cs">
       <DependentUpon>AkcijaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\DodatnaUslugaWindowEdit.xaml.cs">
+      <DependentUpon>DodatnaUslugaWindowEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\GlavniProzor.xaml.cs">
       <DependentUpon>GlavniProzor.xaml</DependentUpon>
     </Compile>
@@ -69,6 +72,12 @@
     </Compile>
     <Compile Include="UI\NamstajWindowEdit.xaml.cs">
       <DependentUpon>NamstajWindowEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\RacunEdit.xaml.cs">
+      <DependentUpon>RacunEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\RacunEditNamestajDU.xaml.cs">
+      <DependentUpon>RacunEditNamestajDU.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\TipNamestajaWindowEdit.xaml.cs">
       <DependentUpon>TipNamestajaWindowEdit.xaml</DependentUpon>
@@ -90,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\DodatnaUslugaWindowEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\GlavniProzor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +119,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\RacunEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\RacunEditNamestajDU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\TipNamestajaWindowEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,7 +137,7 @@
     <Compile Include="Model\DodatnaUsluga.cs" />
     <Compile Include="Model\Korisnik.cs" />
     <Compile Include="Model\Namestaj.cs" />
-    <Compile Include="Model\ProdajaNamestaja.cs" />
+    <Compile Include="Model\Racun.cs" />
     <Compile Include="Model\Projekat.cs" />
     <Compile Include="Model\Salon.cs" />
     <Compile Include="Model\TipNamestaja.cs" />

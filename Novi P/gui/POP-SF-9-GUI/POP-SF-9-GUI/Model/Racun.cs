@@ -21,32 +21,34 @@ namespace POP_SF_9_GUI.Model
             }
 
         }
-        private int kolicina;
-        public int Kolicina
-        {
-            get { return kolicina; }
-            set { kolicina = value; OnPropertyChanged("Kolicina"); }
-        }
         private DateTime datumProdaje;
         public DateTime DatumProdaje
         {
-            get {return datumProdaje ; }
+            get { return datumProdaje; }
             set { datumProdaje = value; OnPropertyChanged("DatumProdaje"); }
         }
-        public string brojRacuna { get; set; }
+
         private string kupac;
         public string Kupac
         {
             get { return kupac; }
-            set { kupac = value;  OnPropertyChanged("Kupac"); }
+            set { kupac = value; OnPropertyChanged("Kupac"); }
         }
+
         private List<int> dodatnaUsluga;
         public List<int> DodatnaUsluga
         {
             get { return dodatnaUsluga; }
             set { dodatnaUsluga = value; OnPropertyChanged("DodatnaUsluga"); }
         }
-        public const double PDV = 0.02;
+        //private Dictionary<int, int> namestaj;
+        private List<int> namestaj;
+        public List<int> Namestaj
+        {
+            get { return namestaj; }
+            set { namestaj = value; OnPropertyChanged("Namestaj"); }
+        }
+        public const double PDV = 0.02 ;
         private double ukupnaCena;
         public double UkupnaCena
         {

@@ -3,5 +3,18 @@
   <DodatnaUsluga>
     <Id>1</Id>
     <Cena>0</Cena>
+    <Obrisan>true</Obrisan>
+  </DodatnaUsluga>
+  <DodatnaUsluga>
+    <Id>2</Id>
+    <Naziv>Prevoz</Naziv>
+    <Cena>2500</Cena>
+    <Obrisan>false</Obrisan>
+  </DodatnaUsluga>
+  <DodatnaUsluga>
+    <Id>3</Id>
+    <Naziv>Sklapanje</Naziv>
+    <Cena>2000</Cena>
+    <Obrisan>false</Obrisan>
   </DodatnaUsluga>
 </ArrayOfDodatnaUsluga>

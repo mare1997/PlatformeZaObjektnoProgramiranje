@@ -34,6 +34,9 @@ namespace POP_SF_9_GUI.UI
                 listBox.Items.Add("Rad sa tipom namestaja");
                 listBox.Items.Add("Rad sa korisnicima");
                 listBox.Items.Add("Rad sa prodajom namestaja");
+                listBox.Items.Add("Rad sa akcijama");
+                listBox.Items.Add("Rad sa dodatnim uslugama");
+
             }
             else {
                 listBox.Items.Clear();
@@ -62,6 +65,15 @@ namespace POP_SF_9_GUI.UI
                     var PNProzor = new PrikazWindow(PrikazWindow.Prikaz.ProdajaNamestaja);
                     PNProzor.ShowDialog();
                     break;
+                case "Rad sa akcijama":
+                    var AProzor = new PrikazWindow(PrikazWindow.Prikaz.Akcija);
+                    AProzor.ShowDialog();
+                    break;
+                case "Rad sa dodatnim uslugama":
+                    var DProzor = new PrikazWindow(PrikazWindow.Prikaz.DodatneUsluge);
+                    DProzor.ShowDialog();
+                    break;
+
             }
         }
         private void Izlaz(object sender, RoutedEventArgs e)

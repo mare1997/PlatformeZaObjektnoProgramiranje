@@ -75,7 +75,7 @@ namespace POP_SF_9_GUI.Model
         {
 
 
-            return $"Popust: {Popust} \n Datum pocetka:{DatumPocetka} \n Datum kraja{DatumKraja}";
+            return $"Popust: {Popust} ";
         }
 
     }

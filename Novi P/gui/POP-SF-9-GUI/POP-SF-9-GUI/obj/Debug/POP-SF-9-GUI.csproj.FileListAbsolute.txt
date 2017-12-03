@@ -94,3 +94,9 @@ C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\Novi P\g
 C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.g.resources
 C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP_SF_9_GUI.Properties.Resources.resources
 C:\Users\sf9-2016\Desktop\SF9-2016 git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.csproj.GenerateResource.Cache
+E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\DodatnaUslugaWindowEdit.g.cs
+E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\DodatnaUslugaWindowEdit.baml
+E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEdit.g.cs
+E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEditNamestajDU.g.cs
+E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEdit.baml
+E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEditNamestajDU.baml

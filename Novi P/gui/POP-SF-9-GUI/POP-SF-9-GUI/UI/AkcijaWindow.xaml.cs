@@ -49,19 +49,54 @@ namespace POP_SF_9_GUI.UI
             DateTime date1 = dpP.SelectedDate.Value.Date;
             DateTime date2 = dpK.SelectedDate.Value.Date;
             int result = DateTime.Compare(date1, date2);
-            if (result < 0 || result == 0)
-                {
-                    var Id = postojeceAkcije.Count + 1;
-                    akcija.Id = Id;
-                    namestaj.ak = Id;
+            var n = Projekat.Instance.namestaj;
+            switch (operacija)
+            {
+                case Operacija.DODAVANJE:
                     
-                    postojeceAkcije.Add(akcija);
-                }
-                else
-                {
-                    MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                    
+                    if (result < 0)
+                    {
+                        var Id = postojeceAkcije.Count + 1;
+                        akcija.Id = Id;
+                        namestaj.ak = Id;
+
+                        postojeceAkcije.Add(akcija);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                case Operacija.IZMENA:
+
+                    
+                    if (result < 0)
+                    {   foreach(var nn in n)
+                        {
+                            if (nn.ak == namestaj.ak)
+                            {
+                                var Idd = postojeceAkcije.Count + 1;
+                                akcija.Id = Idd;
+                                nn.ak = Idd;
+                            }
+                        }
+                        
+
+                        postojeceAkcije.Add(akcija);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                   
+            }
+            
+            
             GenericSerializer.Serialize("akcija.xml", postojeceAkcije);
+            GenericSerializer.Serialize("namestaj.xml", n);
+
             this.Close();
 
         }

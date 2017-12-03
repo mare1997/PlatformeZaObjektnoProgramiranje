@@ -14,4 +14,53 @@
     <Popust>10</Popust>
     <Obrisan>false</Obrisan>
   </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>3</Id>
+    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+    <DatumKraja>0001-01-01T00:00:00</DatumKraja>
+    <Popust>50</Popust>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>4</Id>
+    <DatumPocetka>2017-08-15T00:00:00</DatumPocetka>
+    <DatumKraja>2017-08-25T00:00:00</DatumKraja>
+    <Popust>0</Popust>
+    <Obrisan>true</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>5</Id>
+    <DatumPocetka>2001-01-23T00:00:00</DatumPocetka>
+    <DatumKraja>2001-02-01T00:00:00</DatumKraja>
+    <Popust>10</Popust>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>6</Id>
+    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+    <DatumKraja>0001-01-01T00:00:00</DatumKraja>
+    <Popust>87</Popust>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>7</Id>
+    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+    <DatumKraja>2001-01-31T00:00:00</DatumKraja>
+    <Popust>22</Popust>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>8</Id>
+    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+    <DatumKraja>2001-01-22T00:00:00</DatumKraja>
+    <Popust>5</Popust>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
+  <AkcijskaProdaja>
+    <Id>9</Id>
+    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+    <DatumKraja>2001-01-16T00:00:00</DatumKraja>
+    <Popust>10</Popust>
+    <Obrisan>false</Obrisan>
+  </AkcijskaProdaja>
 </ArrayOfAkcijskaProdaja>

@@ -62,7 +62,6 @@ namespace POP_SF_9_GUI.Model
             set { obrisan = value; OnPropertyChanged("Obrisan"); }
         }
         private TipKorisnika tip;
-        [XmlIgnore]
         public TipKorisnika TipKorisnika
         {
             get { return tip; }

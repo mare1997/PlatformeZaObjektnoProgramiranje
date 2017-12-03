@@ -37,7 +37,12 @@ namespace POP_SF_9_GUI.Model
             set { cena = value; OnPropertyChanged("Cena"); }
         }
 
-
+        private bool obrisan;
+        public bool Obrisan
+        {
+            get { return obrisan; }
+            set { obrisan = value; OnPropertyChanged("Obrisan"); }
+        }
         public static DodatnaUsluga GetById(int id)
         {
             foreach (var du in Projekat.Instance.DU)

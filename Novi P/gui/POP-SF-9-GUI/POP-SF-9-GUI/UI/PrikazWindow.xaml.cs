@@ -29,8 +29,8 @@ namespace POP_SF_9_GUI.UI
             TipNamestaja,
             Korisnik,
             ProdajaNamestaja,
-
-
+            Akcija,
+            DodatneUsluge
         };
         private ICollectionView view;
         Prikaz prikaz;
@@ -44,16 +44,16 @@ namespace POP_SF_9_GUI.UI
             switch (prikaz)
             {
                 case Prikaz.Namestaj:
-                    //DataGridNamestaj();
+                    
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.namestaj);
-                    view.Filter = namestajFileter;
+                    view.Filter = namestajFilter;
                     dgPrikaz.ItemsSource =view;
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     break;
                 case Prikaz.TipNamestaja:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.TN);
-                    view.Filter = tipnamestajFileter;
+                    view.Filter = tipnamestajFilter;
                 
                     dgPrikaz.ItemsSource =  view;
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
@@ -61,16 +61,37 @@ namespace POP_SF_9_GUI.UI
                     break;
                 case Prikaz.Korisnik:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.korisnik);
-                    view.Filter = korisnikFileter;
+                    view.Filter = korisnikFilter;
                     dgPrikaz.ItemsSource = view;
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     break;
                 case Prikaz.ProdajaNamestaja:
-                    dgPrikaz.ItemsSource = Projekat.Instance.pn;
-                    dgPrikaz.IsSynchronizedWithCurrentItem = true; 
+                    view = CollectionViewSource.GetDefaultView(Projekat.Instance.pn);
+                    view.Filter = RacunFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     btObrisi.Visibility = System.Windows.Visibility.Hidden;
                     break;
+                case Prikaz.Akcija:
+                    view = CollectionViewSource.GetDefaultView(Projekat.Instance.akcija);
+                    view.Filter = akcijaFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    btObrisi.Visibility = System.Windows.Visibility.Hidden;
+                    btDodaj.Visibility = System.Windows.Visibility.Hidden;
+                    btIzmeni.Visibility = System.Windows.Visibility.Hidden;
+                    break;
+                case Prikaz.DodatneUsluge:
+                    view = CollectionViewSource.GetDefaultView(Projekat.Instance.DU);
+                    view.Filter = dodatnaFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+                
 
 
 
@@ -78,18 +99,36 @@ namespace POP_SF_9_GUI.UI
 
         }
 
-        private bool namestajFileter(object obj)
-        {
-            return ((Namestaj)obj).Obrisan == false;
+        private bool namestajFilter(object obj)
+        {   if (((Namestaj)obj).Obrisan == false && ((Namestaj)obj).TipNamestaja.Obrisan == false)
+            {
+                return true;
+            }
+            return false;
         }
-        private bool tipnamestajFileter(object obj)
+        private bool tipnamestajFilter(object obj)
         {
             return ((TipNamestaja)obj).Obrisan == false;
         }
-        private bool korisnikFileter(object obj)
+        private bool korisnikFilter(object obj)
         {
             return ((Korisnik)obj).Obrisan == false;
         }
+        private bool akcijaFilter(object obj)
+        {   if (((AkcijskaProdaja)obj).Obrisan == false)
+                return true;
+
+            return false;
+        }
+        private bool dodatnaFilter(object obj)
+        {
+            return ((DodatnaUsluga)obj).Obrisan == false;
+        }
+        private bool RacunFilter(object obj)
+        {
+            return true;
+        }
+
 
         private void Izlaz(object sender, RoutedEventArgs e)
         {
@@ -109,8 +148,12 @@ namespace POP_SF_9_GUI.UI
                 case Prikaz.Korisnik:
                     DodajKorisnika();
                     break;
-                case Prikaz.ProdajaNamestaja: break;
-
+                case Prikaz.ProdajaNamestaja:
+                    DodajRacun();
+                    break;
+                case Prikaz.DodatneUsluge:
+                    DodajDodatnuUslugu();
+                    break;
 
             }
             
@@ -129,7 +172,12 @@ namespace POP_SF_9_GUI.UI
                 case Prikaz.Korisnik:
                     IzmeniKorisnik();
                     break;
-                case Prikaz.ProdajaNamestaja: break;
+                case Prikaz.ProdajaNamestaja:
+
+                    break;
+                case Prikaz.DodatneUsluge:
+                    IzmeniDodatnaUsluga();
+                    break;
 
 
             }
@@ -147,6 +195,9 @@ namespace POP_SF_9_GUI.UI
                     break;
                 case Prikaz.Korisnik:
                     ObrisiKorisnika();
+                    break;
+                case Prikaz.DodatneUsluge:
+                    ObrisiDodatnaUsluga();
                     break;
                 
 
@@ -177,6 +228,18 @@ namespace POP_SF_9_GUI.UI
             var korisnikProzor = new KorisnikWindowEdit(KorisnikWindowEdit.Operacija.DODAVANJE, k);
             korisnikProzor.ShowDialog();
         }
+        private void DodajDodatnuUslugu()
+        {
+            var du = new DodatnaUsluga();
+            var dProzor = new DodatnaUslugaWindowEdit(DodatnaUslugaWindowEdit.Operacija.DODAVANJE, du);
+            dProzor.ShowDialog();
+        }
+        private void DodajRacun()
+        {
+            var racun = new Racun();
+            var dProzor = new RacunEdit(RacunEdit.Operacija.DODAVANJE, racun);
+            dProzor.ShowDialog();
+        }
         private void IzmeniNamestaj()
         {
             var selektovaniNamestaj = (Namestaj)dgPrikaz.SelectedItem;
@@ -193,6 +256,12 @@ namespace POP_SF_9_GUI.UI
         {
             var selektovaniKorisnki = (Korisnik)dgPrikaz.SelectedItem;
             var prozor = new KorisnikWindowEdit(KorisnikWindowEdit.Operacija.IZMENA, selektovaniKorisnki);
+            prozor.ShowDialog();
+        }
+        private void IzmeniDodatnaUsluga()
+        {
+            var selektovaniDU = (DodatnaUsluga)dgPrikaz.SelectedItem;
+            var prozor = new DodatnaUslugaWindowEdit(DodatnaUslugaWindowEdit.Operacija.IZMENA, selektovaniDU);
             prozor.ShowDialog();
         }
         private void ObrisiNamestaj()
@@ -255,7 +324,27 @@ namespace POP_SF_9_GUI.UI
             }
             GenericSerializer.Serialize("korisnik.xml", Projekat.Instance.korisnik);
         }
-        
+        private void ObrisiDodatnaUsluga()
+        {
+            var staraListaN = Projekat.Instance.DU;
+            var du = (DodatnaUsluga)dgPrikaz.SelectedItem;
+
+            if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete dodatnu uslugu: {du.Naziv} ?", "Poruka o brisanju ", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                foreach (var n in staraListaN)
+                {
+                    if (n.Id == du.Id)
+                    {
+                        n.Obrisan = true;
+                        view.Refresh();
+                        break;
+                    }
+
+                }
+            }
+            GenericSerializer.Serialize("dodatnausluga.xml", Projekat.Instance.DU);
+        }
+
 
         private void dgPrikaz_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
@@ -280,7 +369,35 @@ namespace POP_SF_9_GUI.UI
                         e.Cancel = true;
                     }
                     break;
+                case Prikaz.Akcija:
+                    if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
+                    {
+                        e.Cancel = true;
+                    }
+                    break;
+                case Prikaz.DodatneUsluge:
+                    if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
+                    {
+                        e.Cancel = true;
+                    }
+                    break;
+                case Prikaz.ProdajaNamestaja:
+                    if ((string)e.Column.Header == "Id" || (string)e.Column.Header == "DodatnaUsluga" || (string)e.Column.Header == "Namestaj") 
+                    {
+                        e.Cancel = true;
+                    }
+                    break;
             }
+            
+        }
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {   switch (prikaz)
+            {
+                case Prikaz.ProdajaNamestaja:
+                    DataGridRow row = sender as DataGridRow;
+                    break;
+            }
+            
             
         }
     }
