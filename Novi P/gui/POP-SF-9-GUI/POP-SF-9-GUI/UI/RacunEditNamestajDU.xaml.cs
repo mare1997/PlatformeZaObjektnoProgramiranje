@@ -36,6 +36,7 @@ namespace POP_SF_9_GUI.UI
             InitializeComponent();
             this.operacija = operacija;
             this.racun = racun;
+            tbKolicina.DataContext = racun;
             switch (operacija)
             {
                 case Operacija.Namestaj:
@@ -57,23 +58,24 @@ namespace POP_SF_9_GUI.UI
         }
 
         private void btDodaj_Click(object sender, RoutedEventArgs e)
-        {
+        { var listaracuna = Projekat.Instance.pn;
             int k = int.Parse(tbKolicina.Text);
             switch (operacija)
             {   
                 case Operacija.Namestaj:
                     var selektovaniNamestaj = (Namestaj)dgPrikaz.SelectedItem;
-                    var listaNamestaja = racun.Namestaj;
-                    //listaNamestaja.Add(selektovaniNamestaj.Id,k);
+                    
+                    racun.Namestaj.Add(selektovaniNamestaj.Id);
                     break;
                 case Operacija.DodatnaUsluga:
                     var selektovan = (DodatnaUsluga)dgPrikaz.SelectedItem;
-                    var lista = racun.DodatnaUsluga;
-                    lista.Add(selektovan.Id);
+                   
+                    racun.DodatnaUsluga.Add(selektovan.Id);
                     break;
             }
-            
-       
+            listaracuna.Add(racun);
+            GenericSerializer.Serialize("prodajanamestaja.xml",listaracuna);
+
         }
 
         private void btIzlaz_Click(object sender, RoutedEventArgs e)

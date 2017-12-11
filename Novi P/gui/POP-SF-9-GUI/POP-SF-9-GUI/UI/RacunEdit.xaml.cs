@@ -34,11 +34,12 @@ namespace POP_SF_9_GUI.UI
             this.racun = racun;
             this.operacija = operacija;
             tbKupac.DataContext = racun;
+
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    dataGridNamestaj.ItemsSource = racun.Namestaj;
-                    dataGridUsluge.ItemsSource = racun.DodatnaUsluga;
+                    DataGridDodavanje(RacunEditNamestajDU.Operacija.Namestaj);
+                    DataGridDodavanje(RacunEditNamestajDU.Operacija.DodatnaUsluga);
                     break;
                 case Operacija.IZMENA:break;
             }
@@ -53,12 +54,12 @@ namespace POP_SF_9_GUI.UI
                     
                     racun.DatumProdaje = DateTime.Today;
                     racun.Id = lista.Count + 1;
-                    /*foreach (KeyValuePair<int, int> entry in racun.Namestaj)
+
+                    foreach (int n in racun.Namestaj)
                     {
-                        Namestaj nam = Namestaj.GetById(entry.Key);
-                        racun.UkupnaCena += nam.Cena * entry.Value;
+                        Namestaj nn = Namestaj.GetById(n);
+                        racun.UkupnaCena += nn.Cena;
                     }
-                    */
                     foreach (int du in racun.DodatnaUsluga)
                     {
                         DodatnaUsluga duu = DodatnaUsluga.GetById(du);
@@ -70,12 +71,11 @@ namespace POP_SF_9_GUI.UI
                 case Operacija.IZMENA:
                     
                     racun.DatumProdaje = DateTime.Today;
-                    /*foreach (KeyValuePair<int, int> entry in racun.Namestaj)
+                    foreach (int n in racun.Namestaj)
                     {
-                        Namestaj nam = Namestaj.GetById(entry.Key);
-                        racun.UkupnaCena += nam.Cena * entry.Value;
+                        Namestaj nn = Namestaj.GetById(n);
+                        racun.UkupnaCena += nn.Cena;
                     }
-                    */
                     foreach (int du in racun.DodatnaUsluga)
                     {
                         DodatnaUsluga duu = DodatnaUsluga.GetById(du);
@@ -107,6 +107,63 @@ namespace POP_SF_9_GUI.UI
         {
             RacunEditNamestajDU r = new RacunEditNamestajDU(RacunEditNamestajDU.Operacija.DodatnaUsluga, racun);
             r.ShowDialog();
+        }
+        private void DataGridDodavanje(RacunEditNamestajDU.Operacija operacija)
+        {
+            var listaracuna = Projekat.Instance.pn;
+            foreach (var r in listaracuna)
+            {
+                if (r.Id == racun.Id)
+                {
+                    racun = r;
+                }
+            }
+            List<Namestaj> listaN = new List<Namestaj>();
+            List<DodatnaUsluga> listaDU = new List<DodatnaUsluga>();
+            if (racun.Namestaj != null && racun.DodatnaUsluga != null)
+            {
+                foreach (var r in racun.Namestaj)
+                {
+                    listaN.Add(Namestaj.GetById(r));
+                }
+                foreach (var r in racun.DodatnaUsluga)
+                {
+                    listaDU.Add(DodatnaUsluga.GetById(r));
+                }
+            }
+            
+
+
+            switch (operacija)
+            {
+                case RacunEditNamestajDU.Operacija.Namestaj:
+                    DataGrid dgn = new DataGrid();
+                    DataGridTextColumn d1 = new DataGridTextColumn();
+                    d1.Header = "Naziv";
+                    d1.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    d1.Binding = new Binding("Naziv");
+                    DataGridTextColumn d3 = new DataGridTextColumn();
+                    d3.Header = "Kolicina";
+                    d3.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    d3.Binding = new Binding("KolicinaPriProdaji");
+                    dataGridNamestaj.Columns.Add(d1);
+                    dataGridNamestaj.Columns.Add(d3);
+                    dataGridNamestaj.ItemsSource = listaN ;
+                    break;
+                case RacunEditNamestajDU.Operacija.DodatnaUsluga:
+                    DataGrid dgnn = new DataGrid();
+                    DataGridTextColumn d11 = new DataGridTextColumn();
+                    d11.Header = "Naziv";
+                    d11.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    d11.Binding = new Binding("Naziv");
+                    dataGridUsluge.Columns.Add(d11);
+                    dataGridUsluge.ItemsSource = listaDU;
+                    break;
+            }
+
+
+
+            
         }
     }
 }

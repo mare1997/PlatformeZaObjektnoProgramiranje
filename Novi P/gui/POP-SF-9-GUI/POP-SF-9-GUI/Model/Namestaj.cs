@@ -42,6 +42,12 @@ namespace POP_SF_9_GUI.Model
             get { return kolicina; }
             set { kolicina = value;  OnPropertyChanged("Kolicina"); }
         }
+        private int kolicinapp;
+        public int KolicinaPriProdaji
+        {
+            get { return kolicinapp; }
+            set { kolicinapp = value; OnPropertyChanged("KolicinaPriProdaji"); }
+        }
         private bool obrisan;
         public bool Obrisan
         {
