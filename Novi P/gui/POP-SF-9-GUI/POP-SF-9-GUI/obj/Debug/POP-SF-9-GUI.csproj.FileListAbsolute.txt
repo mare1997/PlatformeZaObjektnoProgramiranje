@@ -29,16 +29,12 @@ C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\P
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\MainWindow.g.cs
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\AkcijaWindow.g.cs
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\GlavniProzor.g.cs
-C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamestajWindow.g.cs
-C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamstajWindowDodavanjeIzmena.g.cs
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\App.g.cs
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI_MarkupCompile.cache
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI_MarkupCompile.lref
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\MainWindow.baml
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\AkcijaWindow.baml
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\GlavniProzor.baml
-C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamestajWindow.baml
-C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamstajWindowDodavanjeIzmena.baml
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.g.resources
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP_SF_9_GUI.Properties.Resources.resources
 C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.csproj.GenerateResource.Cache
@@ -100,3 +96,18 @@ E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9
 E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEditNamestajDU.g.cs
 E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEdit.baml
 E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEditNamestajDU.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\DodatnaUslugaWindowEdit.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\KorisnikWindowEdit.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\PrikazWindow.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamstajWindowEdit.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEdit.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEditNamestajDU.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\TipNamestajaWindowEdit.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI_Content.g.cs
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\DodatnaUslugaWindowEdit.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\KorisnikWindowEdit.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\PrikazWindow.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamstajWindowEdit.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEdit.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEditNamestajDU.baml
+C:\Users\sf9-2016\Desktop\SF9-2016\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\TipNamestajaWindowEdit.baml

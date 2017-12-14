@@ -18,7 +18,7 @@ namespace POP_SF_9_GUI.Model
         public ObservableCollection<Racun> pn;
         private Projekat()
         {
-            TN = new ObservableCollection<TipNamestaja>(GenericSerializer.Deserialize<TipNamestaja>("tipnamestaja.xml"));
+            TN = TipNamestaja.GetAll();
             namestaj = new ObservableCollection<Namestaj>(GenericSerializer.Deserialize<Namestaj>("namestaj.xml"));
             korisnik = new ObservableCollection<Korisnik>(GenericSerializer.Deserialize<Korisnik>("korisnik.xml"));
             DU = new ObservableCollection<DodatnaUsluga>(GenericSerializer.Deserialize<DodatnaUsluga>("dodatnausluga.xml"));
