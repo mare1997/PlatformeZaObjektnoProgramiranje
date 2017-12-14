@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -28,8 +29,6 @@ namespace POP_SF_9_GUI.Model
             get { return naziv; }
             set { naziv = value; OnPropertyChanged("Naziv"); }
         }
-
-        public static object ConfigurationManager { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -58,31 +57,83 @@ namespace POP_SF_9_GUI.Model
 
             }
         }
-        #region
+        #region Database
         public static ObservableCollection<TipNamestaja> GetAll()
         {
             var tipoviNamestaja = new ObservableCollection<TipNamestaja>();
-            using (var con = new SqlConection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
-                SqlConection cmd = con.CreateCommand();
-                cmd.CommandText = "Select * From TipNamestaja Where Obrisan=0";
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM TipNamestaja WHERE Obrisan=0";
+
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = cmd;
-                da.Fill(ds,"TipNamestaja"); //izvrsava se query nad bazom
 
+                da.SelectCommand = cmd;
+                da.Fill(ds, "TipNamestaja"); // Query se izvrsava
                 foreach (DataRow row in ds.Tables["TipNamestaja"].Rows)
                 {
                     var tn = new TipNamestaja();
                     tn.Id = int.Parse(row["Id"].ToString());
                     tn.Naziv = row["Naziv"].ToString();
                     tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
-                    tipoviNamestaja.Add(tn);                }
-                 
-                
+
+                    tipoviNamestaja.Add(tn);
+
+                }
+                return tipoviNamestaja;
             }
         }
-        return tipoviNamestaja;
+        public static TipNamestaja Create(TipNamestaja tn)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = $"Insert into TipNamestaja (Naziv,Obrisan) Values(@Naziv,@Obrisan);";//razmisli o ne unosenju obrisan pri dodavanju vec to u bazi 
+                cmd.CommandText += "Select scope_identity();";
+                cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
+                cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
+                int newId = int.Parse(cmd.ExecuteScalar().ToString()); //es izvrsava query
+                tn.Id = newId;
+
+
+            }
+            Projekat.Instance.TN.Add(tn);//obrati paznju {azurira i stanje modela}
+            return tn;
+        }
+        public static void Update(TipNamestaja tn)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "Update TipNamestaja set Naziv=@Naziv,Obrisan=@Obrisan, where id=@id";
+                cmd.Parameters.AddWithValue("Id", tn.Id);
+                cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
+                cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
+
+                cmd.ExecuteNonQuery();
+
+                foreach (var tipNamestaj in Projekat.Instance.TN)
+                {
+                    if (tipNamestaj.Id == tn.Id)
+                    {
+                        tipNamestaj.Naziv = tn.Naziv;
+                        tipNamestaj.Obrisan = tn.Obrisan;
+                        break;
+                    }
+                }
+            }
+
+            
+        }
+        public static void Delete(TipNamestaja tn)
+        {
+            tn.Obrisan = true;
+            Update(tn);
+        }
         #endregion
     }
 }

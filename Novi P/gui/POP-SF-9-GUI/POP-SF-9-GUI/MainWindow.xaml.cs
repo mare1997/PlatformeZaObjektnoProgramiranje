@@ -27,6 +27,10 @@ namespace POP_SF_9_GUI
         public MainWindow()
         {
             InitializeComponent();
+            
+
+
+
             cbTipKorisnika.Items.Add(TipKorisnika.Administrator);
             cbTipKorisnika.Items.Add(TipKorisnika.Prodavac);
             cbTipKorisnika.SelectedIndex = 0;
