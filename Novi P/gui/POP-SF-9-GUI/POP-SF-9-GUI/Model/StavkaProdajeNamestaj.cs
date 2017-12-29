@@ -85,7 +85,7 @@ namespace POP_SF_9_GUI.Model
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT * FROM  StavkaNametsaja WHERE Obrisan=0";
+                cmd.CommandText = "SELECT * FROM  StavkaNametsaja ";
 
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter();

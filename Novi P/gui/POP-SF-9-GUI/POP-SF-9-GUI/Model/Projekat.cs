@@ -21,13 +21,21 @@ namespace POP_SF_9_GUI.Model
         private Projekat()
         {
             TN = TipNamestaja.GetAll();
+            Console.WriteLine("1");
             namestaj = Namestaj.GetAll();
+            Console.WriteLine("2");
             korisnik =Korisnik.GetAll();
+            Console.WriteLine("3");
             DU = DodatnaUsluga.GetAll();
+            Console.WriteLine("4");
             pn = Racun.GetAll();
+            Console.WriteLine("5");
             akcija = AkcijskaProdaja.GetAll();
+            Console.WriteLine("6");
             spn = StavkaProdajeNamestaj.GetAll();
+            Console.WriteLine("7");
             spdu = StavkaProdajeDU.GetAll();
+            Console.WriteLine("8");
         }
         
         

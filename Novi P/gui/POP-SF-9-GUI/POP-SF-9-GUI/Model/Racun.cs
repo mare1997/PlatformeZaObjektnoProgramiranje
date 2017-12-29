@@ -70,7 +70,7 @@ namespace POP_SF_9_GUI.Model
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT * FROM Racun WHERE Obrisan=0";
+                cmd.CommandText = "SELECT * FROM Racun";
 
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter();
@@ -84,6 +84,8 @@ namespace POP_SF_9_GUI.Model
                     r.datumProdaje = DateTime.Parse(row["Dp"].ToString());
                     r.Kupac = row["Kupac"].ToString();
                     r.UkupnaCena = double.Parse(row["UkupnaCena"].ToString());
+                    /*Van baze
+                     
                     foreach (var n in Projekat.Instance.spn)
                     {
                         if (n.RacunId == r.Id)
@@ -98,7 +100,7 @@ namespace POP_SF_9_GUI.Model
                             r.DodatnaUsluga.Add(n);
                         }
                     }
-                    
+                    */
                     racun.Add(r);
 
                 }

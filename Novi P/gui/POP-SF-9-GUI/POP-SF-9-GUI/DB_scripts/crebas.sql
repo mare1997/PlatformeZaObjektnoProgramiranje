@@ -17,7 +17,7 @@ Create table Akcija(
 Create table Namestaj(
 	Id int primary key identity(1,1),
 	TipNamestajaId int, 
-	Akcija int,
+	AkcijaId int,
 	Naziv varchar(80),
 	Obrisan bit ,
 	Cena numeric(9,2),

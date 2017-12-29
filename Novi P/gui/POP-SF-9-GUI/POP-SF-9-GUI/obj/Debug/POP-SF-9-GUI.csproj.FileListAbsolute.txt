@@ -145,3 +145,4 @@ S:\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Deb
 S:\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP_SF_9_GUI.Properties.Resources.resources
 S:\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.csproj.GenerateResource.Cache
 E:\Git POP Git\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI_Content.g.cs
+S:\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.csproj.CoreCompileInputs.cache

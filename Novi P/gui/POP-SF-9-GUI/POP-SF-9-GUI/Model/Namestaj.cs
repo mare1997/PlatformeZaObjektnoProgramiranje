@@ -35,8 +35,8 @@ namespace POP_SF_9_GUI.Model
             get { return naziv; }
             set { naziv = value; OnPropertyChanged("Naziv"); }
         }
-        private int cena;
-        public int Cena
+        private double cena;
+        public double Cena
         {
             get { return cena; }
             set { cena = value; OnPropertyChanged("Cena"); }
@@ -92,7 +92,7 @@ namespace POP_SF_9_GUI.Model
         {
             get
             {
-                if (akcija == null)
+                if (ak != 0)
                 {
                     akcija = AkcijskaProdaja.GetById(ak);
 
@@ -160,10 +160,10 @@ namespace POP_SF_9_GUI.Model
                     tn.Id = int.Parse(row["Id"].ToString());
                     tn.Naziv = row["Naziv"].ToString();
                     tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
-                    tn.Cena = int.Parse(row["Cena"].ToString());
+                    tn.Cena = double.Parse(row["Cena"].ToString());
                     tn.Kolicina = int.Parse(row["Kolicina"].ToString());
-                    tn.Akcija = AkcijskaProdaja.GetById(int.Parse(row["Akcija"].ToString()));
-                    tn.TipNamestaja =TipNamestaja.GetById(int.Parse(row["TipNamestajaId"].ToString()));
+                   // tn.ak = int.Parse(row["Akcija"].ToString());
+                    tn.TipN=int.Parse(row["TipNamestajaId"].ToString());
                     Namestaj.Add(tn);
 
                 }
