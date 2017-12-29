@@ -1,4 +1,5 @@
-﻿Create table TipNamestaja (
+﻿
+Create table TipNamestaja (
 	Id int primary key identity(1,1),
 	Naziv varchar(80),
 	Obrisan bit 
@@ -38,20 +39,23 @@ create table Racun(
 	Id int primary key,
 	Dp datetime ,
 	Kupac varchar(100),
-	NamestajId int,
-	DUId int,
 	UkupnaCena numeric(9,2),
 )
 create table StavkaNametsaja(
 	Id int primary key,
-	RacunId int,
+	RacunId int ,
 	NamestajID int,
 	Kolicina int,
+	 
+	Foreign key (RacunId) references Racun(Id),
+	Foreign key (NamestajId) references Namestaj(Id),
 )
 create table StavkaDUsluge(
 	Id int primary key,
 	RacunId int,
 	DUId int,
+	Foreign key (RacunId) references Racun(Id),
+	Foreign key (DUId) references DodatnaUsluga(Id),
 )
 create table Korisnik(
 	Id int primary key,
@@ -63,4 +67,3 @@ create table Korisnik(
 	TipKorisnika bit,
 )
 
-//uraditi validaciju i transakciju

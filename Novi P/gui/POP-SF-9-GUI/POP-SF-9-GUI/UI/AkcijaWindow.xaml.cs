@@ -57,11 +57,9 @@ namespace POP_SF_9_GUI.UI
                     
                     if (result < 0)
                     {
-                        var Id = postojeceAkcije.Count + 1;
-                        akcija.Id = Id;
-                        namestaj.ak = Id;
-
-                        postojeceAkcije.Add(akcija);
+                        AkcijskaProdaja.Create(akcija);
+                        namestaj.ak = akcija.Id;
+                        Namestaj.Update(namestaj);
                     }
                     else
                     {
@@ -76,14 +74,14 @@ namespace POP_SF_9_GUI.UI
                         {
                             if (nn.ak == namestaj.ak)
                             {
-                                var Idd = postojeceAkcije.Count + 1;
-                                akcija.Id = Idd;
-                                nn.ak = Idd;
+                                AkcijskaProdaja.Update(akcija);
+                                nn.ak = akcija.Id;
+                                Namestaj.Update(namestaj);
                             }
                         }
                         
 
-                        postojeceAkcije.Add(akcija);
+                        
                     }
                     else
                     {
@@ -94,8 +92,7 @@ namespace POP_SF_9_GUI.UI
             }
             
             
-            GenericSerializer.Serialize("akcija.xml", postojeceAkcije);
-            GenericSerializer.Serialize("namestaj.xml", n);
+           
 
             this.Close();
 

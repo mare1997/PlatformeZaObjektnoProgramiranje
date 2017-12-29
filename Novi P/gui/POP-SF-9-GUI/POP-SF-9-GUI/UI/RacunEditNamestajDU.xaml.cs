@@ -58,23 +58,34 @@ namespace POP_SF_9_GUI.UI
         }
 
         private void btDodaj_Click(object sender, RoutedEventArgs e)
-        { var listaracuna = Projekat.Instance.pn;
+        {   var listaracuna = Projekat.Instance.pn;
             int k = int.Parse(tbKolicina.Text);
+            
             switch (operacija)
             {   
                 case Operacija.Namestaj:
                     var selektovaniNamestaj = (Namestaj)dgPrikaz.SelectedItem;
+                    StavkaProdajeNamestaj spn = new StavkaProdajeNamestaj();
+                    spn.Kolicina = k;
+                    spn.NamestajId = selektovaniNamestaj.Id;
+                    spn.RacunId = racun.Id;
                     
-                    racun.Namestaj.Add(selektovaniNamestaj.Id);
+                    StavkaProdajeNamestaj.Create(spn);
                     break;
                 case Operacija.DodatnaUsluga:
                     var selektovan = (DodatnaUsluga)dgPrikaz.SelectedItem;
-                   
-                    racun.DodatnaUsluga.Add(selektovan.Id);
+                    StavkaProdajeDU spdu = new StavkaProdajeDU();
+                    spdu.RacunId = racun.Id;
+                    spdu.DUId = selektovan.Id;
+                    StavkaProdajeDU.Create(spdu);
+
+
                     break;
             }
-            listaracuna.Add(racun);
-            GenericSerializer.Serialize("prodajanamestaja.xml",listaracuna);
+            
+            
+            Racun.Update(racun);
+           
 
         }
 

@@ -27,7 +27,7 @@ namespace POP_SF_9_GUI.UI
             IZMENA,
 
         };
-        Racun racun;
+        private Racun racun;
         public RacunEdit(Operacija operacija, Racun racun)
         {
             InitializeComponent();
@@ -55,36 +55,37 @@ namespace POP_SF_9_GUI.UI
                     racun.DatumProdaje = DateTime.Today;
                     racun.Id = lista.Count + 1;
 
-                    foreach (int n in racun.Namestaj)
+                    foreach (var n in racun.Namestaj)
                     {
-                        Namestaj nn = Namestaj.GetById(n);
+                        Namestaj nn = Namestaj.GetById(n.NamestajId);
                         racun.UkupnaCena += nn.Cena;
                     }
-                    foreach (int du in racun.DodatnaUsluga)
+                    foreach (var du in racun.DodatnaUsluga)
                     {
-                        DodatnaUsluga duu = DodatnaUsluga.GetById(du);
+                        DodatnaUsluga duu = DodatnaUsluga.GetById(du.DUId);
                         racun.UkupnaCena += duu.Cena;
                     }
                     racun.UkupnaCena = racun.UkupnaCena * 0.02;
-                    lista.Add(racun);
+                    Racun.Create(racun);
                     break;
                 case Operacija.IZMENA:
                     
                     racun.DatumProdaje = DateTime.Today;
-                    foreach (int n in racun.Namestaj)
+                    foreach (var n in racun.Namestaj)
                     {
-                        Namestaj nn = Namestaj.GetById(n);
+                        Namestaj nn = Namestaj.GetById(n.NamestajId);
                         racun.UkupnaCena += nn.Cena;
                     }
-                    foreach (int du in racun.DodatnaUsluga)
+                    foreach (var du in racun.DodatnaUsluga)
                     {
-                        DodatnaUsluga duu = DodatnaUsluga.GetById(du);
+                        DodatnaUsluga duu = DodatnaUsluga.GetById(du.DUId);
                         racun.UkupnaCena += duu.Cena;
                     }
                     racun.UkupnaCena = racun.UkupnaCena * 0.02;
+                    Racun.Update(racun);
                     break;
             }
-            GenericSerializer.Serialize("prodajanamestaja.xml", lista);
+           
         }
 
         private void btIzlaz_Click(object sender, RoutedEventArgs e)
@@ -124,11 +125,11 @@ namespace POP_SF_9_GUI.UI
             {
                 foreach (var r in racun.Namestaj)
                 {
-                    listaN.Add(Namestaj.GetById(r));
+                    listaN.Add(Namestaj.GetById(r.NamestajId));
                 }
                 foreach (var r in racun.DodatnaUsluga)
                 {
-                    listaDU.Add(DodatnaUsluga.GetById(r));
+                    listaDU.Add(DodatnaUsluga.GetById(r.DUId));
                 }
             }
             

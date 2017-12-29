@@ -66,14 +66,14 @@ namespace POP_SF_9_GUI.UI
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     break;
-                case Prikaz.ProdajaNamestaja:
+               /* case Prikaz.ProdajaNamestaja:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.pn);
                     view.Filter = RacunFilter;
                     dgPrikaz.ItemsSource = view;
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     btObrisi.Visibility = System.Windows.Visibility.Hidden;
-                    break;
+                    break;*/
                 case Prikaz.Akcija:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.akcija);
                     view.Filter = akcijaFilter;
@@ -266,81 +266,49 @@ namespace POP_SF_9_GUI.UI
         }
         private void ObrisiNamestaj()
         {
-            var staraListaN = Projekat.Instance.namestaj;
+           
             var nam = (Namestaj)dgPrikaz.SelectedItem;
 
             if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete izabrani namestaj: {nam.Naziv}?", "Poruka o brisanju ", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                foreach (var n in staraListaN)
-                {
-                    if (n.Id == nam.Id)
-                    {
-                        n.Obrisan = true;
-                        view.Refresh();
-                        break;
-                    }
-
-                }
-            }
-            GenericSerializer.Serialize("namestaj.xml", Projekat.Instance.namestaj);
+                Namestaj.Delete(nam);
+                view.Refresh();
+           }
+           
         }
         private void ObrisiTipNamestaj()
         {
-            var staraListaN = Projekat.Instance.TN;
+            
             var tn = (TipNamestaja)dgPrikaz.SelectedItem;
             
             if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete izabrani tip namestaj: {tn.Naziv}?", "Poruka o brisanju ", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                foreach (var n in staraListaN)
-                {
-                    if (n.Id == tn.Id)
-                    {
-                        n.Obrisan = true;
-                        view.Refresh();
-                        break;
-                    }
-
-                }
+                TipNamestaja.Delete(tn);
+                view.Refresh();
             }
             GenericSerializer.Serialize("tipnamestaja.xml", Projekat.Instance.TN);
         }
         private void ObrisiKorisnika()
         {
-            var staraListaN = Projekat.Instance.korisnik;
+            
             var korisnik = (Korisnik)dgPrikaz.SelectedItem;
 
             if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete izabranog korisnika: {korisnik.Ime} {korisnik.Prezime}?", "Poruka o brisanju ", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                foreach (var n in staraListaN)
-                {
-                    if (n.Id == korisnik.Id)
-                    {
-                        n.Obrisan = true;
-                        view.Refresh();
-                        break;
-                    }
-
-                }
+                Korisnik.Delete(korisnik);
+                view.Refresh();
             }
             GenericSerializer.Serialize("korisnik.xml", Projekat.Instance.korisnik);
         }
         private void ObrisiDodatnaUsluga()
         {
-            var staraListaN = Projekat.Instance.DU;
+            
             var du = (DodatnaUsluga)dgPrikaz.SelectedItem;
 
             if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete dodatnu uslugu: {du.Naziv} ?", "Poruka o brisanju ", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                foreach (var n in staraListaN)
-                {
-                    if (n.Id == du.Id)
-                    {
-                        n.Obrisan = true;
-                        view.Refresh();
-                        break;
-                    }
-
-                }
+                DodatnaUsluga.Delete(du);
+                view.Refresh();
             }
             GenericSerializer.Serialize("dodatnausluga.xml", Projekat.Instance.DU);
         }

@@ -20,14 +20,16 @@ namespace POP_SF_9_GUI.UI
     /// </summary>
     public partial class GlavniProzor : Window
     {
-        public GlavniProzor(TipKorisnika tp)
+        private Korisnik korisnik;
+        public GlavniProzor(Korisnik korisnik)
         {
             InitializeComponent();
-            OsveziPrikaz(tp);
+            this.korisnik = korisnik;
+            OsveziPrikaz(korisnik);
             listBox.SelectedIndex = 0;
         }
-        private void OsveziPrikaz(TipKorisnika tp)
-        {   if (tp == TipKorisnika.Administrator)
+        private void OsveziPrikaz(Korisnik korisnik)
+        {   if (korisnik.TipKorisnika == TipKorisnika.Administrator)
             {
                 listBox.Items.Clear();
                 listBox.Items.Add("Rad sa namestajem");

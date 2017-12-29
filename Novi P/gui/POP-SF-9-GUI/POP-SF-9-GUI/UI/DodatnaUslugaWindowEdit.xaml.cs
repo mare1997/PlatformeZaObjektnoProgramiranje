@@ -49,9 +49,7 @@ namespace POP_SF_9_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var Id = postojeciDU.Count + 1;
-                    dodatnaUsluga.Id = Id;
-                    postojeciDU.Add(dodatnaUsluga);
+                    DodatnaUsluga.Create(dodatnaUsluga);
                     break;
                 case Operacija.IZMENA:
                     foreach (var n in postojeciDU)
@@ -60,12 +58,13 @@ namespace POP_SF_9_GUI.UI
                         {
                             n.Naziv = dodatnaUsluga.Naziv;
                             n.Cena = dodatnaUsluga.Cena;
+                            DodatnaUsluga.Update(n);
                             break;
                         }
                     }
                     break;
             }
-            GenericSerializer.Serialize("dodatnausluga.xml", postojeciDU);
+            
 
             this.Close();
 

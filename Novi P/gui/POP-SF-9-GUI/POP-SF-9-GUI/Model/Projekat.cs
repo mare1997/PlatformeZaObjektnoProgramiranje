@@ -16,14 +16,18 @@ namespace POP_SF_9_GUI.Model
         public ObservableCollection<DodatnaUsluga> DU ;
         public ObservableCollection<Korisnik> korisnik ;
         public ObservableCollection<Racun> pn;
+        public ObservableCollection<StavkaProdajeNamestaj> spn;
+        public ObservableCollection<StavkaProdajeDU> spdu;
         private Projekat()
         {
             TN = TipNamestaja.GetAll();
-            namestaj = new ObservableCollection<Namestaj>(GenericSerializer.Deserialize<Namestaj>("namestaj.xml"));
-            korisnik = new ObservableCollection<Korisnik>(GenericSerializer.Deserialize<Korisnik>("korisnik.xml"));
-            DU = new ObservableCollection<DodatnaUsluga>(GenericSerializer.Deserialize<DodatnaUsluga>("dodatnausluga.xml"));
-            pn = new ObservableCollection<Racun>(GenericSerializer.Deserialize<Racun>("prodajanamestaja.xml"));
-            akcija = new ObservableCollection<AkcijskaProdaja>(GenericSerializer.Deserialize<AkcijskaProdaja>("akcija.xml"));
+            namestaj = Namestaj.GetAll();
+            korisnik =Korisnik.GetAll();
+            DU = DodatnaUsluga.GetAll();
+            pn = Racun.GetAll();
+            akcija = AkcijskaProdaja.GetAll();
+            spn = StavkaProdajeNamestaj.GetAll();
+            spdu = StavkaProdajeDU.GetAll();
         }
         
         

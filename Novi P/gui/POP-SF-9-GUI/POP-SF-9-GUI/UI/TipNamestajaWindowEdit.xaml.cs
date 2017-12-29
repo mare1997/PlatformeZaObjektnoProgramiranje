@@ -47,9 +47,7 @@ namespace POP_SF_9_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var Id = postojeciTNamestaj.Count + 1;
-                    tipNamestaja.Id = Id;
-                    postojeciTNamestaj.Add(tipNamestaja);
+                    TipNamestaja.Create(tipNamestaja);
                     break;
                 case Operacija.IZMENA:
                     foreach (var n in postojeciTNamestaj)
@@ -57,13 +55,13 @@ namespace POP_SF_9_GUI.UI
                         if (n.Id == tipNamestaja.Id)
                         {
                             n.Naziv = tipNamestaja.Naziv;
-                            
+                            TipNamestaja.Update(n);
                             break;
                         }
                     }
                     break;
             }
-            GenericSerializer.Serialize("tipnamestaja.xml", postojeciTNamestaj);
+            
 
             this.Close();
 

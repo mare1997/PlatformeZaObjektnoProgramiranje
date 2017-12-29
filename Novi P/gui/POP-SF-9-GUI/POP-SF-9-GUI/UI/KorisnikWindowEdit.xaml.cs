@@ -54,9 +54,7 @@ namespace POP_SF_9_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var id = korisnici.Count + 1;
-                    korisnik.Id = id;
-                    korisnici.Add(korisnik);
+                    Korisnik.Create(korisnik);
                     break;
                 case Operacija.IZMENA:
                     foreach (var k in korisnici)
@@ -68,12 +66,13 @@ namespace POP_SF_9_GUI.UI
                             k.KorisnickoIme = korisnik.KorisnickoIme;
                             k.Lozinka = korisnik.Lozinka;
                             k.TipKorisnika = korisnik.TipKorisnika;
+                            Korisnik.Update(k);
                             break;
                         }
                     }
                     break;
             }
-            GenericSerializer.Serialize("korisnik.xml", korisnici);
+            
             this.Close();
         }
     }

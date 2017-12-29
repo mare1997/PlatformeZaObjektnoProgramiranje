@@ -61,10 +61,7 @@ namespace POP_SF_9_GUI.UI
             {
                 
                 case Operacija.DODAVANJE:
-
-                    var Id = postojeciNamestaj.Count + 1;
-                    namestaj.Id = Id;
-                    postojeciNamestaj.Add(namestaj);
+                    Namestaj.Create(namestaj);    
                     
                     
                     break;
@@ -77,6 +74,7 @@ namespace POP_SF_9_GUI.UI
                             n.Kolicina = namestaj.Kolicina;
                             n.Cena = namestaj.Cena;
                             n.TipN = namestaj.TipN;
+                            Namestaj.Update(namestaj);
                             break;
                         }
                     }

@@ -47,12 +47,7 @@ namespace POP_SF_9_GUI.Model
             get { return kolicina; }
             set { kolicina = value;  OnPropertyChanged("Kolicina"); }
         }
-        private int kolicinapp;
-        public int KolicinaPriProdaji
-        {
-            get { return kolicinapp; }
-            set { kolicinapp = value; OnPropertyChanged("KolicinaPriProdaji"); }
-        }
+        
         private bool obrisan;
         public bool Obrisan
         {
@@ -181,10 +176,14 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = $"Insert into Namestaj (Naziv,Obrisan,Cena,Kolicina,Akcija,TipNamestajaId) Values(@Naziv,@Obrisan,@Cena,@Kolicina,@akcija,@tipnamestaja);";//razmisli o ne unosenju obrisan pri dodavanju vec to u bazi 
+                cmd.CommandText = $"Insert into Namestaj (Naziv,Obrisan,Cena,Kolicina,Akcija,TipNamestajaId) Values(@Naziv,@Obrisan,@Cena,@Kolicina,@Akcija,@TipNamestaja);";//razmisli o ne unosenju obrisan pri dodavanju vec to u bazi 
                 cmd.CommandText += "Select scope_identity();";
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+                cmd.Parameters.AddWithValue("Cena", n.Cena);
+                cmd.Parameters.AddWithValue("Kolicina",n.Kolicina);
+                cmd.Parameters.AddWithValue("Akcija", n.ak);
+                cmd.Parameters.AddWithValue("TipNamestaja", n.TipN);
                 int newId = int.Parse(cmd.ExecuteScalar().ToString()); //es izvrsava query
                 n.Id = newId;
 
@@ -205,8 +204,8 @@ namespace POP_SF_9_GUI.Model
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
                 cmd.Parameters.AddWithValue("Cena", n.Cena);
                 cmd.Parameters.AddWithValue("Kolicina", n.Kolicina);
-                cmd.Parameters.AddWithValue("Akcija", n.akcija);
-                cmd.Parameters.AddWithValue("TipNamestaja", n.tipN);
+                cmd.Parameters.AddWithValue("Akcija", n.ak);
+                cmd.Parameters.AddWithValue("TipNamestaja", n.TipN);
                 cmd.ExecuteNonQuery();
 
                 foreach (var Namestaj in Projekat.Instance.namestaj)
@@ -215,6 +214,10 @@ namespace POP_SF_9_GUI.Model
                     {
                         Namestaj.Naziv = n.Naziv;
                         Namestaj.Obrisan = n.Obrisan;
+                        Namestaj.Cena = n.Cena;
+                        Namestaj.Kolicina = n.Kolicina;
+                        Namestaj.ak = n.ak;
+                        Namestaj.TipN = n.TipN;
                         break;
                     }
                 }

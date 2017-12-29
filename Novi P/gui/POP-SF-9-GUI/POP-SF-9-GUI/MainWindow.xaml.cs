@@ -23,27 +23,32 @@ namespace POP_SF_9_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        public Korisnik korisnik { get; set; } = new Korisnik();
         public MainWindow()
         {
             InitializeComponent();
-            
+           
+        }
+        private  bool Logovanje(String id, String pass)
+        {
 
+            foreach (var k in Projekat.Instance.korisnik)
+            {
 
+                if (id.Equals(k.KorisnickoIme) && pass.Equals(k.Lozinka))
+                    korisnik = k;
+                return true;
 
-            cbTipKorisnika.Items.Add(TipKorisnika.Administrator);
-            cbTipKorisnika.Items.Add(TipKorisnika.Prodavac);
-            cbTipKorisnika.SelectedIndex = 0;
-            
-
+            }
+            return false;
         }
         private void Potvrdi(object sender, RoutedEventArgs e)
         {
 
             
-                if (Logovanje(tbKI.Text, tbPass.Text, cbTipKorisnika.SelectedItem.ToString()) == true)
+                if (Logovanje(tbKI.Text, tbPass.Text) == true)
                 {
-                    var gp = new GlavniProzor((TipKorisnika)cbTipKorisnika.SelectedItem);
+                    var gp = new GlavniProzor(korisnik);
                     gp.Show();
                 }
             
@@ -57,18 +62,7 @@ namespace POP_SF_9_GUI
             tbPass.Clear();
         }
 
-        private static bool Logovanje(String id, String pass, String tip)
-        {
-            
-            foreach (var k in Projekat.Instance.korisnik)
-            {
-                
-                if (id == k.KorisnickoIme && pass == k.Lozinka && k.TipKorisnika.ToString() == tip)
-                    return true;
-                
-            }
-            return false;
-        }
+       
         private void Izlaz(object sender, RoutedEventArgs e)
         {
             this.Close();
