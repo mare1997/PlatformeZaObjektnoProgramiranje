@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_9_GUI.UI"
         mc:Ignorable="d"
-        Title="NamestajWindow" Height="392" Width="459" >
+        Title="NamestajWindow" Height="450" Width="459" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="104*"/>
@@ -16,17 +16,25 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="8"/>
         </Grid.RowDefinitions>
-        <DataGrid CanUserAddRows="False"  AutoGeneratingColumn="dgPrikaz_AutoGeneratingColumn" Name="dgPrikaz" Grid.Row="0" FontSize="15" Margin="0,0,1,-221" Grid.ColumnSpan="4"  >
+        <DataGrid CanUserAddRows="False"  AutoGeneratingColumn="dgPrikaz_AutoGeneratingColumn" Name="dgPrikaz" Grid.Row="0" FontSize="15" Margin="0,119,1,-340" Grid.ColumnSpan="4"  >
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
                     <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
                 </Style>
             </DataGrid.Resources>
         </DataGrid>
-                <Button Content="Izlaz" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Izlaz" RenderTransformOrigin="2.498,0.231" Margin="0,295,11,-326" Grid.Column="3"/>
-        <Button Content="Obrisi" Name="btObrisi" Visibility="Visible" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Obrisi" RenderTransformOrigin="2.498,0.231" Margin="0,295,12,-326" Grid.Column="2"/>
-        <Button Content="Izmeni" Width="80" Name="btIzmeni" FontSize="20" Click="Izmeni" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,295,17,-326" Grid.Column="1"/>
-        <Button Content="Dodaj" Width="80" Name="btDodaj" FontSize="20" Click="Dodaj" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,295,0,-326"/>
+        <Button Content="Izlaz" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Izlaz" RenderTransformOrigin="2.498,0.231" Margin="0,370,11,-401" Grid.Column="3"/>
+        <Button Content="Obrisi" Name="btObrisi" Visibility="Visible" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Obrisi" RenderTransformOrigin="2.498,0.231" Margin="0,370,24,-401" Grid.Column="2"/>
+        <Button Content="Izmeni" Width="80" Name="btIzmeni" FontSize="20" Click="Izmeni" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,370,22,-401" Grid.Column="1"/>
+        <Button Content="Dodaj" Width="80" Name="btDodaj" FontSize="20" Click="Dodaj" HorizontalAlignment="Right"  RenderTransformOrigin="2.498,0.231" Margin="0,370,0,-401"/>
+        <Label x:Name="label" Content="Sortiraj po:" HorizontalAlignment="Left" Height="42" Margin="0,19,0,-52" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.125,0.5"/>
+        <Button x:Name="button" Content="Sortiraj" Click="Sortiraj_Click" Grid.Column="3" HorizontalAlignment="Left" Height="22" Margin="19,19,0,-32" VerticalAlignment="Top" Width="72"/>
+        <ComboBox x:Name="cbSP" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="10,19,0,-32" VerticalAlignment="Top" Width="109"/>
+        <ComboBox x:Name="cbR" Grid.Column="2" HorizontalAlignment="Left" Height="22" Margin="10,19,0,-32" VerticalAlignment="Top" Width="94"/>
+        <Label x:Name="label1" Content="Pretrazi po:" HorizontalAlignment="Left" Height="25" Margin="0,73,0,-89" VerticalAlignment="Top" Width="94"/>
+        <ComboBox x:Name="cbP" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="10,73,0,-89" VerticalAlignment="Top" Width="109"/>
+        <TextBox x:Name="textBox" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="0,73,0,-87" TextWrapping="Wrap" Text="Pretrazi..." VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.492,0.217"/>
+        <Button x:Name="button1" Content="Pretrazi" Click="Pretrazi_Click" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="19,73,0,-87" VerticalAlignment="Top" Width="74"/>
 
     </Grid>
 </Window>

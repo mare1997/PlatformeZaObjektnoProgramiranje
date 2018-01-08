@@ -25,6 +25,7 @@ namespace POP_SF_9_GUI.UI
         {
             InitializeComponent();
             this.korisnik = korisnik;
+            Console.WriteLine($"Ovo je tk:{korisnik.TipKorisnika}");
             OsveziPrikaz(korisnik);
             listBox.SelectedIndex = 0;
         }

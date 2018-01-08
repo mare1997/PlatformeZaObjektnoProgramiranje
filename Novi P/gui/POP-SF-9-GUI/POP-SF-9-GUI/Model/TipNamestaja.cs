@@ -14,6 +14,16 @@ namespace POP_SF_9_GUI.Model
     [Serializable]
     public class TipNamestaja: INotifyPropertyChanged
     {
+        public enum Prikaz
+        {
+            Naziv,
+            
+        };
+        public enum NacinSortiranja
+        {
+            asc,
+            desc,
+        };
         private int id;
         public int Id
         { get { return id; } set { id = value; OnPropertyChanged("Id"); } }
@@ -29,7 +39,16 @@ namespace POP_SF_9_GUI.Model
             get { return naziv; }
             set { naziv = value; OnPropertyChanged("Naziv"); }
         }
-
+        public object Clone()
+        {
+            return new TipNamestaja()
+            {
+                id = Id,
+                naziv = Naziv,
+                obrisan = Obrisan,
+                
+            };
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public static TipNamestaja GetById(int id)
@@ -97,7 +116,7 @@ namespace POP_SF_9_GUI.Model
                 cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
                 int newId = int.Parse(cmd.ExecuteScalar().ToString()); //es izvrsava query
                 tn.Id = newId;
-
+                
 
             }
             Projekat.Instance.TN.Add(tn);//obrati paznju {azurira i stanje modela}
@@ -109,7 +128,7 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Update TipNamestaja set Naziv=@Naziv,Obrisan=@Obrisan, where id=@id";
+                cmd.CommandText = "Update TipNamestaja set Naziv=@Naziv,Obrisan=@Obrisan where Id=@Id";
                 cmd.Parameters.AddWithValue("Id", tn.Id);
                 cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
                 cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
@@ -134,6 +153,47 @@ namespace POP_SF_9_GUI.Model
             tn.Obrisan = true;
             Update(tn);
         }
+        public static ObservableCollection<TipNamestaja> Sort(Prikaz p, NacinSortiranja nn)
+        {
+            var tipoviNamestaja = new ObservableCollection<TipNamestaja>();
+            switch (p)
+            {
+                case Prikaz.Naziv:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+
+                            cmd.CommandText = "SELECT * FROM TipNamestaja WHERE Obrisan=0 Order by Naziv ";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM TipNamestaja WHERE Obrisan=0 Order by Naziv desc";
+                        }
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "TipNamestaja"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["TipNamestaja"].Rows)
+                        {
+                            var tn = new TipNamestaja();
+                            tn.Id = int.Parse(row["Id"].ToString());
+                            tn.Naziv = row["Naziv"].ToString();
+                            tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                            tipoviNamestaja.Add(tn);
+
+                        }
+                        
+
+                    }
+                    break;
+            }
+            return tipoviNamestaja;
+            }
         #endregion
     }
 }

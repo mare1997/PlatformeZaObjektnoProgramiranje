@@ -16,9 +16,24 @@ using System.Xml.Serialization;
 namespace POP_SF_9_GUI.Model
 {
     [Serializable]
+    
+
     public class Namestaj: INotifyPropertyChanged
 
     {
+        public enum Prikaz
+        {
+            Naziv,
+            Cena,
+            Kolicina,
+            TipNamestaja,
+            Akcija,
+        };
+        public enum NacinSortiranja
+        {
+            asc,
+            desc,
+        };
         private int id;
         public int Id
         {
@@ -106,7 +121,21 @@ namespace POP_SF_9_GUI.Model
                 OnPropertyChanged("Akcija");
             }
         }
-
+        public object Clone()
+        {
+            return new Namestaj()
+            {
+                id = Id,
+                naziv = Naziv,
+                cena = Cena,
+                kolicina = Kolicina,
+                obrisan = Obrisan,
+                a = ak,
+                tipN = TipN,
+                tipNamestaja = TipNamestaja,
+                akcija = Akcija
+            };
+        }
         public override string ToString()
         {
 
@@ -125,6 +154,23 @@ namespace POP_SF_9_GUI.Model
             }
             return null;
 
+        }
+        public static void PromeniKolicinu(int id, int kolicina,bool opracija)
+        {
+            foreach (Namestaj namestaj in Projekat.Instance.namestaj)
+            {
+                if (namestaj.Id == id)
+                {
+                    if (opracija == true)
+                    {
+                        namestaj.Kolicina += kolicina;
+                    }
+                    if (opracija == false)
+                    {
+                        namestaj.Kolicina -= kolicina;
+                    }
+                }
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -147,6 +193,7 @@ namespace POP_SF_9_GUI.Model
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 SqlCommand cmd = con.CreateCommand();
+
                 cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0";
 
                 DataSet ds = new DataSet();
@@ -162,7 +209,12 @@ namespace POP_SF_9_GUI.Model
                     tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
                     tn.Cena = double.Parse(row["Cena"].ToString());
                     tn.Kolicina = int.Parse(row["Kolicina"].ToString());
-                   // tn.ak = int.Parse(row["Akcija"].ToString());
+                    try
+                    {
+                        tn.ak = int.Parse(row["AkcijaId"].ToString());
+                    }
+                    catch { }
+                    
                     tn.TipN=int.Parse(row["TipNamestajaId"].ToString());
                     Namestaj.Add(tn);
 
@@ -176,13 +228,17 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = $"Insert into Namestaj (Naziv,Obrisan,Cena,Kolicina,Akcija,TipNamestajaId) Values(@Naziv,@Obrisan,@Cena,@Kolicina,@Akcija,@TipNamestaja);";//razmisli o ne unosenju obrisan pri dodavanju vec to u bazi 
+                cmd.CommandText = $"Insert into Namestaj (Naziv,Obrisan,Cena,Kolicina,AkcijaId,TipNamestajaId) Values(@Naziv,@Obrisan,@Cena,@Kolicina,@Akcija,@TipNamestaja);";//razmisli o ne unosenju obrisan pri dodavanju vec to u bazi 
                 cmd.CommandText += "Select scope_identity();";
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
                 cmd.Parameters.AddWithValue("Cena", n.Cena);
                 cmd.Parameters.AddWithValue("Kolicina",n.Kolicina);
-                cmd.Parameters.AddWithValue("Akcija", n.ak);
+                try
+                {
+                    cmd.Parameters.AddWithValue("Akcija", n.ak);
+                }
+                catch { }
                 cmd.Parameters.AddWithValue("TipNamestaja", n.TipN);
                 int newId = int.Parse(cmd.ExecuteScalar().ToString()); //es izvrsava query
                 n.Id = newId;
@@ -198,7 +254,7 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Update Namestaj set Naziv=@Naziv,Obrisan=@Obrisan,Cena=@Cena,Kolicina=@Kolicina,Akcija=@Akcija,TipNamestaja=@TipNamestaja where id=@id";
+                cmd.CommandText = "Update Namestaj set Naziv=@Naziv,Obrisan=@Obrisan,Cena=@Cena,Kolicina=@Kolicina,Akcija=@Akcija,TipNamestaja=@TipNamestaja where Id=@Id";
                 cmd.Parameters.AddWithValue("Id", n.Id);
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
@@ -229,6 +285,211 @@ namespace POP_SF_9_GUI.Model
         {
             n.Obrisan = true;
             Update(n);
+        }
+        public static ObservableCollection<Namestaj> Sort(Prikaz p,NacinSortiranja nn)
+        {
+            var Namestaj = new ObservableCollection<Namestaj>();
+            switch (p)
+            {
+                case Prikaz.Naziv:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 Order by Naziv ";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 Order by Naziv desc";
+                        }
+                       
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Namestaj"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                        {
+                            
+                            var tn = new Namestaj();
+                            tn.Id = int.Parse(row["Id"].ToString());
+                            tn.Naziv = row["Naziv"].ToString();
+                            tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            tn.Cena = double.Parse(row["Cena"].ToString());
+                            tn.Kolicina = int.Parse(row["Kolicina"].ToString());
+                            try
+                            {
+                                tn.ak = int.Parse(row["AkcijaId"].ToString());
+                            }
+                            catch { }
+
+                            tn.TipN = int.Parse(row["TipNamestajaId"].ToString());
+                            Namestaj.Add(tn);
+
+                        }
+                        
+                    }
+                    break;
+                case Prikaz.Cena:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 Order by Cena ";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 Order by Cena desc";
+                        }
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Namestaj"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                        {
+                            var tn = new Namestaj();
+                            tn.Id = int.Parse(row["Id"].ToString());
+                            tn.Naziv = row["Naziv"].ToString();
+                            tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            tn.Cena = double.Parse(row["Cena"].ToString());
+                            tn.Kolicina = int.Parse(row["Kolicina"].ToString());
+                            try
+                            {
+                                tn.ak = int.Parse(row["AkcijaId"].ToString());
+                            }
+                            catch { }
+
+                            tn.TipN = int.Parse(row["TipNamestajaId"].ToString());
+                            Namestaj.Add(tn);
+
+                        }
+
+                    }
+                    break;
+                case Prikaz.Kolicina:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 Order by Kolicina ";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 Order by Kolicina desc";
+                        }
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Namestaj"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                        {
+                            var tn = new Namestaj();
+                            tn.Id = int.Parse(row["Id"].ToString());
+                            tn.Naziv = row["Naziv"].ToString();
+                            tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            tn.Cena = double.Parse(row["Cena"].ToString());
+                            tn.Kolicina = int.Parse(row["Kolicina"].ToString());
+                            try
+                            {
+                                tn.ak = int.Parse(row["AkcijaId"].ToString());
+                            }
+                            catch { }
+
+                            tn.TipN = int.Parse(row["TipNamestajaId"].ToString());
+                            Namestaj.Add(tn);
+
+                        }
+
+                    }
+                    break;
+                case Prikaz.TipNamestaja:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 Order by TipNamestajaId ";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 Order by TipNamestajaId desc";
+                        }
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Namestaj"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                        {
+                            var tn = new Namestaj();
+                            tn.Id = int.Parse(row["Id"].ToString());
+                            tn.Naziv = row["Naziv"].ToString();
+                            tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            tn.Cena = double.Parse(row["Cena"].ToString());
+                            tn.Kolicina = int.Parse(row["Kolicina"].ToString());
+                            try
+                            {
+                                tn.ak = int.Parse(row["AkcijaId"].ToString());
+                            }
+                            catch { }
+
+                            tn.TipN = int.Parse(row["TipNamestajaId"].ToString());
+                            Namestaj.Add(tn);
+
+                        }
+
+                    }
+                    break;
+                case Prikaz.Akcija:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 Order by AkcijaId ";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 Order by AkcijaId desc";
+                        }
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Namestaj"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                        {
+                            var tn = new Namestaj();
+                            tn.Id = int.Parse(row["Id"].ToString());
+                            tn.Naziv = row["Naziv"].ToString();
+                            tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            tn.Cena = double.Parse(row["Cena"].ToString());
+                            tn.Kolicina = int.Parse(row["Kolicina"].ToString());
+                            try
+                            {
+                                tn.ak = int.Parse(row["AkcijaId"].ToString());
+                            }
+                            catch { }
+
+                            tn.TipN = int.Parse(row["TipNamestajaId"].ToString());
+                            Namestaj.Add(tn);
+
+                        }
+
+                    }
+                    break;
+            }
+            return Namestaj;
         }
         #endregion
     }

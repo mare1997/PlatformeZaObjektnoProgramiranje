@@ -23,14 +23,14 @@ namespace POP_SF_9_GUI.UI
     {
         Namestaj namestaj;
         Operacija operacija;
-        AkcijskaProdaja akcija = new AkcijskaProdaja() ;
-        public AkcijaWindow(Operacija operacija, Namestaj noviNamestaj)
+        AkcijskaProdaja akcija;
+        public AkcijaWindow(Operacija operacija, Namestaj noviNamestaj,AkcijskaProdaja akcija)
         {
             InitializeComponent();
             
             this.namestaj = noviNamestaj;
             this.operacija = operacija;
-            
+            this.akcija = akcija;
             tbPopust.DataContext = akcija;
             dpP.DataContext= akcija;
             dpK.DataContext = akcija;
@@ -50,47 +50,60 @@ namespace POP_SF_9_GUI.UI
             DateTime date2 = dpK.SelectedDate.Value.Date;
             int result = DateTime.Compare(date1, date2);
             var n = Projekat.Instance.namestaj;
-            switch (operacija)
+            if (akcija.Popust < 0 || akcija.Popust > 91)
             {
-                case Operacija.DODAVANJE:
-                    
-                    
-                    if (result < 0)
-                    {
-                        AkcijskaProdaja.Create(akcija);
-                        namestaj.ak = akcija.Id;
-                        Namestaj.Update(namestaj);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    break;
-                case Operacija.IZMENA:
+                switch (operacija)
+                {
+                    case Operacija.DODAVANJE:
 
-                    
-                    if (result < 0)
-                    {   foreach(var nn in n)
+
+                        if (result < 0)
                         {
-                            if (nn.ak == namestaj.ak)
-                            {
-                                AkcijskaProdaja.Update(akcija);
-                                nn.ak = akcija.Id;
-                                Namestaj.Update(namestaj);
-                            }
+                            AkcijskaProdaja.Create(akcija);
+                            namestaj.ak = akcija.Id;
+                            Namestaj.Update(namestaj);
                         }
-                        
+                        else
+                        {
+                            MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        break;
+                    case Operacija.IZMENA:
 
-                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    break;
-                   
+
+                        if (result < 0)
+                        {
+                            foreach (var nn in n)
+                            {
+                                if (nn.ak == namestaj.ak)
+                                {
+                                    AkcijskaProdaja.Update(akcija);
+                                    nn.ak = akcija.Id;
+                                    Namestaj.Update(namestaj);
+                                }
+                                else
+                                {
+                                    AkcijskaProdaja.Create(akcija);
+                                    namestaj.ak = akcija.Id;
+                                    Namestaj.Update(namestaj);
+                                }
+                            }
+
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Datum kraja akcije ne moze da bude ranije od pocetka", "Pogresno vreme", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        break;
+
+                }
             }
-            
+            else
+            {
+                MessageBox.Show("Akcija ne moze biti manja od 0 ili veca od 90%", "Akcija", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             
            
 

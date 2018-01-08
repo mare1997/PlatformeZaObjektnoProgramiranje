@@ -46,6 +46,27 @@ namespace POP_SF_9_GUI.Model
             }
 
         }
+        public string Naziv
+        {
+            get { return DodatnaUsluga.GetById(duid).Naziv; }
+            set
+            {
+                DodatnaUsluga.GetById(duid).Naziv =value;
+                OnPropertyChanged("Naziv");
+
+            }
+        }
+
+        public object Clone()
+        {
+            return new StavkaProdajeDU()
+            {
+                id = Id,
+                Naziv=Naziv,
+                racunid=RacunId,
+                duid=DUId,
+            };
+        }
         public static StavkaProdajeDU GetById(int id)
         {
             foreach (var Namestaja in Projekat.Instance.spdu)
@@ -125,11 +146,11 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Update  StavkaDUsluge set RacunId=@RacunId,DUId=@DUId, where id=@id";
+                cmd.CommandText = "Update  StavkaDUsluge set RacunId=@RacunId,DUId=@DUId, where Id=@Id";
                 cmd.Parameters.AddWithValue("Id", s.Id);
                 cmd.Parameters.AddWithValue("DUId", s.DUId);
                 cmd.Parameters.AddWithValue("RacunId", s.RacunId);
-                
+
                 cmd.ExecuteNonQuery();
 
                 foreach (var spn in Projekat.Instance.spdu)
@@ -138,14 +159,34 @@ namespace POP_SF_9_GUI.Model
                     {
                         spn.RacunId = s.RacunId;
                         spn.DUId = s.DUId;
-                        
+
                         break;
                     }
                 }
             }
-
-
         }
+        public static void Delete(StavkaProdajeDU n)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "Update  StavkaDUsluge where Id=@Id";
+                cmd.Parameters.AddWithValue("Id", n.Id);
+                cmd.ExecuteNonQuery();
+                foreach (var spdu in Projekat.Instance.spdu)
+                {
+                    if (spdu.Id == n.Id)
+                    {
+                        Projekat.Instance.spdu.Remove(spdu);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+    
 
         #endregion
     }

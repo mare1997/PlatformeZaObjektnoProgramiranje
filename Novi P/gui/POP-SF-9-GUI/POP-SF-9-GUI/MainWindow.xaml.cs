@@ -23,10 +23,11 @@ namespace POP_SF_9_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Korisnik korisnik { get; set; } = new Korisnik();
+        public Korisnik korisnik = new Korisnik();
         public MainWindow()
         {
             InitializeComponent();
+            AkcijskaProdaja.AkcijeClean();
            
         }
         private  bool Logovanje(String id, String pass)
@@ -36,7 +37,11 @@ namespace POP_SF_9_GUI
             {
 
                 if (id.Equals(k.KorisnickoIme) && pass.Equals(k.Lozinka))
-                    korisnik = k;
+                    korisnik.TipKorisnika = k.TipKorisnika;
+                if (k.Obrisan == true)
+                {
+                    MessageBox.Show("Korisnik je izbrisan","Greska",MessageBoxButton.OK,MessageBoxImage.Error);
+                }
                 return true;
 
             }

@@ -14,6 +14,17 @@ namespace POP_SF_9_GUI.Model
     [Serializable]
     public class Racun : INotifyPropertyChanged
     {
+        public enum Prikaz
+        {
+            DatumProdaje,
+            Kupac,
+            Cena,
+        };
+        public enum NacinSortiranja
+        {
+            asc,
+            desc,
+        };
         private int id;
         public int Id
         {
@@ -39,19 +50,21 @@ namespace POP_SF_9_GUI.Model
             set { kupac = value; OnPropertyChanged("Kupac"); }
         }
 
-        private List<StavkaProdajeDU> du;
-        public List<StavkaProdajeDU> DodatnaUsluga { get; set; }
-      
-        //private Dictionary<int, int> namestaj;
-        private List<StavkaProdajeNamestaj> namestaj;
-        public List<StavkaProdajeNamestaj> Namestaj { get; set; }
-       
-        public const double PDV = 0.02 ;
         private double ukupnaCena;
         public double UkupnaCena
         {
             get { return ukupnaCena; }
             set { ukupnaCena = value; OnPropertyChanged("UkupnaCena"); }
+        }
+        public object Clone()
+        {
+            return new Racun()
+            {
+                id = Id,
+                datumProdaje=DatumProdaje,
+                kupac=Kupac,
+                ukupnaCena=UkupnaCena,
+            };
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
@@ -84,23 +97,6 @@ namespace POP_SF_9_GUI.Model
                     r.datumProdaje = DateTime.Parse(row["Dp"].ToString());
                     r.Kupac = row["Kupac"].ToString();
                     r.UkupnaCena = double.Parse(row["UkupnaCena"].ToString());
-                    /*Van baze
-                     
-                    foreach (var n in Projekat.Instance.spn)
-                    {
-                        if (n.RacunId == r.Id)
-                        {
-                            r.Namestaj.Add(n);
-                        }
-                    }
-                    foreach (var n in Projekat.Instance.spdu)
-                    {
-                        if (n.RacunId == r.Id)
-                        {
-                            r.DodatnaUsluga.Add(n);
-                        }
-                    }
-                    */
                     racun.Add(r);
 
                 }
@@ -132,7 +128,7 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Update Racun set Dp=@Dp,Kupac=@Kupac,UkupnaCena=@UkupnaCena";
+                cmd.CommandText = "Update Racun set Dp=@Dp,Kupac=@Kupac,UkupnaCena=@UkupnaCena where Id=@Id";
                 cmd.Parameters.AddWithValue("Id", r.Id);
                 cmd.Parameters.AddWithValue("Dp", r.DatumProdaje);
                 cmd.Parameters.AddWithValue("Kupac", r.Kupac);
@@ -154,7 +150,112 @@ namespace POP_SF_9_GUI.Model
 
 
         }
-        
-        #endregion
-    }
+        #region Database
+        public static ObservableCollection<Racun> Sort(Prikaz p, NacinSortiranja nn)
+        {
+            var racun = new ObservableCollection<Racun>();
+            switch (p)
+            {
+                case Prikaz.DatumProdaje:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Racun Order by Dp";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Racun Order by Dp desc";
+                        }
+                       
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Racun"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Racun"].Rows)
+                        {
+                            var r = new Racun();
+                            r.Id = int.Parse(row["Id"].ToString());
+                            r.datumProdaje = DateTime.Parse(row["Dp"].ToString());
+                            r.Kupac = row["Kupac"].ToString();
+                            r.UkupnaCena = double.Parse(row["UkupnaCena"].ToString());
+                            racun.Add(r);
+
+                        }
+                        
+                    }
+                    break;
+                case Prikaz.Kupac:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Racun Order by Kupac";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Racun Order by Kupac desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Racun"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Racun"].Rows)
+                        {
+                            var r = new Racun();
+                            r.Id = int.Parse(row["Id"].ToString());
+                            r.datumProdaje = DateTime.Parse(row["Dp"].ToString());
+                            r.Kupac = row["Kupac"].ToString();
+                            r.UkupnaCena = double.Parse(row["UkupnaCena"].ToString());
+                            racun.Add(r);
+
+                        }
+
+                    }
+                    break;
+                case Prikaz.Cena:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Racun Order by UkupnaCena";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Racun Order by UkupnaCena desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Racun"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Racun"].Rows)
+                        {
+                            var r = new Racun();
+                            r.Id = int.Parse(row["Id"].ToString());
+                            r.datumProdaje = DateTime.Parse(row["Dp"].ToString());
+                            r.Kupac = row["Kupac"].ToString();
+                            r.UkupnaCena = double.Parse(row["UkupnaCena"].ToString());
+                            racun.Add(r);
+
+                        }
+
+                    }
+                    break;
+            }
+            return racun;
+        }
+            #endregion
+        }
 }
+#endregion

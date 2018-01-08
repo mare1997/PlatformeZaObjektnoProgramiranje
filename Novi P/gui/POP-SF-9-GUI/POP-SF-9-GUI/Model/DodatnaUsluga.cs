@@ -14,6 +14,17 @@ namespace POP_SF_9_GUI.Model
     [Serializable]
     public class DodatnaUsluga : INotifyPropertyChanged
     {
+        public enum Prikaz
+        {
+            Naziv,
+            Cena,
+            
+        };
+        public enum NacinSortiranja
+        {
+            asc,
+            desc,
+        };
         private int id;
         public int Id
         {
@@ -31,11 +42,11 @@ namespace POP_SF_9_GUI.Model
             get { return naziv; }
             set { naziv = value; OnPropertyChanged("Naziv"); }
         }
-        private int cena;
+        private double cena;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public int Cena
+        public double Cena
         {
             get { return cena; }
             set { cena = value; OnPropertyChanged("Cena"); }
@@ -46,6 +57,17 @@ namespace POP_SF_9_GUI.Model
         {
             get { return obrisan; }
             set { obrisan = value; OnPropertyChanged("Obrisan"); }
+        }
+        public object Clone()
+        {
+            return new DodatnaUsluga()
+            {
+                id = Id,
+                naziv = Naziv,
+                cena = Cena,
+                obrisan = Obrisan,
+               
+            };
         }
         public static DodatnaUsluga GetById(int id)
         {
@@ -90,7 +112,7 @@ namespace POP_SF_9_GUI.Model
                     d.Id = int.Parse(row["Id"].ToString());
                     d.Naziv = row["Naziv"].ToString();
                     d.Obrisan = bool.Parse(row["Obrisan"].ToString());
-                    d.Cena = int.Parse(row["Cena"].ToString());
+                    d.Cena = double.Parse(row["Cena"].ToString());
                     du.Add(d);
 
                 }
@@ -122,7 +144,7 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Update DodatnaUsluga set Naziv=@Naziv,Obrisan=@Obrisan,Cena=@Cena where id=@id";
+                cmd.CommandText = "Update DodatnaUsluga set Naziv=@Naziv,Obrisan=@Obrisan,Cena=@Cena where Id=@Id";
                 cmd.Parameters.AddWithValue("Id", d.Id);
                 cmd.Parameters.AddWithValue("Naziv", d.Naziv);
                 cmd.Parameters.AddWithValue("Obrisan", d.Obrisan);
@@ -149,6 +171,79 @@ namespace POP_SF_9_GUI.Model
             d.Obrisan = true;
             Update(d);
         }
-        #endregion
-    }
+        public static ObservableCollection<DodatnaUsluga> Sort(Prikaz p, NacinSortiranja nn)
+        {
+            var du = new ObservableCollection<DodatnaUsluga>();
+            switch (p)
+            {
+                case Prikaz.Naziv:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM DodatnaUsluga WHERE Obrisan=0 Order by Naziv"; 
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM DodatnaUsluga WHERE Obrisan=0 Order by Naziv desc";
+                        }
+                        
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "DodatnaUsluga"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["DodatnaUsluga"].Rows)
+                        {
+                            var d = new DodatnaUsluga();
+                            d.Id = int.Parse(row["Id"].ToString());
+                            d.Naziv = row["Naziv"].ToString();
+                            d.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            d.Cena = double.Parse(row["Cena"].ToString());
+                            du.Add(d);
+
+                        }
+                       
+                    }
+                    break;
+                case Prikaz.Cena:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM DodatnaUsluga WHERE Obrisan=0 Order by Cena";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM DodatnaUsluga WHERE Obrisan=0 Order by Cena desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "DodatnaUsluga"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["DodatnaUsluga"].Rows)
+                        {
+                            var d = new DodatnaUsluga();
+                            d.Id = int.Parse(row["Id"].ToString());
+                            d.Naziv = row["Naziv"].ToString();
+                            d.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            d.Cena = double.Parse(row["Cena"].ToString());
+                            du.Add(d);
+
+                        }
+
+                    }
+                    break;
+            }
+            return du;
+        }
+
+            #endregion
+        }
 }

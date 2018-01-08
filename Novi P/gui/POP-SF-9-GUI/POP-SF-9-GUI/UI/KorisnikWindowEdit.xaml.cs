@@ -39,7 +39,7 @@ namespace POP_SF_9_GUI.UI
             tbLozinka.DataContext = korisnik;
             tbPrezime.DataContext = korisnik;
             cbTipNamestaja.ItemsSource = Enum.GetValues(typeof(TipKorisnika)).Cast<TipKorisnika>();
-            //treba da se doda u cb
+           
             cbTipNamestaja.DataContext = korisnik;
             cbTipNamestaja.SelectedIndex = 0;
         }
@@ -54,19 +54,33 @@ namespace POP_SF_9_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    Korisnik.Create(korisnik);
+                    if (Korisnik.KorisnikPostoji(korisnik.KorisnickoIme) == false)
+                    {
+                        Korisnik.Create(korisnik);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Postoji korisnik sa tim korisnickim imenom izaberite drugo","Greska" ,MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                     break;
                 case Operacija.IZMENA:
                     foreach (var k in korisnici)
                     {
                         if (k.Id == korisnik.Id)
                         {
-                            k.Ime = korisnik.Ime;
-                            k.Prezime = korisnik.Prezime;
-                            k.KorisnickoIme = korisnik.KorisnickoIme;
-                            k.Lozinka = korisnik.Lozinka;
-                            k.TipKorisnika = korisnik.TipKorisnika;
-                            Korisnik.Update(k);
+                            if (Korisnik.KorisnikPostoji(korisnik.KorisnickoIme) == false)
+                            {
+                                k.Ime = korisnik.Ime;
+                                k.Prezime = korisnik.Prezime;
+                                k.KorisnickoIme = korisnik.KorisnickoIme;
+                                k.Lozinka = korisnik.Lozinka;
+                                k.TipKorisnika = korisnik.TipKorisnika;
+                                Korisnik.Update(k);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Postoji korisnik sa tim korisnickim imenom izaberite drugo", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                             break;
                         }
                     }

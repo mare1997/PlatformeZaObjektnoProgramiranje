@@ -52,6 +52,26 @@ namespace POP_SF_9_GUI.Model
             }
 
         }
+        public string Naziv
+        {
+            get { return Namestaj.GetById(namestajid).Naziv; }
+            set
+            {
+                Namestaj.GetById(namestajid).Naziv = value;
+                OnPropertyChanged("Naziv");
+            }
+        }
+        public object Clone()
+        {
+            return new StavkaProdajeNamestaj()
+            {
+                id = Id,
+                Naziv = Naziv,
+                racunid = RacunId,
+                namestajid= NamestajId,
+                kolicina=Kolicina,
+            };
+        }
         public static StavkaProdajeNamestaj GetById(int id)
         {
             foreach (var Namestaja in Projekat.Instance.spn)
@@ -85,14 +105,14 @@ namespace POP_SF_9_GUI.Model
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT * FROM  StavkaNametsaja ";
+                cmd.CommandText = "SELECT * FROM  StavkaNamestaja ";
 
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter();
 
                 da.SelectCommand = cmd;
-                da.Fill(ds, "StavkaNametsaja"); // Query se izvrsava
-                foreach (DataRow row in ds.Tables["StavkaNametsaja"].Rows)
+                da.Fill(ds, "StavkaNamestaja"); // Query se izvrsava
+                foreach (DataRow row in ds.Tables["StavkaNamestaja"].Rows)
                 {
                     var s = new StavkaProdajeNamestaj();
                     s.Id = int.Parse(row["Id"].ToString());
@@ -112,7 +132,7 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = $"Insert into  StavkaNametsaja (RacunId,NamestajId,Kolicina) Values(@RacunId,@NamestajId,@Kolicina);";//razmisli o ne unosenju obrisan pri dodavanju vec to u bazi 
+                cmd.CommandText = $"Insert into  StavkaNamestaja (RacunId,NamestajId,Kolicina) Values(@RacunId,@NamestajId,@Kolicina);";//razmisli o ne unosenju obrisan pri dodavanju vec to u bazi 
                 cmd.CommandText += "Select scope_identity();";
                 cmd.Parameters.AddWithValue("RacunId", s.RacunId);
                 cmd.Parameters.AddWithValue("NamestajId", s.NamestajId);
@@ -131,7 +151,7 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Update  StavkaNametsaja set RacunId=@RacunId,NamestajId=@NamestajId,Kolicina=@Kolicina, where id=@id";
+                cmd.CommandText = "Update  StavkaNamestaja set RacunId=@RacunId,NamestajId=@NamestajId,Kolicina=@Kolicina where Id=@Id";
                 cmd.Parameters.AddWithValue("Id", s.Id);
                 cmd.Parameters.AddWithValue("NamestajId",s.NamestajId);
                 cmd.Parameters.AddWithValue("RacunId", s.RacunId);
@@ -152,7 +172,26 @@ namespace POP_SF_9_GUI.Model
 
 
         }
-        
+        public static void Delete(StavkaProdajeNamestaj n)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "Update  StavkaNamestaja where Id=@Id";
+                cmd.Parameters.AddWithValue("Id", n.Id);
+                cmd.ExecuteNonQuery();
+                foreach (var spn in Projekat.Instance.spn)
+                {
+                    if (spn.Id == n.Id)
+                    {
+                        Projekat.Instance.spn.Remove(spn);
+                        break;
+                    }
+                }
+            }  
+        }
+
         #endregion
 
     }

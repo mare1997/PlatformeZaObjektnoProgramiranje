@@ -35,7 +35,7 @@
         <TextBox Name="tbPopust" Grid.Row="0" Grid.Column="1" FontSize="15" Margin="3,10,98,5" Text="{Binding Path=Popust}" />
         <Button Content="Dodaj" Name="Dodaj" Click="Dodaj_Click" Grid.Column="0" Grid.Row="4" Margin="28,103,43,18"/>
         <Button Content="Izlaz" Name="Izlaz" Grid.Column="1" Grid.Row="4" Click="Izlaz_Click" Margin="40,102,123,19"/>
-        <DatePicker Name="dpP" SelectedDate="{Binding Path=DatumPocetka, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}" Grid.Column="1" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="102"/>
-        <DatePicker Name="dpK" SelectedDate="{Binding Path=DatumKraja, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}" Grid.Column="1" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="24" Width="102" />
+        <DatePicker Name="dpP" SelectedDate="{Binding Path=DatumPocetka}" Grid.Column="1" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="102"/>
+        <DatePicker Name="dpK" SelectedDate="{Binding Path=DatumKraja}" Grid.Column="1" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="24" Width="102" />
     </Grid>
 </Window>

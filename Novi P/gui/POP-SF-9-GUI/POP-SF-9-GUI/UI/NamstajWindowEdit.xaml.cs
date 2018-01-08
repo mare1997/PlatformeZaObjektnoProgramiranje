@@ -83,14 +83,18 @@ namespace POP_SF_9_GUI.UI
 
 
             }
-            GenericSerializer.Serialize("namestaj.xml",postojeciNamestaj);
+            
             
             this.Close();
         }
         
         private void DodajAkciju(object sender, RoutedEventArgs e)
-        {   
-            var akcija = new AkcijaWindow(operacija, namestaj);
+        {
+            var akcijaa = new AkcijskaProdaja()
+            {
+                Obrisan = false,
+            };
+            var akcija = new AkcijaWindow(operacija, namestaj,akcijaa);
             akcija.ShowDialog();
         }
     }

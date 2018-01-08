@@ -52,25 +52,47 @@ namespace POP_SF_9_GUI.UI
                     dgPrikaz.ItemsSource = view;
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
-                    
+                    tbKolicina.Visibility = System.Windows.Visibility.Hidden;
+                    label1.Visibility = System.Windows.Visibility.Hidden;        
                     break;
             }
         }
 
         private void btDodaj_Click(object sender, RoutedEventArgs e)
         {   var listaracuna = Projekat.Instance.pn;
-            int k = int.Parse(tbKolicina.Text);
+            
             
             switch (operacija)
             {   
                 case Operacija.Namestaj:
                     var selektovaniNamestaj = (Namestaj)dgPrikaz.SelectedItem;
-                    StavkaProdajeNamestaj spn = new StavkaProdajeNamestaj();
-                    spn.Kolicina = k;
-                    spn.NamestajId = selektovaniNamestaj.Id;
-                    spn.RacunId = racun.Id;
+                    int k = int.Parse(tbKolicina.Text);
+                    foreach (var n in Projekat.Instance.spn)
+                    {
+                        if (racun.Id == n.RacunId && selektovaniNamestaj.Id == n.NamestajId)
+                        {
+                            n.Kolicina += k;
+                            StavkaProdajeNamestaj.Update(n);
+                        }
+                        else
+                        {
+                            if (selektovaniNamestaj.Kolicina >= k && k > 0)
+                            {
+                                StavkaProdajeNamestaj spn = new StavkaProdajeNamestaj();
+                                spn.Kolicina = k;
+                                spn.NamestajId = selektovaniNamestaj.Id;
+                                spn.RacunId = racun.Id;
+                                StavkaProdajeNamestaj.Create(spn);
+                                Namestaj.PromeniKolicinu(selektovaniNamestaj.Id, k, false);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"U magacinu nema dovoljna kolicina namestaja!");
+                            }
+                        }
+                    }
                     
-                    StavkaProdajeNamestaj.Create(spn);
+                    
                     break;
                 case Operacija.DodatnaUsluga:
                     var selektovan = (DodatnaUsluga)dgPrikaz.SelectedItem;
@@ -82,9 +104,9 @@ namespace POP_SF_9_GUI.UI
 
                     break;
             }
+            this.Close();
             
             
-            Racun.Update(racun);
            
 
         }

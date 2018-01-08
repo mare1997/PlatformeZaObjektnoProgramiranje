@@ -22,6 +22,19 @@ namespace POP_SF_9_GUI.Model
     
     public class Korisnik: INotifyPropertyChanged
     {
+        public enum Prikaz
+        {
+            Ime,
+            Prezime,
+            KorisnickoIme,
+            Lozinka,
+            TipKorisnika,
+        };
+        public enum NacinSortiranja
+        {
+            asc,
+            desc,
+        };
         private int id;
         public int Id
         {
@@ -71,8 +84,30 @@ namespace POP_SF_9_GUI.Model
             get { return tip; }
             set { tip = value; OnPropertyChanged("TipKorisnika"); }
         }
-
-
+        public object Clone()
+        {
+            return new Korisnik()
+            {
+                id = Id,
+                obrisan = Obrisan,
+                ime=Ime,
+                prezime=Prezime,
+                lozinka=Lozinka,
+                korisnickoIme=KorisnickoIme,
+                tip=TipKorisnika,
+            };
+        }
+        public static Boolean KorisnikPostoji(String username)
+        {
+            foreach (var korisnik in Projekat.Instance.korisnik)
+            {
+                if (korisnik.KorisnickoIme.ToLower() == username.ToLower())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -109,13 +144,14 @@ namespace POP_SF_9_GUI.Model
                     k.Lozinka = row["Lozinka"].ToString();
                     k.Obrisan = bool.Parse(row["Obrisan"].ToString());
                     bool b = bool.Parse(row["TipKorisnika"].ToString());
-                    if (b == false)
+                    if (b == true)
                     {
-                        k.TipKorisnika = TipKorisnika.Administrator;
+                        
+                        k.TipKorisnika = TipKorisnika.Prodavac;
                     }
                     else
                     {
-                        k.TipKorisnika = TipKorisnika.Prodavac;
+                        k.TipKorisnika = TipKorisnika.Administrator;
                     }
 
                     korisnik.Add(k);
@@ -160,7 +196,7 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Update Korisnik set Obrisan=@Obrisan,Ime=@Ime,Prezime=@Prezime,KorisnickoIme=@KorisnickoIme,Lozinka=@Lozinka,TipKorisnika@TipKorisnika where id=@id";
+                cmd.CommandText = "Update Korisnik set Obrisan=@Obrisan,Ime=@Ime,Prezime=@Prezime,KorisnickoIme=@KorisnickoIme,Lozinka=@Lozinka,TipKorisnika=@TipKorisnika where Id=@Id";
                 cmd.Parameters.AddWithValue("Id", k.Id);
                 cmd.Parameters.AddWithValue("Ime", k.Ime);
                 cmd.Parameters.AddWithValue("Obrisan", k.Obrisan);
@@ -199,6 +235,234 @@ namespace POP_SF_9_GUI.Model
         {
             k.Obrisan = true;
             Update(k);
+        }
+        public static ObservableCollection<Korisnik> Sort(Prikaz p, NacinSortiranja nn)
+        {
+            var korisnik = new ObservableCollection<Korisnik>();
+            switch (p)
+            {
+                case Prikaz.Ime:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 Order by Ime";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 Order by Ime desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Korisnik"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                        {
+                            var k = new Korisnik();
+                            k.Id = int.Parse(row["Id"].ToString());
+                            k.Ime = row["Ime"].ToString();
+                            k.Prezime = row["Prezime"].ToString();
+                            k.KorisnickoIme = row["KorisnickoIme"].ToString();
+                            k.Lozinka = row["Lozinka"].ToString();
+                            k.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            bool b = bool.Parse(row["TipKorisnika"].ToString());
+                            if (b == true)
+                            {
+
+                                k.TipKorisnika = TipKorisnika.Prodavac;
+                            }
+                            else
+                            {
+                                k.TipKorisnika = TipKorisnika.Administrator;
+                            }
+
+                            korisnik.Add(k);
+
+                        }
+                    }
+                        break;
+                case Prikaz.Prezime:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 Order by Prezime";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 Order by Prezime desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Korisnik"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                        {
+                            var k = new Korisnik();
+                            k.Id = int.Parse(row["Id"].ToString());
+                            k.Ime = row["Ime"].ToString();
+                            k.Prezime = row["Prezime"].ToString();
+                            k.KorisnickoIme = row["KorisnickoIme"].ToString();
+                            k.Lozinka = row["Lozinka"].ToString();
+                            k.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            bool b = bool.Parse(row["TipKorisnika"].ToString());
+                            if (b == true)
+                            {
+
+                                k.TipKorisnika = TipKorisnika.Prodavac;
+                            }
+                            else
+                            {
+                                k.TipKorisnika = TipKorisnika.Administrator;
+                            }
+
+                            korisnik.Add(k);
+
+                        }
+                    }
+                    break;
+                case Prikaz.KorisnickoIme:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 Order by KorisnickoIme";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 Order by KorisnickoIme desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Korisnik"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                        {
+                            var k = new Korisnik();
+                            k.Id = int.Parse(row["Id"].ToString());
+                            k.Ime = row["Ime"].ToString();
+                            k.Prezime = row["Prezime"].ToString();
+                            k.KorisnickoIme = row["KorisnickoIme"].ToString();
+                            k.Lozinka = row["Lozinka"].ToString();
+                            k.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            bool b = bool.Parse(row["TipKorisnika"].ToString());
+                            if (b == true)
+                            {
+
+                                k.TipKorisnika = TipKorisnika.Prodavac;
+                            }
+                            else
+                            {
+                                k.TipKorisnika = TipKorisnika.Administrator;
+                            }
+
+                            korisnik.Add(k);
+
+                        }
+                    }
+                    break;
+                case Prikaz.Lozinka:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 Order by Lozinka";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 Order by Lozinka desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Korisnik"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                        {
+                            var k = new Korisnik();
+                            k.Id = int.Parse(row["Id"].ToString());
+                            k.Ime = row["Ime"].ToString();
+                            k.Prezime = row["Prezime"].ToString();
+                            k.KorisnickoIme = row["KorisnickoIme"].ToString();
+                            k.Lozinka = row["Lozinka"].ToString();
+                            k.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            bool b = bool.Parse(row["TipKorisnika"].ToString());
+                            if (b == true)
+                            {
+
+                                k.TipKorisnika = TipKorisnika.Prodavac;
+                            }
+                            else
+                            {
+                                k.TipKorisnika = TipKorisnika.Administrator;
+                            }
+
+                            korisnik.Add(k);
+
+                        }
+                    }
+                    break;
+                case Prikaz.TipKorisnika:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        if (nn == NacinSortiranja.asc)
+                        {
+                            cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 Order by TipKorisnika";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 Order by TipKorisnika desc";
+                        }
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Korisnik"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                        {
+                            var k = new Korisnik();
+                            k.Id = int.Parse(row["Id"].ToString());
+                            k.Ime = row["Ime"].ToString();
+                            k.Prezime = row["Prezime"].ToString();
+                            k.KorisnickoIme = row["KorisnickoIme"].ToString();
+                            k.Lozinka = row["Lozinka"].ToString();
+                            k.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            bool b = bool.Parse(row["TipKorisnika"].ToString());
+                            if (b == true)
+                            {
+
+                                k.TipKorisnika = TipKorisnika.Prodavac;
+                            }
+                            else
+                            {
+                                k.TipKorisnika = TipKorisnika.Administrator;
+                            }
+
+                            korisnik.Add(k);
+
+                        }
+                    }
+                    break;
+            }
+            return korisnik;
         }
         #endregion
     }
