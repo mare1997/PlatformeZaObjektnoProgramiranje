@@ -243,7 +243,67 @@ namespace POP_SF_9_GUI.Model
             }
             return du;
         }
+        public static ObservableCollection<DodatnaUsluga> Search(Prikaz p, String s)
+        {
+            var du = new ObservableCollection<DodatnaUsluga>();
+            switch (p)
+            {
+                case Prikaz.Naziv:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM DodatnaUsluga WHERE Obrisan=0 and Naziv like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
 
-            #endregion
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "DodatnaUsluga"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["DodatnaUsluga"].Rows)
+                        {
+                            var d = new DodatnaUsluga();
+                            d.Id = int.Parse(row["Id"].ToString());
+                            d.Naziv = row["Naziv"].ToString();
+                            d.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            d.Cena = double.Parse(row["Cena"].ToString());
+                            du.Add(d);
+
+                        }
+
+                    }
+                    break;
+                case Prikaz.Cena:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM DodatnaUsluga WHERE Obrisan=0 and Cena like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "DodatnaUsluga"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["DodatnaUsluga"].Rows)
+                        {
+                            var d = new DodatnaUsluga();
+                            d.Id = int.Parse(row["Id"].ToString());
+                            d.Naziv = row["Naziv"].ToString();
+                            d.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            d.Cena = double.Parse(row["Cena"].ToString());
+                            du.Add(d);
+
+                        }
+
+                    }
+                    break;
+            }
+            return du;
         }
+
+        #endregion
+    }
 }

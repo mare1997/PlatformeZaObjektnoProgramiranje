@@ -33,7 +33,7 @@
         <ComboBox x:Name="cbR" Grid.Column="2" HorizontalAlignment="Left" Height="22" Margin="10,19,0,-32" VerticalAlignment="Top" Width="94"/>
         <Label x:Name="label1" Content="Pretrazi po:" HorizontalAlignment="Left" Height="25" Margin="0,73,0,-89" VerticalAlignment="Top" Width="94"/>
         <ComboBox x:Name="cbP" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="10,73,0,-89" VerticalAlignment="Top" Width="109"/>
-        <TextBox x:Name="textBox" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="0,73,0,-87" TextWrapping="Wrap" Text="Pretrazi..." VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.492,0.217"/>
+        <TextBox x:Name="tbP" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="0,73,0,-87" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.492,0.217"/>
         <Button x:Name="button1" Content="Pretrazi" Click="Pretrazi_Click" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="19,73,0,-87" VerticalAlignment="Top" Width="74"/>
 
     </Grid>

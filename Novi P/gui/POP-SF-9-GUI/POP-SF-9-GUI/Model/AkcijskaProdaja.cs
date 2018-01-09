@@ -308,7 +308,93 @@ namespace POP_SF_9_GUI.Model
             }
             return akcija;
         }
-            #endregion
+        public static ObservableCollection<AkcijskaProdaja> Search(Prikaz p, String s)
+        {
+            var akcija = new ObservableCollection<AkcijskaProdaja>();
+            switch (p)
+            {
+                case Prikaz.DatumKraja:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 and Dk like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
 
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Akcija"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Akcija"].Rows)
+                        {
+                            var a = new AkcijskaProdaja();
+                            a.Id = int.Parse(row["Id"].ToString());
+                            a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            a.DatumPocetka = DateTime.Parse(row["Dp"].ToString());
+                            a.DatumKraja = DateTime.Parse(row["Dk"].ToString());
+                            a.popust = int.Parse(row["Popust"].ToString());
+                            akcija.Add(a);
+
+                        }
+                    }
+                    break;
+                case Prikaz.DatumPocetka:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 and Dp like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Akcija"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Akcija"].Rows)
+                        {
+                            var a = new AkcijskaProdaja();
+                            a.Id = int.Parse(row["Id"].ToString());
+                            a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            a.DatumPocetka = DateTime.Parse(row["Dp"].ToString());
+                            a.DatumKraja = DateTime.Parse(row["Dk"].ToString());
+                            a.popust = int.Parse(row["Popust"].ToString());
+                            akcija.Add(a);
+
+                        }
+                    }
+                    break;
+                case Prikaz.Popust:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0 and Popust like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Akcija"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Akcija"].Rows)
+                        {
+                            var a = new AkcijskaProdaja();
+                            a.Id = int.Parse(row["Id"].ToString());
+                            a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            a.DatumPocetka = DateTime.Parse(row["Dp"].ToString());
+                            a.DatumKraja = DateTime.Parse(row["Dk"].ToString());
+                            a.popust = int.Parse(row["Popust"].ToString());
+                            akcija.Add(a);
+
+                        }
+                    }
+                    break;
+            }
+            return akcija;
         }
+        #endregion
+
+    }
 }

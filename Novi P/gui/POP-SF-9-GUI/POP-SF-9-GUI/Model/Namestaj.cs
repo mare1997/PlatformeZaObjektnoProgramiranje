@@ -491,6 +491,179 @@ namespace POP_SF_9_GUI.Model
             }
             return Namestaj;
         }
+        public static ObservableCollection<Namestaj> Search(Prikaz p,String s)
+        {
+            var Namestaj = new ObservableCollection<Namestaj>();
+            switch (p)
+            {
+                case Prikaz.Naziv:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 and Naziv like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Namestaj"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                        {
+
+                            var tn = new Namestaj();
+                            tn.Id = int.Parse(row["Id"].ToString());
+                            tn.Naziv = row["Naziv"].ToString();
+                            tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            tn.Cena = double.Parse(row["Cena"].ToString());
+                            tn.Kolicina = int.Parse(row["Kolicina"].ToString());
+                            try
+                            {
+                                tn.ak = int.Parse(row["AkcijaId"].ToString());
+                            }
+                            catch { }
+
+                            tn.TipN = int.Parse(row["TipNamestajaId"].ToString());
+                            Namestaj.Add(tn);
+
+                        }
+
+                    }
+                    break;
+                    case Prikaz.Cena:
+                        using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                        {
+                            SqlCommand cmd = con.CreateCommand();
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 and Cena like '%'+@s+'%'";
+                            cmd.Parameters.AddWithValue("s", s);
+
+                            DataSet ds = new DataSet();
+                            SqlDataAdapter da = new SqlDataAdapter();
+
+                            da.SelectCommand = cmd;
+                            da.Fill(ds, "Namestaj"); // Query se izvrsava
+                            foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                            {
+                                var tn = new Namestaj();
+                                tn.Id = int.Parse(row["Id"].ToString());
+                                tn.Naziv = row["Naziv"].ToString();
+                                tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                                tn.Cena = double.Parse(row["Cena"].ToString());
+                                tn.Kolicina = int.Parse(row["Kolicina"].ToString());
+                                try
+                                {
+                                    tn.ak = int.Parse(row["AkcijaId"].ToString());
+                                }
+                                catch { }
+
+                                tn.TipN = int.Parse(row["TipNamestajaId"].ToString());
+                                Namestaj.Add(tn);
+
+                            }
+
+                        }
+                        break;
+                    case Prikaz.Kolicina:
+                        using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                        {
+                            SqlCommand cmd = con.CreateCommand();
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 and Kolicina like '%'+@s+'%'";
+                            cmd.Parameters.AddWithValue("s", s);
+
+                            DataSet ds = new DataSet();
+                            SqlDataAdapter da = new SqlDataAdapter();
+
+                            da.SelectCommand = cmd;
+                            da.Fill(ds, "Namestaj"); // Query se izvrsava
+                            foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                            {
+                                var tn = new Namestaj();
+                                tn.Id = int.Parse(row["Id"].ToString());
+                                tn.Naziv = row["Naziv"].ToString();
+                                tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                                tn.Cena = double.Parse(row["Cena"].ToString());
+                                tn.Kolicina = int.Parse(row["Kolicina"].ToString());
+                                try
+                                {
+                                    tn.ak = int.Parse(row["AkcijaId"].ToString());
+                                }
+                                catch { }
+
+                                tn.TipN = int.Parse(row["TipNamestajaId"].ToString());
+                                Namestaj.Add(tn);
+
+                            }
+
+                        }
+                        break;
+                    case Prikaz.TipNamestaja:
+                        using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                        {
+                            SqlCommand cmd = con.CreateCommand();
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 and (Select Naziv from TipNamestaja where TipNamestajaId = Id ) like '%'+@s+'%'";
+                            cmd.Parameters.AddWithValue("s", s);
+
+                            DataSet ds = new DataSet();
+                            SqlDataAdapter da = new SqlDataAdapter();
+
+                            da.SelectCommand = cmd;
+                            da.Fill(ds, "Namestaj"); // Query se izvrsava
+                            foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                            {
+                                var tn = new Namestaj();
+                                tn.Id = int.Parse(row["Id"].ToString());
+                                tn.Naziv = row["Naziv"].ToString();
+                                tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                                tn.Cena = double.Parse(row["Cena"].ToString());
+                                tn.Kolicina = int.Parse(row["Kolicina"].ToString());
+                                try
+                                {
+                                    tn.ak = int.Parse(row["AkcijaId"].ToString());
+                                }
+                                catch { }
+
+                                tn.TipN = int.Parse(row["TipNamestajaId"].ToString());
+                                Namestaj.Add(tn);
+
+                            }
+
+                        }
+                        break;
+                    case Prikaz.Akcija:
+                        using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                        {
+                            SqlCommand cmd = con.CreateCommand();
+                            cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 and (Select Popust from Akcija where AkcijaId = Id ) like '%'+@s+'%'";
+                            cmd.Parameters.AddWithValue("s", s);
+
+                            DataSet ds = new DataSet();
+                            SqlDataAdapter da = new SqlDataAdapter();
+
+                            da.SelectCommand = cmd;
+                            da.Fill(ds, "Namestaj"); // Query se izvrsava
+                            foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                            {
+                                var tn = new Namestaj();
+                                tn.Id = int.Parse(row["Id"].ToString());
+                                tn.Naziv = row["Naziv"].ToString();
+                                tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                                tn.Cena = double.Parse(row["Cena"].ToString());
+                                tn.Kolicina = int.Parse(row["Kolicina"].ToString());
+                                try
+                                {
+                                    tn.ak = int.Parse(row["AkcijaId"].ToString());
+                                }
+                                catch { }
+
+                                tn.TipN = int.Parse(row["TipNamestajaId"].ToString());
+                                Namestaj.Add(tn);
+
+                            }
+
+                        }
+                        break;
+            }
+            return Namestaj;
+        }
         #endregion
     }
     

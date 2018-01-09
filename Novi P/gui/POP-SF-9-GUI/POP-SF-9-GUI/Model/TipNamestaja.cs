@@ -194,6 +194,40 @@ namespace POP_SF_9_GUI.Model
             }
             return tipoviNamestaja;
             }
+        public static ObservableCollection<TipNamestaja> Search(Prikaz p, String s)
+        {
+            var tipoviNamestaja = new ObservableCollection<TipNamestaja>();
+            switch (p)
+            {
+                case Prikaz.Naziv:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM TipNamestaja WHERE Obrisan=0 and Naziv like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "TipNamestaja"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["TipNamestaja"].Rows)
+                        {
+                            var tn = new TipNamestaja();
+                            tn.Id = int.Parse(row["Id"].ToString());
+                            tn.Naziv = row["Naziv"].ToString();
+                            tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                            tipoviNamestaja.Add(tn);
+
+                        }
+
+
+                    }
+                    break;
+            }
+            return tipoviNamestaja;
+        }
         #endregion
     }
 }

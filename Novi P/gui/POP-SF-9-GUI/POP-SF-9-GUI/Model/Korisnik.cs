@@ -464,6 +464,167 @@ namespace POP_SF_9_GUI.Model
             }
             return korisnik;
         }
+        public static ObservableCollection<Korisnik> Search(Prikaz p,String s)
+        {
+            var korisnik = new ObservableCollection<Korisnik>();
+            switch (p)
+            {
+                case Prikaz.Ime:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 and Ime like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Korisnik"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                        {
+                            var k = new Korisnik();
+                            k.Id = int.Parse(row["Id"].ToString());
+                            k.Ime = row["Ime"].ToString();
+                            k.Prezime = row["Prezime"].ToString();
+                            k.KorisnickoIme = row["KorisnickoIme"].ToString();
+                            k.Lozinka = row["Lozinka"].ToString();
+                            k.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            bool b = bool.Parse(row["TipKorisnika"].ToString());
+                            if (b == true)
+                            {
+
+                                k.TipKorisnika = TipKorisnika.Prodavac;
+                            }
+                            else
+                            {
+                                k.TipKorisnika = TipKorisnika.Administrator;
+                            }
+
+                            korisnik.Add(k);
+
+                        }
+                    }
+                    break;
+                case Prikaz.Prezime:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 and Prezime like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Korisnik"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                        {
+                            var k = new Korisnik();
+                            k.Id = int.Parse(row["Id"].ToString());
+                            k.Ime = row["Ime"].ToString();
+                            k.Prezime = row["Prezime"].ToString();
+                            k.KorisnickoIme = row["KorisnickoIme"].ToString();
+                            k.Lozinka = row["Lozinka"].ToString();
+                            k.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            bool b = bool.Parse(row["TipKorisnika"].ToString());
+                            if (b == true)
+                            {
+
+                                k.TipKorisnika = TipKorisnika.Prodavac;
+                            }
+                            else
+                            {
+                                k.TipKorisnika = TipKorisnika.Administrator;
+                            }
+
+                            korisnik.Add(k);
+
+                        }
+                    }
+                    break;
+                case Prikaz.KorisnickoIme:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 and KorisnickoIme like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Korisnik"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                        {
+                            var k = new Korisnik();
+                            k.Id = int.Parse(row["Id"].ToString());
+                            k.Ime = row["Ime"].ToString();
+                            k.Prezime = row["Prezime"].ToString();
+                            k.KorisnickoIme = row["KorisnickoIme"].ToString();
+                            k.Lozinka = row["Lozinka"].ToString();
+                            k.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            bool b = bool.Parse(row["TipKorisnika"].ToString());
+                            if (b == true)
+                            {
+
+                                k.TipKorisnika = TipKorisnika.Prodavac;
+                            }
+                            else
+                            {
+                                k.TipKorisnika = TipKorisnika.Administrator;
+                            }
+
+                            korisnik.Add(k);
+
+                        }
+                    }
+                    break;
+                case Prikaz.Lozinka:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=0 and Lozinka like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Korisnik"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                        {
+                            var k = new Korisnik();
+                            k.Id = int.Parse(row["Id"].ToString());
+                            k.Ime = row["Ime"].ToString();
+                            k.Prezime = row["Prezime"].ToString();
+                            k.KorisnickoIme = row["KorisnickoIme"].ToString();
+                            k.Lozinka = row["Lozinka"].ToString();
+                            k.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                            bool b = bool.Parse(row["TipKorisnika"].ToString());
+                            if (b == true)
+                            {
+
+                                k.TipKorisnika = TipKorisnika.Prodavac;
+                            }
+                            else
+                            {
+                                k.TipKorisnika = TipKorisnika.Administrator;
+                            }
+
+                            korisnik.Add(k);
+
+                        }
+                    }
+                    break;
+               
+            }
+            return korisnik;
+        }
         #endregion
     }
 }

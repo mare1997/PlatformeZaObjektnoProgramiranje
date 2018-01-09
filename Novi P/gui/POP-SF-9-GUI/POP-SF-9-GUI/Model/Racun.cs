@@ -255,7 +255,93 @@ namespace POP_SF_9_GUI.Model
             }
             return racun;
         }
-            #endregion
+        public static ObservableCollection<Racun> Search(Prikaz p, String s)
+        {
+            var racun = new ObservableCollection<Racun>();
+            switch (p)
+            {
+                case Prikaz.DatumProdaje:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Racun WHERE Dp like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Racun"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Racun"].Rows)
+                        {
+                            var r = new Racun();
+                            r.Id = int.Parse(row["Id"].ToString());
+                            r.datumProdaje = DateTime.Parse(row["Dp"].ToString());
+                            r.Kupac = row["Kupac"].ToString();
+                            r.UkupnaCena = double.Parse(row["UkupnaCena"].ToString());
+                            racun.Add(r);
+
+                        }
+
+                    }
+                    break;
+                case Prikaz.Kupac:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Racun WHERE Kupac like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Racun"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Racun"].Rows)
+                        {
+                            var r = new Racun();
+                            r.Id = int.Parse(row["Id"].ToString());
+                            r.datumProdaje = DateTime.Parse(row["Dp"].ToString());
+                            r.Kupac = row["Kupac"].ToString();
+                            r.UkupnaCena = double.Parse(row["UkupnaCena"].ToString());
+                            racun.Add(r);
+
+                        }
+
+                    }
+                    break;
+                case Prikaz.Cena:
+                    using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                    {
+                        SqlCommand cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM Racun WHERE UkupnaCena like '%'+@s+'%'";
+                        cmd.Parameters.AddWithValue("s", s);
+
+
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter();
+
+                        da.SelectCommand = cmd;
+                        da.Fill(ds, "Racun"); // Query se izvrsava
+                        foreach (DataRow row in ds.Tables["Racun"].Rows)
+                        {
+                            var r = new Racun();
+                            r.Id = int.Parse(row["Id"].ToString());
+                            r.datumProdaje = DateTime.Parse(row["Dp"].ToString());
+                            r.Kupac = row["Kupac"].ToString();
+                            r.UkupnaCena = double.Parse(row["UkupnaCena"].ToString());
+                            racun.Add(r);
+
+                        }
+
+                    }
+                    break;
+            }
+            return racun;
         }
+        #endregion
+    }
 }
 #endregion

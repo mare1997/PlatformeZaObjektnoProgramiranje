@@ -60,6 +60,12 @@ namespace POP_SF_9_GUI.UI
                     cbR.Items.Add(Namestaj.NacinSortiranja.asc);
                     cbR.Items.Add(Namestaj.NacinSortiranja.desc);
                     cbR.SelectedIndex = 0;
+                    cbP.Items.Add(Namestaj.Prikaz.Naziv);
+                    cbP.Items.Add(Namestaj.Prikaz.Cena);
+                    cbP.Items.Add(Namestaj.Prikaz.Kolicina);
+                    cbP.Items.Add(Namestaj.Prikaz.TipNamestaja);
+                    cbP.Items.Add(Namestaj.Prikaz.Akcija);
+                    cbP.SelectedIndex = 0;
                     break;
                 case Prikaz.TipNamestaja:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.TN);
@@ -73,6 +79,8 @@ namespace POP_SF_9_GUI.UI
                     cbR.Items.Add(TipNamestaja.NacinSortiranja.asc);
                     cbR.Items.Add(TipNamestaja.NacinSortiranja.desc);
                     cbR.SelectedIndex = 0;
+                    cbP.Items.Add(TipNamestaja.Prikaz.Naziv);
+                    cbP.SelectedIndex = 0;
                     break;
                 case Prikaz.Korisnik:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.korisnik);
@@ -89,6 +97,12 @@ namespace POP_SF_9_GUI.UI
                     cbR.Items.Add(Korisnik.NacinSortiranja.asc);
                     cbR.Items.Add(Korisnik.NacinSortiranja.desc);
                     cbR.SelectedIndex = 0;
+                    cbP.Items.Add(Korisnik.Prikaz.Ime);
+                    cbP.Items.Add(Korisnik.Prikaz.Prezime);
+                    cbP.Items.Add(Korisnik.Prikaz.KorisnickoIme);
+                    cbP.Items.Add(Korisnik.Prikaz.Lozinka);
+                    
+                    cbP.SelectedIndex = 0;
                     break;
               case Prikaz.ProdajaNamestaja:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.pn);
@@ -104,6 +118,10 @@ namespace POP_SF_9_GUI.UI
                     cbR.Items.Add(Racun.NacinSortiranja.asc);
                     cbR.Items.Add(Racun.NacinSortiranja.desc);
                     cbR.SelectedIndex = 0;
+                    cbP.Items.Add(Racun.Prikaz.DatumProdaje);
+                    cbP.Items.Add(Racun.Prikaz.Kupac);
+                    cbP.Items.Add(Racun.Prikaz.Cena);
+                    cbP.SelectedIndex = 0;
                     break;
                 case Prikaz.Akcija:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.akcija);
@@ -121,6 +139,10 @@ namespace POP_SF_9_GUI.UI
                     cbR.Items.Add(AkcijskaProdaja.NacinSortiranja.asc);
                     cbR.Items.Add(AkcijskaProdaja.NacinSortiranja.desc);
                     cbR.SelectedIndex = 0;
+                    cbP.Items.Add(AkcijskaProdaja.Prikaz.DatumPocetka);
+                    cbP.Items.Add(AkcijskaProdaja.Prikaz.DatumKraja);
+                    cbP.Items.Add(AkcijskaProdaja.Prikaz.Popust);
+                    cbP.SelectedIndex = 0;
                     break;
                 case Prikaz.DodatneUsluge:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.DU);
@@ -134,6 +156,9 @@ namespace POP_SF_9_GUI.UI
                     cbR.Items.Add(AkcijskaProdaja.NacinSortiranja.asc);
                     cbR.Items.Add(AkcijskaProdaja.NacinSortiranja.desc);
                     cbR.SelectedIndex = 0;
+                    cbP.Items.Add(DodatnaUsluga.Prikaz.Naziv);
+                    cbP.Items.Add(DodatnaUsluga.Prikaz.Cena);
+                    cbP.SelectedIndex = 0;
                     break;
             }
 
@@ -446,16 +471,22 @@ namespace POP_SF_9_GUI.UI
             switch (prikaz)
             {
                 case Prikaz.Namestaj:
+                    PretraziNamestaj();
                     break;
                 case Prikaz.TipNamestaja:
+                    PretraziTipNamestaja();
                     break;
                 case Prikaz.Korisnik:
+                    PretraziKorisnika();
                     break;
                 case Prikaz.ProdajaNamestaja:
+                    PretraziRacun();
                     break;
                 case Prikaz.Akcija:
+                    PretraziAkcije();
                     break;
                 case Prikaz.DodatneUsluge:
+                    PretraziDU();
                     break;
             }
         }
@@ -907,6 +938,219 @@ namespace POP_SF_9_GUI.UI
                         dgPrikaz.IsSynchronizedWithCurrentItem = true;
                         dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     }
+                    break;
+
+            }
+        }
+        public void PretraziNamestaj()
+        {
+            var sp = cbP.Text;
+            var tb = tbP.Text;
+            var namestaj = new ObservableCollection<Namestaj>();
+            switch (sp)
+            {
+                case "Naziv":
+                        namestaj = Namestaj.Search(Namestaj.Prikaz.Naziv,tb);
+                        view = CollectionViewSource.GetDefaultView(namestaj);
+                        view.Filter = namestajFilter;
+                        dgPrikaz.ItemsSource = view;
+                        dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                        dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+                   
+
+                    break;
+                    case "Cena":
+                        namestaj = Namestaj.Search(Namestaj.Prikaz.Cena,tb);
+                            view = CollectionViewSource.GetDefaultView(namestaj);
+                            view.Filter = namestajFilter;
+                            dgPrikaz.ItemsSource = view;
+                            dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                            dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+                        break;
+                    case "Kolicina":
+                        namestaj = Namestaj.Search(Namestaj.Prikaz.Kolicina,tb);
+                        view = CollectionViewSource.GetDefaultView(namestaj);
+                        view.Filter = namestajFilter;
+                        dgPrikaz.ItemsSource = view;
+                        dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                        dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+                        break;
+                    case "TipNamestaja":
+                        namestaj = Namestaj.Search(Namestaj.Prikaz.TipNamestaja,tb);
+                        view = CollectionViewSource.GetDefaultView(namestaj);
+                        view.Filter = namestajFilter;
+                        dgPrikaz.ItemsSource = view;
+                        dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                        dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+                        break;
+                    case "Akcija":
+                        namestaj = Namestaj.Search(Namestaj.Prikaz.Akcija,tb);
+                        view = CollectionViewSource.GetDefaultView(namestaj);
+                        view.Filter = namestajFilter;
+                        dgPrikaz.ItemsSource = view;
+                        dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                        dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+                        break;
+            }
+        }
+        public void PretraziTipNamestaja()
+        {
+            var sp = cbP.Text;
+            var tb = tbP.Text;
+            var topnamestaja = new ObservableCollection<TipNamestaja>();
+            switch (sp)
+            {
+                case "Naziv":
+                    topnamestaja = TipNamestaja.Search(TipNamestaja.Prikaz.Naziv, tb);
+                    view = CollectionViewSource.GetDefaultView(topnamestaja);
+                    view.Filter = tipnamestajFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+                    break;
+            }
+
+        }
+        public void PretraziKorisnika()
+        {
+            var sp = cbP.Text;
+            var tb = tbP.Text;
+            var korisnik = new ObservableCollection<Korisnik>();
+            switch (sp)
+            {
+                case "Ime":
+                    korisnik = Korisnik.Search(Korisnik.Prikaz.Ime, tb);
+                    view = CollectionViewSource.GetDefaultView(korisnik);
+                    view.Filter = korisnikFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+                case "Prezime":
+                    korisnik = Korisnik.Search(Korisnik.Prikaz.Prezime, tb);
+                    view = CollectionViewSource.GetDefaultView(korisnik);
+                    view.Filter = korisnikFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+                case "KorisnickoIme":
+                    korisnik = Korisnik.Search(Korisnik.Prikaz.KorisnickoIme, tb);
+                    view = CollectionViewSource.GetDefaultView(korisnik);
+                    view.Filter = korisnikFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+                case "Lozinka":
+                    korisnik = Korisnik.Search(Korisnik.Prikaz.Lozinka, tb);
+                    view = CollectionViewSource.GetDefaultView(korisnik);
+                    view.Filter = korisnikFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+               
+
+            }
+        }
+        public void PretraziDU()
+        {
+            var sp = cbP.Text;
+            var tb = tbP.Text;
+            var du = new ObservableCollection<DodatnaUsluga>();
+            switch (sp)
+            {
+                case "Naziv":
+                    du = DodatnaUsluga.Search(DodatnaUsluga.Prikaz.Naziv, tb);
+                    view = CollectionViewSource.GetDefaultView(du);
+                    view.Filter = dodatnaFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+                case "Cena":
+                    du = DodatnaUsluga.Search(DodatnaUsluga.Prikaz.Cena, tb);
+                    view = CollectionViewSource.GetDefaultView(du);
+                    view.Filter = dodatnaFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+
+            }
+        }
+        public void PretraziAkcije()
+        {
+            var sp = cbP.Text;
+            var tb = tbP.Text;
+            var akcija = new ObservableCollection<AkcijskaProdaja>();
+            switch (sp)
+            {
+                case "DatumPocetka":
+                    akcija = AkcijskaProdaja.Search(AkcijskaProdaja.Prikaz.DatumPocetka, tb);
+                    view = CollectionViewSource.GetDefaultView(akcija);
+                    view.Filter = akcijaFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+                    break;
+                case "DatumKraja":
+                    akcija = AkcijskaProdaja.Search(AkcijskaProdaja.Prikaz.DatumKraja, tb);
+                    view = CollectionViewSource.GetDefaultView(akcija);
+                    view.Filter = akcijaFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+                case "Popust":
+                    akcija = AkcijskaProdaja.Search(AkcijskaProdaja.Prikaz.Popust, tb);
+                    view = CollectionViewSource.GetDefaultView(akcija);
+                    view.Filter = akcijaFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+
+            }
+        }
+        public void PretraziRacun()
+        {
+            var sp = cbP.Text;
+            var tb = tbP.Text;
+            var racun = new ObservableCollection<Racun>();
+            switch (sp)
+            {
+                case "DatumProdaje":
+                    racun = Racun.Search(Racun.Prikaz.DatumProdaje, tb);
+                    view = CollectionViewSource.GetDefaultView(racun);
+                    view.Filter = RacunFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+                case "Cena":
+                    racun = Racun.Search(Racun.Prikaz.Cena, tb);
+                    view = CollectionViewSource.GetDefaultView(racun);
+                    view.Filter = RacunFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    break;
+                case "Kupac":
+                    racun = Racun.Search(Racun.Prikaz.Kupac, tb);
+                    view = CollectionViewSource.GetDefaultView(racun);
+                    view.Filter = RacunFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                     break;
 
             }
