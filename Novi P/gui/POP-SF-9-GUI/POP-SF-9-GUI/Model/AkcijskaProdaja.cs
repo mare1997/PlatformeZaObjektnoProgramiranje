@@ -115,7 +115,7 @@ namespace POP_SF_9_GUI.Model
             {
                 if (akcija.DatumKraja < DateTime.Now)
                 {
-                    Projekat.Instance.akcija.Remove(akcija);
+                    
                     AkcijskaProdaja.Delete(akcija);
                 }
             }

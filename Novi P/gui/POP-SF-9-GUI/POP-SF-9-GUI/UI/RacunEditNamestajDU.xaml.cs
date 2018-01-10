@@ -1,6 +1,7 @@
 ﻿using POP_SF_9_GUI.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace POP_SF_9_GUI.UI
             InitializeComponent();
             this.operacija = operacija;
             this.racun = racun;
-            tbKolicina.DataContext = racun;
+            
             switch (operacija)
             {
                 case Operacija.Namestaj:
@@ -59,40 +60,58 @@ namespace POP_SF_9_GUI.UI
         }
 
         private void btDodaj_Click(object sender, RoutedEventArgs e)
-        {   var listaracuna = Projekat.Instance.pn;
-            
-            
+        {   
             switch (operacija)
             {   
                 case Operacija.Namestaj:
                     var selektovaniNamestaj = (Namestaj)dgPrikaz.SelectedItem;
                     int k = int.Parse(tbKolicina.Text);
+                    var lista = new ObservableCollection<StavkaProdajeNamestaj>();
+                    int brojac=0;
                     foreach (var n in Projekat.Instance.spn)
+                    {
+                        lista.Add(n);
+                    }
+                    foreach (var n in lista)
                     {
                         if (racun.Id == n.RacunId && selektovaniNamestaj.Id == n.NamestajId)
                         {
+                            brojac += 1;
                             n.Kolicina += k;
                             StavkaProdajeNamestaj.Update(n);
+                            Namestaj.PromeniKolicinu(selektovaniNamestaj.Id, k, false);
+                            view = CollectionViewSource.GetDefaultView(Projekat.Instance.namestaj);
+                            view.Filter = namestajFilter;
+                            dgPrikaz.ItemsSource = view;
+                            dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                            dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                            break;
+                        }
+                    }
+                    if (brojac == 0)
+                    {
+                        if (selektovaniNamestaj.Kolicina >= k && k > 0)
+                        {
+                            StavkaProdajeNamestaj spn = new StavkaProdajeNamestaj();
+                            spn.Kolicina = k;
+                            spn.NamestajId = selektovaniNamestaj.Id;
+                            spn.RacunId = racun.Id;
+
+                            StavkaProdajeNamestaj.Create(spn);
+                            Namestaj.PromeniKolicinu(selektovaniNamestaj.Id, k, false);
+                            view = CollectionViewSource.GetDefaultView(Projekat.Instance.namestaj);
+                            view.Filter = namestajFilter;
+                            dgPrikaz.ItemsSource = view;
+                            dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                            dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                         }
                         else
                         {
-                            if (selektovaniNamestaj.Kolicina >= k && k > 0)
-                            {
-                                StavkaProdajeNamestaj spn = new StavkaProdajeNamestaj();
-                                spn.Kolicina = k;
-                                spn.NamestajId = selektovaniNamestaj.Id;
-                                spn.RacunId = racun.Id;
-                                StavkaProdajeNamestaj.Create(spn);
-                                Namestaj.PromeniKolicinu(selektovaniNamestaj.Id, k, false);
-                            }
-                            else
-                            {
+                            
                                 MessageBox.Show($"U magacinu nema dovoljna kolicina namestaja!");
-                            }
                         }
                     }
-                    
-                    
+
                     break;
                 case Operacija.DodatnaUsluga:
                     var selektovan = (DodatnaUsluga)dgPrikaz.SelectedItem;
@@ -100,11 +119,20 @@ namespace POP_SF_9_GUI.UI
                     spdu.RacunId = racun.Id;
                     spdu.DUId = selektovan.Id;
                     StavkaProdajeDU.Create(spdu);
+                    view = CollectionViewSource.GetDefaultView(Projekat.Instance.DU);
+                    view.Filter = dodatnaFilter;
+                    dgPrikaz.ItemsSource = view;
+                    dgPrikaz.IsSynchronizedWithCurrentItem = true;
+                    dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+                    tbKolicina.Visibility = System.Windows.Visibility.Hidden;
+                    label1.Visibility = System.Windows.Visibility.Hidden;
 
 
                     break;
             }
+
             this.Close();
+            
             
             
            

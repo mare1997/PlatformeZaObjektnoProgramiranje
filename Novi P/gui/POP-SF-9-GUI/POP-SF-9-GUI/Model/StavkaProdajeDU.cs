@@ -171,7 +171,7 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Update  StavkaDUsluge where Id=@Id";
+                cmd.CommandText = "Delete  StavkaDUsluge where Id=@Id";
                 cmd.Parameters.AddWithValue("Id", n.Id);
                 cmd.ExecuteNonQuery();
                 foreach (var spdu in Projekat.Instance.spdu)

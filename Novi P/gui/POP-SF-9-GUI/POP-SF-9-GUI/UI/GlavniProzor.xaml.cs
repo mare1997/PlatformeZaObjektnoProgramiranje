@@ -20,17 +20,25 @@ namespace POP_SF_9_GUI.UI
     /// </summary>
     public partial class GlavniProzor : Window
     {
-        private Korisnik korisnik;
-        public GlavniProzor(Korisnik korisnik)
+        public String ki;
+        public String p;
+        public Korisnik korisnik;
+        public GlavniProzor(String s1,String s2)
         {
             InitializeComponent();
-            this.korisnik = korisnik;
-            Console.WriteLine($"Ovo je tk:{korisnik.TipKorisnika}");
-            OsveziPrikaz(korisnik);
+            this.ki = s1;
+            this.p = s2;
+            OsveziPrikaz();
             listBox.SelectedIndex = 0;
         }
-        private void OsveziPrikaz(Korisnik korisnik)
-        {   if (korisnik.TipKorisnika == TipKorisnika.Administrator)
+        private void OsveziPrikaz()
+        {
+            foreach (var k in Projekat.Instance.korisnik)
+            {
+                if (ki.Equals(k.KorisnickoIme) && p.Equals(k.Lozinka))
+                    korisnik = k;
+            }
+            if (korisnik.TipKorisnika == TipKorisnika.Administrator)
             {
                 listBox.Items.Clear();
                 listBox.Items.Add("Rad sa namestajem");
@@ -66,7 +74,7 @@ namespace POP_SF_9_GUI.UI
 
                 case "Rad sa prodajom namestaja": 
                     var PNProzor = new PrikazWindow(PrikazWindow.Prikaz.ProdajaNamestaja);
-                    PNProzor.ShowDialog();
+                    PNProzor.Show();
                     break;
                 case "Rad sa akcijama":
                     var AProzor = new PrikazWindow(PrikazWindow.Prikaz.Akcija);

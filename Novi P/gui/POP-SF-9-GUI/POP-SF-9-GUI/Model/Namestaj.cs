@@ -169,6 +169,8 @@ namespace POP_SF_9_GUI.Model
                     {
                         namestaj.Kolicina -= kolicina;
                     }
+                    Update(namestaj);
+                        
                 }
             }
         }
@@ -254,7 +256,7 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Update Namestaj set Naziv=@Naziv,Obrisan=@Obrisan,Cena=@Cena,Kolicina=@Kolicina,Akcija=@Akcija,TipNamestaja=@TipNamestaja where Id=@Id";
+                cmd.CommandText = "Update Namestaj set Naziv=@Naziv,Obrisan=@Obrisan,Cena=@Cena,Kolicina=@Kolicina,AkcijaId=@Akcija,TipNamestajaId=@TipNamestaja where Id=@Id";
                 cmd.Parameters.AddWithValue("Id", n.Id);
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);

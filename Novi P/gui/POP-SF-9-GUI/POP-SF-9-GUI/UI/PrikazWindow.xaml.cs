@@ -304,7 +304,7 @@ namespace POP_SF_9_GUI.UI
         {
             var racun = new Racun();
             var dProzor = new RacunEdit(RacunEdit.Operacija.DODAVANJE, racun);
-            dProzor.ShowDialog();
+            dProzor.Show();
         }
         private void IzmeniNamestaj()
         {

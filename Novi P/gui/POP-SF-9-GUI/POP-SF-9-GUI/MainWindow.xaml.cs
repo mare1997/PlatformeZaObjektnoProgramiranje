@@ -53,7 +53,7 @@ namespace POP_SF_9_GUI
             
                 if (Logovanje(tbKI.Text, tbPass.Text) == true)
                 {
-                    var gp = new GlavniProzor(korisnik);
+                    var gp = new GlavniProzor(tbKI.Text, tbPass.Text);
                     gp.Show();
                 }
             

@@ -24,6 +24,15 @@ namespace POP_SF_9_GUI.Model
             }
 
         }
+        public string Naziv
+        {
+            get { return Namestaj.GetById(namestajid).Naziv; }
+            set
+            {
+                Namestaj.GetById(namestajid).Naziv = value;
+                OnPropertyChanged("Naziv");
+            }
+        }
         private int kolicina;
         public int Kolicina
         {
@@ -52,15 +61,7 @@ namespace POP_SF_9_GUI.Model
             }
 
         }
-        public string Naziv
-        {
-            get { return Namestaj.GetById(namestajid).Naziv; }
-            set
-            {
-                Namestaj.GetById(namestajid).Naziv = value;
-                OnPropertyChanged("Naziv");
-            }
-        }
+       
         public object Clone()
         {
             return new StavkaProdajeNamestaj()
@@ -178,7 +179,7 @@ namespace POP_SF_9_GUI.Model
             {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Update  StavkaNamestaja where Id=@Id";
+                cmd.CommandText = "Delete  StavkaNamestaja where Id=@Id";
                 cmd.Parameters.AddWithValue("Id", n.Id);
                 cmd.ExecuteNonQuery();
                 foreach (var spn in Projekat.Instance.spn)
