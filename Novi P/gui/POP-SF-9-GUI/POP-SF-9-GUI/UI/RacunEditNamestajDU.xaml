@@ -6,6 +6,17 @@
         xmlns:local="clr-namespace:POP_SF_9_GUI.UI"
         mc:Ignorable="d"
         Title="RacunEditNamestajDU" Height="300" Width="300">
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxError">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Right" Foreground="Red" FontSize="12pt">Polje ne sme biti prazno!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder />
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+        <local:ValidationConverter x:Key="converter"/>
+    </Window.Resources>
     <Grid>
         <Label x:Name="label" Content="Izaberi jednu stavku:" HorizontalAlignment="Left" Margin="7,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,-0.385"/>
         <DataGrid x:Name="dgPrikaz" CanUserAddRows="False"  AutoGeneratingColumn="dgPrikaz_AutoGeneratingColumn" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="290" Height="150"/>

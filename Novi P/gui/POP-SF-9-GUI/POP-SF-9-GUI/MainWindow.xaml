@@ -16,9 +16,10 @@
         <Label Content="Korisnicko ime:" Margin="-4,96,245,41" Grid.Row="2"/>
         <Label Content="Password:" Margin="1,135,250,1" Grid.Row="2"/>
         <TextBox Name="tbKI" Grid.Row="2" FontSize="15" HorizontalAlignment="Left" Grid.ColumnSpan="1" Margin="140,100,0,37" Width="189"/>
-        <TextBox Name="tbPass" Grid.Row="2" FontSize="15" Margin="140,134,16,4" RenderTransformOrigin="0.5,0.5" />
+        
         <Label Content="Dobro dosli u Salon. Molimo vas da se prijavite!" Margin="0,50,4,87" Grid.Row="2"/>
         <Button Content="Potvrdi" Grid.Row="3" FontSize="16" Click="Potvrdi" Margin="16,129,255,21"/>
         <Button Content="Izlaz" Grid.Row="3" FontSize="14" Click="Izlaz" Margin="259,131,34,19" RenderTransformOrigin="0.601,0"/>
+        <PasswordBox x:Name="tbPass" HorizontalAlignment="Left" Margin="140,138,0,0" Grid.Row="2" VerticalAlignment="Top" Width="190" Height="24"/>
     </Grid>
 </Window>

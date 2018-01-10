@@ -22,13 +22,14 @@ namespace POP_SF_9_GUI
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    { 
         public Korisnik korisnik = new Korisnik();
         public MainWindow()
         {
             InitializeComponent();
             AkcijskaProdaja.AkcijeClean();
-           
+            
+            
         }
         private  bool Logovanje(String id, String pass)
         {
@@ -37,13 +38,13 @@ namespace POP_SF_9_GUI
             {
 
                 if (id.Equals(k.KorisnickoIme) && pass.Equals(k.Lozinka))
-                    korisnik.TipKorisnika = k.TipKorisnika;
-                if (k.Obrisan == true)
                 {
-                    MessageBox.Show("Korisnik je izbrisan","Greska",MessageBoxButton.OK,MessageBoxImage.Error);
+                    if (k.Obrisan == true )
+                    {
+                        MessageBox.Show("Korisnik je izbrisan", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    return true;
                 }
-                return true;
-
             }
             return false;
         }
@@ -51,10 +52,10 @@ namespace POP_SF_9_GUI
         {
 
             
-                if (Logovanje(tbKI.Text, tbPass.Text) == true)
+                if (Logovanje(tbKI.Text, tbPass.Password.ToString()) == true)
                 {
-                    var gp = new GlavniProzor(tbKI.Text, tbPass.Text);
-                    gp.Show();
+                    var gp = new GlavniProzor(tbKI.Text, tbPass.Password.ToString());
+                    gp.ShowDialog();
                 }
             
             else { MessageBox.Show("Prijava nije uspela! Pokusajte ponovo", "Pogresno logovanje", MessageBoxButton.OK, MessageBoxImage.Error); OsveziProkaz(); }

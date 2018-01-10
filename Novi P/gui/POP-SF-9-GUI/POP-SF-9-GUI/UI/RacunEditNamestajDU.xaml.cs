@@ -65,7 +65,12 @@ namespace POP_SF_9_GUI.UI
             {   
                 case Operacija.Namestaj:
                     var selektovaniNamestaj = (Namestaj)dgPrikaz.SelectedItem;
-                    int k = int.Parse(tbKolicina.Text);
+                    int k;
+                    try
+                    {
+                        k = int.Parse(tbKolicina.Text);
+                    }
+                    catch { MessageBox.Show($"Polja mora biti broj!"); break; }
                     var lista = new ObservableCollection<StavkaProdajeNamestaj>();
                     int brojac=0;
                     foreach (var n in Projekat.Instance.spn)

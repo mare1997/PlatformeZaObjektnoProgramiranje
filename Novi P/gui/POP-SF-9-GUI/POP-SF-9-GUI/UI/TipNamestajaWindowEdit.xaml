@@ -6,11 +6,31 @@
         xmlns:local="clr-namespace:POP_SF_9_GUI.UI"
         mc:Ignorable="d"
         Title="TipNamestajaWindow" Height="300" Width="300">
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxError">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Right" Foreground="Red" FontSize="12pt">Polje ne sme biti prazno!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder />
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+        <local:ValidationConverter x:Key="converter"/>
+    </Window.Resources>
     <Grid>
         <Label  Content="Naziv:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.179,0.03" Width="91" Height="29"/>
-        <TextBox Name="tbNaziv" HorizontalAlignment="Left" Height="29" Margin="161,24,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130" Text="{Binding Path=Naziv}" />
+        <TextBox Name="tbNaziv" HorizontalAlignment="Left" Height="29" Margin="130,24,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="161" >
+            <TextBox.Text>
+                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:StringV/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Button Name="btSacuvaj" Content="Sacuvaj" Click="btSacuvaj_Click" HorizontalAlignment="Left" Margin="22,225,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Name="btIzlaz" Content="Izlaz" Click="Izlaz" HorizontalAlignment="Left" Margin="198,225,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="130,54,-3,0" TextWrapping="Wrap" Foreground="Red" FontWeight="Bold"  Text="{Binding ElementName=tbNaziv, Path=(Validation.Errors).CurrentItem.ErrorContent }" VerticalAlignment="Top" Width="165"/>
 
     </Grid>
 </Window>

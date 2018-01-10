@@ -6,12 +6,49 @@
         xmlns:local="clr-namespace:POP_SF_9_GUI.UI"
         mc:Ignorable="d"
         Title="DodatnaUslugaWindowEdit" Height="300" Width="300">
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxError">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Right" Foreground="Red" FontSize="12pt">Polje ne sme biti prazno!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder />
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+        <local:ValidationConverter x:Key="converter"/>
+    </Window.Resources>
     <Grid>
-        <Label  Content="Naziv:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.179,0.03" Width="91" Height="29"/>
-        <TextBox Name="tbNaziv" HorizontalAlignment="Left" Height="29" Margin="161,24,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130" Text="{Binding Path=Naziv}" />
-        <Button Name="btSacuvaj" Content="Sacuvaj" Click="btSacuvaj_Click" HorizontalAlignment="Left" Margin="22,225,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Name="btIzlaz" Content="Izlaz" Click="Izlaz" HorizontalAlignment="Left" Margin="198,225,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label  Content="Cena:" HorizontalAlignment="Left" Margin="15,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.179,0.03" Width="91" Height="29"/>
-        <TextBox x:Name="tbCena" HorizontalAlignment="Left" Height="29" Margin="160,61,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130" Text="{Binding Path=Cena}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="169*"/>
+        </Grid.RowDefinitions>
+        <Label  Content="Naziv:" HorizontalAlignment="Left" Margin="-1,6,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.179,0.03" Width="91" Height="29"/>
+        <TextBox Name="tbNaziv" HorizontalAlignment="Left" Height="29" Margin="160,6,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130"  >
+            <TextBox.Text>
+                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:StringV/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Button Name="btSacuvaj" Content="Sacuvaj" Click="btSacuvaj_Click" HorizontalAlignment="Left" Margin="22,125,0,0" VerticalAlignment="Top" Width="75" Grid.Row="2"/>
+        <Button Name="btIzlaz" Content="Izlaz" Click="Izlaz" HorizontalAlignment="Left" Margin="198,125,0,0" VerticalAlignment="Top" Width="75" Grid.Row="2"/>
+        <Label  Content="Cena:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.179,0.03" Width="91" Height="29" Grid.Row="1"/>
+        <TextBox x:Name="tbCena" HorizontalAlignment="Left" Height="29" Margin="160,1,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130"  Grid.Row="1" >
+            <TextBox.Text>
+                <Binding Path="Cena" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:DoubleV/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="161,34,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="129" Foreground="Red" FontWeight="Bold" 
+                           Text="{Binding ElementName=tbNaziv, Path=(Validation.Errors).CurrentItem.ErrorContent }"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="160,30,0,0" TextWrapping="Wrap" Foreground="Red" FontWeight="Bold" 
+                           Text="{Binding ElementName=tbCena, Path=(Validation.Errors).CurrentItem.ErrorContent }" VerticalAlignment="Top" Width="129" Grid.Row="1" Grid.RowSpan="2"/>
+
     </Grid>
 </Window>

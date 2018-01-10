@@ -16,12 +16,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="8"/>
         </Grid.RowDefinitions>
-        <DataGrid CanUserAddRows="False"  AutoGeneratingColumn="dgPrikaz_AutoGeneratingColumn" Name="dgPrikaz" Grid.Row="0" FontSize="15" Margin="0,119,1,-340" Grid.ColumnSpan="4"  >
-            <DataGrid.Resources>
-                <Style TargetType="DataGridRow">
-                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
-                </Style>
-            </DataGrid.Resources>
+        <DataGrid CanUserAddRows="False"  AutoGeneratingColumn="dgPrikaz_AutoGeneratingColumn" Name="dgPrikaz" Grid.Row="0" FontSize="15" Margin="0,119,1,-321" Grid.ColumnSpan="4"  >
+            
         </DataGrid>
         <Button Content="Izlaz" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Izlaz" RenderTransformOrigin="2.498,0.231" Margin="0,370,11,-401" Grid.Column="3"/>
         <Button Content="Obrisi" Name="btObrisi" Visibility="Visible" Width="80" FontSize="20" HorizontalAlignment="Right" Click="Obrisi" RenderTransformOrigin="2.498,0.231" Margin="0,370,24,-401" Grid.Column="2"/>
@@ -35,6 +31,7 @@
         <ComboBox x:Name="cbP" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="10,73,0,-89" VerticalAlignment="Top" Width="109"/>
         <TextBox x:Name="tbP" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="0,73,0,-87" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.492,0.217"/>
         <Button x:Name="button1" Content="Pretrazi" Click="Pretrazi_Click" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="19,73,0,-87" VerticalAlignment="Top" Width="74"/>
+        <Button x:Name="btRacun" Content="Otvori Racun" Click="btRacun_Click" HorizontalAlignment="Left" Height="25" Margin="25,335,0,-351" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

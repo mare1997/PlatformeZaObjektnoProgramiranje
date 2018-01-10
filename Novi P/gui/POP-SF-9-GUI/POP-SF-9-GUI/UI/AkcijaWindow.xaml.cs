@@ -50,7 +50,7 @@ namespace POP_SF_9_GUI.UI
             DateTime date2 = dpK.SelectedDate.Value.Date;
             int result = DateTime.Compare(date1, date2);
             var n = Projekat.Instance.namestaj;
-            Console.WriteLine(akcija.Popust);
+            
             if (akcija.Popust > 0 || akcija.Popust < 91)
             {
                 switch (operacija)
@@ -76,7 +76,7 @@ namespace POP_SF_9_GUI.UI
                         {
                             foreach (var nn in n)
                             {
-                                if (nn.ak == namestaj.ak)
+                                if (nn.Akcija == namestaj.Akcija)
                                 {
                                     AkcijskaProdaja.Update(akcija);
                                     nn.ak = akcija.Id;
@@ -111,5 +111,6 @@ namespace POP_SF_9_GUI.UI
             this.Close();
 
         }
+       
     }
 }

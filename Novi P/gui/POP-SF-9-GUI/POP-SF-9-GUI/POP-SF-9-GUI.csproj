@@ -64,9 +64,11 @@
     <Compile Include="UI\DodatnaUslugaWindowEdit.xaml.cs">
       <DependentUpon>DodatnaUslugaWindowEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\DoubleV.cs" />
     <Compile Include="UI\GlavniProzor.xaml.cs">
       <DependentUpon>GlavniProzor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\IntV.cs" />
     <Compile Include="UI\KorisnikWindowEdit.xaml.cs">
       <DependentUpon>KorisnikWindowEdit.xaml</DependentUpon>
     </Compile>
@@ -76,15 +78,21 @@
     <Compile Include="UI\NamstajWindowEdit.xaml.cs">
       <DependentUpon>NamstajWindowEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\PV.cs" />
     <Compile Include="UI\RacunEdit.xaml.cs">
       <DependentUpon>RacunEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\RacunEditNamestajDU.xaml.cs">
       <DependentUpon>RacunEditNamestajDU.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\RacunIzgled.xaml.cs">
+      <DependentUpon>RacunIzgled.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StringV.cs" />
     <Compile Include="UI\TipNamestajaWindowEdit.xaml.cs">
       <DependentUpon>TipNamestajaWindowEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\ValidationConverter.cs" />
     <Compile Include="Utils\GenericSerializer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -127,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\RacunEditNamestajDU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\RacunIzgled.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,6 +205,7 @@
     <Content Include="DB_scripts\crebas.sql" />
     <Content Include="DB_scripts\seed.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -38,21 +38,26 @@ namespace POP_SF_9_GUI.UI
                 if (ki.Equals(k.KorisnickoIme) && p.Equals(k.Lozinka))
                     korisnik = k;
             }
-            if (korisnik.TipKorisnika == TipKorisnika.Administrator)
+            try
             {
-                listBox.Items.Clear();
-                listBox.Items.Add("Rad sa namestajem");
-                listBox.Items.Add("Rad sa tipom namestaja");
-                listBox.Items.Add("Rad sa korisnicima");
-                listBox.Items.Add("Rad sa prodajom namestaja");
-                listBox.Items.Add("Rad sa akcijama");
-                listBox.Items.Add("Rad sa dodatnim uslugama");
+                if (korisnik.TipKorisnika == TipKorisnika.Administrator)
+                {
+                    listBox.Items.Clear();
+                    listBox.Items.Add("Rad sa namestajem");
+                    listBox.Items.Add("Rad sa tipom namestaja");
+                    listBox.Items.Add("Rad sa korisnicima");
+                    listBox.Items.Add("Rad sa prodajom namestaja");
+                    listBox.Items.Add("Rad sa akcijama");
+                    listBox.Items.Add("Rad sa dodatnim uslugama");
 
+                }
+                else
+                {
+                    listBox.Items.Clear();
+                    listBox.Items.Add("Rad sa prodajom namestaja");
+                }
             }
-            else {
-                listBox.Items.Clear();
-                listBox.Items.Add("Rad sa prodajom namestaja");
-            }
+            catch { MessageBox.Show("Prijava nije uspela! Pokusajte ponovo", "Pogresno logovanje", MessageBoxButton.OK, MessageBoxImage.Error); this.Close(); }
         }
         private void Potvrdi(object sender, RoutedEventArgs e)
         {

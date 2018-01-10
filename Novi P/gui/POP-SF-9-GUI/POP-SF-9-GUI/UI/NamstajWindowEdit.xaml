@@ -6,35 +6,73 @@
         xmlns:local="clr-namespace:POP_SF_9_GUI.UI"
         mc:Ignorable="d"
         Title="NamstajWindowDodavanjeIzmena" Height="327.731" Width="300">
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxError">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Right" Foreground="Red" FontSize="12pt">Polje ne sme biti prazno!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder />
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+        <local:ValidationConverter x:Key="converter"/>
+    </Window.Resources>
     <Grid Margin="0,0,-8,-3" RenderTransformOrigin="0.409,0.465">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="118"/>
             <ColumnDefinition Width="259"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="42"/>
-            <RowDefinition Height="41"/>
-            <RowDefinition Height="36"/>
-            <RowDefinition Height="42"/>
-            <RowDefinition Height="34"/>
-            <RowDefinition Height="59*"/>
-            <RowDefinition Height="42*"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="44*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Content="Naziv:" HorizontalAlignment="Left" Width="45" Margin="0,0,0,40" Grid.RowSpan="2"/>
-        
-        <TextBox Grid.Row="0" FontSize="15" HorizontalAlignment="Left" Name="tbNaziv" Margin="1,5,0,4" Width="168" Grid.Column="1" Text="{Binding Path=Naziv}"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Naziv:" HorizontalAlignment="Left" Width="45"/>
+
+        <TextBox Grid.Row="0" FontSize="15" HorizontalAlignment="Left" Name="tbNaziv" Margin="1,5,0,25" Width="168" Grid.Column="1" >
+            <TextBox.Text>
+                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:StringV/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Label Content="Cena:" HorizontalAlignment="Left" Width="45" Grid.Row="3" Margin="0,3,0,0"/>
-        <Label Content="Tip Namestaja:" HorizontalAlignment="Left" Width="133" Margin="5,4,0,41" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <Label Content="Tip Namestaja:" HorizontalAlignment="Left" Width="133" Margin="5,4,0,1" Grid.Row="2" Grid.ColumnSpan="2" />
         <Button Content="Sacuvaj" HorizontalAlignment="Right" Click="SacuvajNamestaj" Margin="0,13,16,7" Grid.Row="6" Width="97"/>
         <Button Content="Izlaz" HorizontalAlignment="Right" Click="Izlaz" Grid.Column="1" Margin="0,13,88,5" Grid.Row="6" Width="68" />
-        <TextBox FontSize="15" HorizontalAlignment="Left" x:Name="tbKuM" Margin="1,6,0,1" Width="166" Grid.Row="1" Grid.Column="1" Text="{Binding Path=Kolicina}"/>
-        <TextBox Grid.Row="3" FontSize="15" HorizontalAlignment="Left" x:Name="tbCena" Margin="1,9,0,3" Width="169" Grid.Column="1" Text="{Binding Path=Cena}"/>
-        <Label Content="Kolicina u magacinu:" HorizontalAlignment="Left" Width="115" Margin="2,2,0,38" Grid.Row="1" Grid.RowSpan="3" RenderTransformOrigin="0.5,0.5" />
-        <ComboBox Name="cbTipNamestaja" Grid.Row="2" Grid.Column="1" FontSize="15" Margin="2,6,90,0" SelectedItem="{Binding Path=TipNamestaja}"/>
-        <Label Content="Akcija:" HorizontalAlignment="Left" Width="116" Grid.Row="4" Margin="0,6,0,37" Grid.RowSpan="2"/>
-        <Label Content="" Name="lbAkcija" HorizontalAlignment="Left" Width="166" Grid.Row="4" Margin="3,6,0,37" Grid.Column="1" Grid.RowSpan="2"/>
-        <Button Content="Dodaj Akciju"  HorizontalAlignment="Right" Click="DodajAkciju" Grid.Column="1" Margin="0,26,87,8" Grid.Row="5" Width="70" />
+        <TextBox FontSize="15" HorizontalAlignment="Left" x:Name="tbKuM" Margin="1,6,0,20" Width="166" Grid.Row="1" Grid.Column="1" >
+            <TextBox.Text>
+                <Binding Path="Kolicina" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:IntV/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Row="3" FontSize="15" HorizontalAlignment="Left" x:Name="tbCena" Margin="2,5,0,0" Width="169" Grid.Column="1"  Height="25" VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding Path="Cena" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:DoubleV/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label Content="Kolicina u magacinu:" HorizontalAlignment="Left" Width="115" Margin="2,2,0,3" Grid.Row="1" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" />
+        <ComboBox Name="cbTipNamestaja" Grid.Row="2" Grid.Column="1" FontSize="15" Margin="2,6,90,15" SelectedItem="{Binding Path=TipNamestaja}"/>
+        <Label Content="Akcija:" HorizontalAlignment="Left" Width="116" Grid.Row="5" Margin="-1,3,0,6"/>
+        <Label Content="" Name="lbAkcija" HorizontalAlignment="Left" Width="166" Grid.Row="5" Margin="1,3,0,6" Grid.Column="1"/>
+        <Button Content="Dodaj Akciju"  HorizontalAlignment="Right" Click="DodajAkciju" Grid.Column="1" Margin="0,20,87,8" Grid.Row="5" Width="70" />
+        <TextBlock x:Name="textBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="2,30,0,0" TextWrapping="Wrap" Foreground="Red" FontWeight="Bold"  Text="{Binding ElementName=tbNaziv, Path=(Validation.Errors).CurrentItem.ErrorContent }" VerticalAlignment="Top" Width="165"/>
+        <TextBlock x:Name="textBlock_Copy" Grid.Column="1" HorizontalAlignment="Left" Margin="2,30,0,0" TextWrapping="Wrap" Foreground="Red" FontWeight="Bold"  Text="{Binding ElementName=tbCena, Path=(Validation.Errors).CurrentItem.ErrorContent }" VerticalAlignment="Top" Width="165" Grid.Row="3"/>
+        <TextBlock x:Name="textBlock_Copy1" Grid.Column="1" HorizontalAlignment="Left" Margin="2,30,0,0" TextWrapping="Wrap" Foreground="Red" FontWeight="Bold"  Text="{Binding ElementName=tbKuM, Path=(Validation.Errors).CurrentItem.ErrorContent }" VerticalAlignment="Top" Width="165" Grid.Row="1"/>
 
     </Grid>
 </Window>

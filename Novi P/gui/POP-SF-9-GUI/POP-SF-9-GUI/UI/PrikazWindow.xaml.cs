@@ -66,11 +66,12 @@ namespace POP_SF_9_GUI.UI
                     cbP.Items.Add(Namestaj.Prikaz.TipNamestaja);
                     cbP.Items.Add(Namestaj.Prikaz.Akcija);
                     cbP.SelectedIndex = 0;
+                    btRacun.Visibility = System.Windows.Visibility.Hidden;
                     break;
                 case Prikaz.TipNamestaja:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.TN);
                     view.Filter = tipnamestajFilter;
-                
+                    btRacun.Visibility = System.Windows.Visibility.Hidden;
                     dgPrikaz.ItemsSource =  view;
                     dgPrikaz.IsSynchronizedWithCurrentItem = true;
                     dgPrikaz.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
@@ -101,7 +102,7 @@ namespace POP_SF_9_GUI.UI
                     cbP.Items.Add(Korisnik.Prikaz.Prezime);
                     cbP.Items.Add(Korisnik.Prikaz.KorisnickoIme);
                     cbP.Items.Add(Korisnik.Prikaz.Lozinka);
-                    
+                    btRacun.Visibility = System.Windows.Visibility.Hidden;
                     cbP.SelectedIndex = 0;
                     break;
               case Prikaz.ProdajaNamestaja:
@@ -143,6 +144,7 @@ namespace POP_SF_9_GUI.UI
                     cbP.Items.Add(AkcijskaProdaja.Prikaz.DatumKraja);
                     cbP.Items.Add(AkcijskaProdaja.Prikaz.Popust);
                     cbP.SelectedIndex = 0;
+                    btRacun.Visibility = System.Windows.Visibility.Hidden;
                     break;
                 case Prikaz.DodatneUsluge:
                     view = CollectionViewSource.GetDefaultView(Projekat.Instance.DU);
@@ -159,6 +161,7 @@ namespace POP_SF_9_GUI.UI
                     cbP.Items.Add(DodatnaUsluga.Prikaz.Naziv);
                     cbP.Items.Add(DodatnaUsluga.Prikaz.Cena);
                     cbP.SelectedIndex = 0;
+                    btRacun.Visibility = System.Windows.Visibility.Hidden;
                     break;
             }
 
@@ -430,16 +433,7 @@ namespace POP_SF_9_GUI.UI
             }
             
         }
-        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
-        {   switch (prikaz)
-            {
-                case Prikaz.ProdajaNamestaja:
-                    DataGridRow row = sender as DataGridRow;
-                    break;
-            }
-            
-            
-        }
+        
 
         private void Sortiraj_Click(object sender, RoutedEventArgs e)
         {
@@ -1154,6 +1148,25 @@ namespace POP_SF_9_GUI.UI
                     break;
 
             }
+        }
+
+        private void btRacun_Click(object sender, RoutedEventArgs e)
+        {
+            Salon sa = new Salon()
+            {
+                Id = 0001,
+                PIB = 1111,
+                Naziv = "FormaIdeale",
+                Adresa = "Bulevar Oslobodjenja 45",
+                Telefon = "068/58746952",
+                Email = "forma@gmail.com",
+                AdresaSajta = "formaideale.rs",
+                MaticniBroj = 124141,
+                BrojZiroRacuna = "415152626",
+            };
+            var racun = (Racun)dgPrikaz.SelectedItem;
+            var r = new RacunIzgled(racun, sa);
+            r.Show();
         }
     }
 }

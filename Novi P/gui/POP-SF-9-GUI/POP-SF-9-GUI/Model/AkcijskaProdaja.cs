@@ -103,6 +103,8 @@ namespace POP_SF_9_GUI.Model
 
             }
         }
+        
+
         public override string ToString()
         {
 

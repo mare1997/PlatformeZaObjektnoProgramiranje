@@ -7,6 +7,17 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="AkcijaWindow" Height="300" Width="300">
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxError">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Right" Foreground="Red" FontSize="12pt">Polje ne sme biti prazno!</TextBlock>
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder />
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+        <local:ValidationConverter x:Key="converter"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="146"/>
@@ -32,10 +43,22 @@
             </Label.RenderTransform>
         </Label>
         <Label Content="Datum kraja akcije:" Grid.Row="3" FontSize="13" Margin="0,0,2,0"/>
-        <TextBox Name="tbPopust" Grid.Row="0" Grid.Column="1" FontSize="15" Margin="3,10,98,5" Text="{Binding Path=Popust}" />
+        <TextBox Name="tbPopust" Grid.Row="0" Grid.Column="1" FontSize="15" Margin="3,10,98,5"  >
+            <TextBox.Text>
+                <Binding Path="Popust" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:PV/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Button Content="Dodaj" Name="Dodaj" Click="Dodaj_Click" Grid.Column="0" Grid.Row="4" Margin="28,103,43,18"/>
         <Button Content="Izlaz" Name="Izlaz" Grid.Column="1" Grid.Row="4" Click="Izlaz_Click" Margin="40,102,123,19"/>
         <DatePicker Name="dpP" SelectedDate="{Binding Path=DatumPocetka}" Grid.Column="1" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="102"/>
         <DatePicker Name="dpK" SelectedDate="{Binding Path=DatumKraja}" Grid.Column="1" HorizontalAlignment="Left" Margin="31,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="24" Width="102" />
+        
+        <TextBlock Margin="145,35,0,0" Foreground="Red" FontWeight="Bold" 
+                           Text="{Binding ElementName=tbPopust, Path=(Validation.Errors).CurrentItem.ErrorContent }" 
+                           HorizontalAlignment="Left" Width="145" Height="23" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="3" />
     </Grid>
 </Window>
