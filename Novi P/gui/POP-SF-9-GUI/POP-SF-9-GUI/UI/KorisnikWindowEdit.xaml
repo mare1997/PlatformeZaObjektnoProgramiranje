@@ -57,7 +57,7 @@
         <Label Content="Korisnicko ime:" HorizontalAlignment="Left" Width="110" Margin="5,4,0,0" Grid.Row="3" />
         <TextBox FontSize="15" HorizontalAlignment="Left" x:Name="tbKI" Margin="1,3,0,20" Width="166" Grid.Row="3" Grid.Column="1" >
             <TextBox.Text>
-                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="KorisnickoIme" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <local:StringV/>
                     </Binding.ValidationRules>
@@ -67,7 +67,7 @@
         <Label Content="Lozinka:" HorizontalAlignment="Left" Width="115" Grid.Row="4" Margin="0,3,0,0"/>
         <TextBox FontSize="15" HorizontalAlignment="Left" x:Name="tbLozinka" Margin="1,5,0,20" Width="166" Grid.Row="4" Grid.Column="1" >
             <TextBox.Text>
-                <Binding Path="Naziv" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="Lozinka" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <local:StringV/>
                     </Binding.ValidationRules>

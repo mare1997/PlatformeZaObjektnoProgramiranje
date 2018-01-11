@@ -55,7 +55,7 @@ namespace POP_SF_9_GUI
                 if (Logovanje(tbKI.Text, tbPass.Password.ToString()) == true)
                 {
                     var gp = new GlavniProzor(tbKI.Text, tbPass.Password.ToString());
-                    gp.ShowDialog();
+                    gp.Show();
                 }
             
             else { MessageBox.Show("Prijava nije uspela! Pokusajte ponovo", "Pogresno logovanje", MessageBoxButton.OK, MessageBoxImage.Error); OsveziProkaz(); }

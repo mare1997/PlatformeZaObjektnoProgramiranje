@@ -96,6 +96,7 @@ namespace POP_SF_9_GUI.UI
             };
             var akcija = new AkcijaWindow(operacija, namestaj,akcijaa);
             akcija.ShowDialog();
+
         }
     }
 }

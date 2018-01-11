@@ -281,6 +281,7 @@ namespace POP_SF_9_GUI.UI
             };
             var namestajProzor = new NamstajWindowDodavanjeIzmena(noviNamestaj, Operacija.DODAVANJE);
             namestajProzor.ShowDialog();
+            view.Refresh();
         }
         private void DodajTipNamestaja()
         {
@@ -314,6 +315,7 @@ namespace POP_SF_9_GUI.UI
             var selektovaniNamestaj = (Namestaj)dgPrikaz.SelectedItem;
             var namestajProzor = new NamstajWindowDodavanjeIzmena((Namestaj)selektovaniNamestaj.Clone(), Operacija.IZMENA);
             namestajProzor.ShowDialog();
+            view.Refresh();
         }
         private void IzmeniTipNamestaja()
         {

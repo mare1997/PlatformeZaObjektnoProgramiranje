@@ -215,3 +215,39 @@ E:\Git POP Git\POP\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-
 E:\Git POP Git\POP\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunIzgled.g.cs
 E:\Git POP Git\POP\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunIzgled.baml
 E:\Git POP Git\POP\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\bin\Debug\POP-SF-9-GUI.exe.config
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\bin\Debug\POP-SF-9-GUI.exe
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\bin\Debug\POP-SF-9-GUI.pdb
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.csprojResolveAssemblyReference.cache
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\MainWindow.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\AkcijaWindow.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\DodatnaUslugaWindowEdit.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\GlavniProzor.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\KorisnikWindowEdit.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\PrikazWindow.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamstajWindowEdit.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEdit.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEditNamestajDU.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunIzgled.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\TipNamestajaWindowEdit.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\App.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI_Content.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI_MarkupCompile.cache
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI_MarkupCompile.lref
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\MainWindow.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\AkcijaWindow.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\DodatnaUslugaWindowEdit.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\GlavniProzor.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\KorisnikWindowEdit.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\PrikazWindow.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\NamstajWindowEdit.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEdit.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunEditNamestajDU.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\RacunIzgled.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\UI\TipNamestajaWindowEdit.baml
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.g.resources
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP_SF_9_GUI.Properties.Resources.resources
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.csproj.GenerateResource.Cache
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.exe
+E:\POP-git\pop\PlatformeZaObjektnoProgramiranje\Novi P\gui\POP-SF-9-GUI\POP-SF-9-GUI\obj\Debug\POP-SF-9-GUI.pdb

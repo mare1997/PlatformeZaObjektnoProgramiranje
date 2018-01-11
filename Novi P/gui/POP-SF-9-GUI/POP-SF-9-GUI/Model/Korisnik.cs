@@ -101,7 +101,7 @@ namespace POP_SF_9_GUI.Model
         {
             foreach (var korisnik in Projekat.Instance.korisnik)
             {
-                if (korisnik.KorisnickoIme.ToLower() == username.ToLower())
+                if (korisnik.KorisnickoIme.ToLower() != username.ToLower())
                 {
                     return true;
                 }

@@ -81,12 +81,14 @@ namespace POP_SF_9_GUI.UI
                                     AkcijskaProdaja.Update(akcija);
                                     nn.ak = akcija.Id;
                                     Namestaj.Update(namestaj);
+                                    break;
                                 }
                                 else
                                 {
                                     AkcijskaProdaja.Create(akcija);
                                     namestaj.ak = akcija.Id;
                                     Namestaj.Update(namestaj);
+                                    break;
                                 }
                             }
 

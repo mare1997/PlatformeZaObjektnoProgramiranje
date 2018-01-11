@@ -41,7 +41,16 @@ namespace POP_SF_9_GUI.UI
                                                                              
                 }
             }
-           
+            foreach (var n in Projekat.Instance.spdu)
+            {
+                if (n.RacunId == racun.Id)
+                {
+                    var nam = DodatnaUsluga.GetById(n.DUId);
+                    listBox.Items.Add($"{nam.Naziv}                                         {nam.Cena}");
+
+                }
+            }
+
 
         }
     }

@@ -50,43 +50,53 @@ namespace POP_SF_9_GUI.UI
 
         private void Sacuvaj_Korisnik(object sender, RoutedEventArgs e)
         {
-            var korisnici = Projekat.Instance.korisnik;
-            switch (operacija)
+            try
             {
-                case Operacija.DODAVANJE:
-                    if (Korisnik.KorisnikPostoji(korisnik.KorisnickoIme) == false)
-                    {
-                        Korisnik.Create(korisnik);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Postoji korisnik sa tim korisnickim imenom izaberite drugo","Greska" ,MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    break;
-                case Operacija.IZMENA:
-                    foreach (var k in korisnici)
-                    {
-                        if (k.Id == korisnik.Id)
+                var korisnici = Projekat.Instance.korisnik;
+                switch (operacija)
+                {
+                    case Operacija.DODAVANJE:
+                        foreach (var k in Projekat.Instance.korisnik)
                         {
-                            if (Korisnik.KorisnikPostoji(korisnik.KorisnickoIme) == false)
+                            if (k.KorisnickoIme.ToLower().Equals(korisnik.KorisnickoIme.ToLower()))
                             {
-                                k.Ime = korisnik.Ime;
-                                k.Prezime = korisnik.Prezime;
-                                k.KorisnickoIme = korisnik.KorisnickoIme;
-                                k.Lozinka = korisnik.Lozinka;
-                                k.TipKorisnika = korisnik.TipKorisnika;
-                                Korisnik.Update(k);
+                                
+                                MessageBox.Show("Postoji korisnik sa tim korisnickim imenom izaberite drugo", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                             else
                             {
-                                MessageBox.Show("Postoji korisnik sa tim korisnickim imenom izaberite drugo", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                                Korisnik.Create(korisnik);
                             }
-                            break;
                         }
-                    }
-                    break;
+                        
+                        break;
+                    case Operacija.IZMENA:
+                        foreach (var k in korisnici)
+                        {
+                            if (k.Id == korisnik.Id)
+                            {
+                                if (Korisnik.KorisnikPostoji(korisnik.KorisnickoIme) == true)
+                                {
+                                    k.Ime = korisnik.Ime;
+                                    k.Prezime = korisnik.Prezime;
+                                    k.KorisnickoIme = korisnik.KorisnickoIme;
+                                    k.Lozinka = korisnik.Lozinka;
+                                    k.TipKorisnika = korisnik.TipKorisnika;
+                                    Korisnik.Update(k);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Postoji korisnik sa tim korisnickim imenom izaberite drugo", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                }
+
+                
             }
-            
+            catch { }
             this.Close();
         }
     }
